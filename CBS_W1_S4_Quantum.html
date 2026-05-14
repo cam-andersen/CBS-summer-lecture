@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S4 — Quantum Computing · AI, Fintech & Deep Tech</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<style>
+:root{
+  --c-bg:#0b0f14;--c-surface:#141a22;--c-surface2:#1c2430;
+  --c-white:#e8eaed;--c-muted:#8b95a5;--c-dim:#4a5568;--c-border:#2a3342;
+  --c-teal:#5DCAA5;--c-teal-dk:#0d3d2a;
+  --c-amber:#EF9F27;--c-amber-dk:#3a2810;
+  --c-coral:#F0997B;--c-blue:#85B7EB;--c-purple:#AFA9EC;
+  --font:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace
+}
+.reveal{font-family:var(--font);color:var(--c-white)}
+.reveal .slide-background{background:var(--c-bg)!important}
+.reveal h1,.reveal h2,.reveal h3{font-family:var(--font);color:var(--c-white);font-weight:700;text-transform:none;letter-spacing:-0.02em;margin-top:0}
+.reveal h1{font-size:2.4em;line-height:1.1}
+.reveal h2{font-size:2.0em;line-height:1.1}
+.reveal h3{font-size:1.5em;line-height:1.2}
+.reveal p,.reveal li{font-size:0.7em;line-height:1.5}
+.reveal .small{font-size:0.6em;color:var(--c-muted);margin:0 0 6px}
+.reveal .slides section{padding-top:28px !important}
+
+.divider-section{background:#0a0d12!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding-top:0!important}
+.divider-section h2{font-size:2.2em;color:var(--c-white)}
+.divider-tag{font-family:var(--mono);font-size:0.6em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 12px}
+.divider-line{width:60px;height:3px;background:var(--c-purple);margin:20px auto 0}
+
+.cbox{background:var(--c-surface);border:1.5px solid var(--c-purple);border-radius:18px;padding:20px 30px;max-width:960px;margin:12px auto 0;text-align:center;font-size:0.68em;line-height:1.6;color:var(--c-white)}
+.cbox.amber{border-color:var(--c-amber)}.cbox.coral{border-color:var(--c-coral)}.cbox.dim{border-color:var(--c-dim)}.cbox.teal{border-color:var(--c-teal)}.cbox.blue{border-color:var(--c-blue)}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:1060px;margin:12px auto 0}
+.col{background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:16px 20px;text-align:left;border-left:4px solid var(--c-purple)}
+.col.amber{border-left-color:var(--c-amber)}.col.coral{border-left-color:var(--c-coral)}.col.teal{border-left-color:var(--c-teal)}.col.blue{border-left-color:var(--c-blue)}
+.col h4{font-size:0.64em;margin:0 0 6px;color:var(--c-purple);font-weight:600}
+.col.amber h4{color:var(--c-amber)}.col.coral h4{color:var(--c-coral)}.col.teal h4{color:var(--c-teal)}.col.blue h4{color:var(--c-blue)}
+.col ul{list-style:none;padding:0;margin:0}
+.col ul li{font-size:0.54em;color:var(--c-white);margin:0 0 6px;padding-left:14px;position:relative;line-height:1.4}
+.col ul li::before{content:'\2022';position:absolute;left:0;color:var(--c-muted)}
+
+/* clickable cards */
+.click-grid{display:grid;gap:10px;max-width:1060px;margin:12px auto 0}
+.click-card{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:12px 16px;cursor:pointer;transition:border-color 0.25s,background 0.25s;text-align:center}
+.click-card:hover{border-color:var(--c-purple);background:rgba(175,169,236,0.06)}
+.click-card.active{border-color:var(--c-purple);background:rgba(175,169,236,0.1)}
+.click-detail{background:var(--c-surface2);border:1.5px solid var(--c-purple);border-radius:12px;padding:12px 20px;max-width:1060px;margin:8px auto 0;min-height:50px}
+.click-detail p{font-size:0.52em;color:var(--c-white);margin:0;line-height:1.5}
+
+/* matching diagram */
+.match-wrap{max-width:1060px;margin:10px auto 0}
+.match-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.match-col-head{font-family:var(--mono);font-size:0.46em;font-weight:700;text-align:center;padding:6px;letter-spacing:0.05em}
+.match-item{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:10px;padding:8px 12px;cursor:pointer;transition:border-color 0.25s,background 0.25s,opacity 0.25s;text-align:center}
+.match-item:hover{border-color:var(--c-purple)}
+.match-item.lit{border-color:var(--c-purple);background:rgba(175,169,236,0.12)}
+.match-item.dim{opacity:0.3}
+.match-item .mi-title{font-size:0.48em;font-weight:600;color:var(--c-white)}
+.match-item .mi-sub{font-size:0.38em;color:var(--c-muted);margin-top:2px}
+.match-detail{background:var(--c-surface2);border:1.5px solid var(--c-border);border-radius:10px;padding:10px 18px;max-width:1060px;margin:8px auto 0;min-height:40px;transition:border-color 0.3s}
+.match-detail p{font-size:0.48em;color:var(--c-white);margin:0;line-height:1.5}
+
+/* timeline */
+.tl-wrap{max-width:1060px;margin:12px auto 0}
+.tl-item{display:flex;align-items:flex-start;gap:14px;padding:8px 0;border-left:2px solid var(--c-border);margin-left:14px;padding-left:16px;position:relative;cursor:pointer}
+.tl-item::before{content:'';position:absolute;left:-7px;top:14px;width:12px;height:12px;border-radius:50%;background:var(--c-surface2);border:2px solid var(--c-dim);transition:background 0.2s,border-color 0.2s}
+.tl-item:hover::before{background:var(--c-purple);border-color:var(--c-purple)}
+.tl-item.active::before{background:var(--c-purple);border-color:var(--c-purple)}
+.tl-item.active{border-left-color:var(--c-purple)}
+.tl-tag{font-family:var(--mono);font-size:0.42em;color:var(--c-purple);font-weight:700;min-width:50px}
+.tl-body .tl-title{font-size:0.52em;font-weight:700;color:var(--c-white);margin:0}
+.tl-body .tl-detail{font-size:0.46em;color:var(--c-muted);margin:3px 0 0;line-height:1.4;max-height:0;overflow:hidden;transition:max-height 0.3s}
+.tl-item.active .tl-detail{max-height:80px}
+
+/* objectives */
+.obj-card{background:#1a1a2e;border:1px solid #2d2b55;border-radius:12px;padding:14px 18px;text-align:left;cursor:pointer;transition:all .25s;position:relative;display:flex;align-items:flex-start;gap:12px}
+.obj-card.done{background:#1f1a3a!important;border-color:var(--c-purple)!important}
+.obj-card.done .done-tick{opacity:1!important}
+
+.reveal .progress{color:var(--c-purple);height:3px}.reveal .controls button{color:var(--c-muted)}
+
+.flip-i{transform:rotateY(0deg)!important}.flip-i.flipped{transform:rotateY(180deg)!important}
+
+.canvas-wrapper{width:100%;height:360px;margin:12px auto;background:rgba(20,26,34,0.5);border-radius:12px;border:1px solid var(--c-border);display:flex;justify-content:center;align-items:center;overflow:hidden}
+.canvas-wrapper canvas{width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section data-bc="Day 2  ·  S4  ·  1 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Session 4 — Learning objectives</h3>
+<p class="small">By the end, you can assess any quantum computing claim — and explain why most are premature.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:96%;margin:10px auto 0">
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-size:1.4em;flex-shrink:0">🌀</span><p style="font-size:0.58em;color:#e8eaed;margin:0;line-height:1.45">Explain qubits, superposition, and entanglement using simple analogies</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-size:1.4em;flex-shrink:0">⚙️</span><p style="font-size:0.58em;color:#e8eaed;margin:0;line-height:1.45">Describe the main hardware approaches and why no single one has won</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-size:1.4em;flex-shrink:0">🧩</span><p style="font-size:0.58em;color:#e8eaed;margin:0;line-height:1.45">Match problem shapes to algorithms — and explain why most problems don't benefit</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-size:1.4em;flex-shrink:0">🔐</span><p style="font-size:0.58em;color:#e8eaed;margin:0;line-height:1.45">Explain why "harvest now, decrypt later" is a threat organisations face today</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+</div>
+<p style="font-size:0.40em;color:#4a5568;margin:8px 0 0;text-align:center">Click any objective to mark complete as we progress</p>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  2 / 31" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 1 of 6</p>
+<h2>Why quantum is different</h2>
+<div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  3 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Setting expectations</h3>
+<div class="cbox" style="max-width:800px;padding:22px 32px">
+  Quantum computing will not replace your laptop.<br>
+  It will not run ChatGPT faster.<br>
+  It won't make Excel spreadsheets quicker.<br><br>
+  <strong style="color:var(--c-purple)">It does something fundamentally different.</strong>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  4 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Classical vs. quantum</h3>
+<p class="small">The core difference in one picture</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-blue);border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:0.65em;font-weight:700;color:var(--c-blue);margin:0 0 8px">CLASSICAL BIT</div>
+    <div class="canvas-wrapper" id="canvas-classical" style="height:200px;margin:0 0 12px"></div>
+    <ul style="font-size:0.52em;color:var(--c-white);margin:0;padding:0 16px;text-align:left;line-height:1.5">
+      <li style="list-style:none;margin:4px 0">Either 0 or 1</li>
+      <li style="list-style:none;margin:4px 0">Always locked to one value</li>
+    </ul>
+  </div>
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-purple);border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:0.65em;font-weight:700;color:var(--c-purple);margin:0 0 8px">QUBIT</div>
+    <div class="canvas-wrapper" id="canvas-quantum" style="height:200px;margin:0 0 12px"></div>
+    <ul style="font-size:0.52em;color:var(--c-white);margin:0;padding:0 16px;text-align:left;line-height:1.5">
+      <li style="list-style:none;margin:4px 0">Both 0 AND 1 simultaneously</li>
+      <li style="list-style:none;margin:4px 0">Buzzes between states</li>
+    </ul>
+  </div>
+</div>
+<div style="display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+  <button data-qvis="classical-play" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">▶ Play</button>
+  <button data-qvis="classical-reset" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">Reset</button>
+</div>
+
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  5 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Three quantum concepts you need</h3>
+<p class="small">Click each one — no equations, just the ideas</p>
+<div class="click-grid" style="grid-template-columns:repeat(3,1fr)" id="s4-concepts">
+  <div class="click-card" data-c="0">
+    <div style="font-size:1.8em;margin:0 0 4px">🌀</div>
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-purple)">Superposition</div>
+    <div style="font-size:0.40em;color:var(--c-muted);margin-top:2px">Multiple states at once</div>
+  </div>
+  <div class="click-card" data-c="1">
+    <div style="font-size:1.8em;margin:0 0 4px">🔗</div>
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-purple)">Entanglement</div>
+    <div style="font-size:0.40em;color:var(--c-muted);margin-top:2px">Linked qubits</div>
+  </div>
+  <div class="click-card" data-c="2">
+    <div style="font-size:1.8em;margin:0 0 4px">〰️</div>
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-purple)">Interference</div>
+    <div style="font-size:0.40em;color:var(--c-muted);margin-top:2px">Cancel wrong answers</div>
+  </div>
+</div>
+<div class="click-detail" id="s4-concept-detail"><p style="color:var(--c-muted);font-style:italic">Select a concept above</p></div>
+<script>
+(function(){var mo=new MutationObserver(function(){var el=document.getElementById('s4-concepts');if(!el)return;var sec=el.closest('section');if(!sec||!sec.classList.contains('present'))return;
+var info=[
+  {t:"<strong style='color:var(--c-purple)'>Superposition</strong> — a qubit exists in a combination of 0 and 1 simultaneously. Think of a spinning coin: not heads, not tails, but genuinely both at once. When measured, it collapses to one value. With many qubits in superposition, the system explores an exponential number of possibilities in parallel."},
+  {t:"<strong style='color:var(--c-purple)'>Entanglement</strong> — two qubits become linked so that measuring one instantly determines the state of the other, regardless of distance. Einstein called it 'spooky action at a distance.' It enables coordinated computation across qubits — the key to quantum speedup."},
+  {t:"<strong style='color:var(--c-purple)'>Interference</strong> — quantum algorithms are designed so that paths leading to wrong answers cancel each other out, while paths to correct answers reinforce. This is how a quantum computer 'steers' toward useful results despite exploring many possibilities."}
+];
+el.querySelectorAll('.click-card').forEach(function(c){c.addEventListener('click',function(){el.querySelectorAll('.click-card').forEach(function(x){x.classList.remove('active');});c.classList.add('active');var i=parseInt(c.getAttribute('data-c'));document.getElementById('s4-concept-detail').innerHTML='<p>'+info[i].t+'</p>';});});
+mo.disconnect();});mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});})();
+</script>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  6 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Qubits and superposition (interactive)</h3>
+<p class="small">Explore the 3D Bloch sphere</p>
+<div class="canvas-wrapper" id="canvas-qubit"></div>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:12px 20px;max-width:960px;margin:12px auto 0">
+  <p style="font-size:0.56em;color:var(--c-white);margin:0;line-height:1.6">The sphere shows all possible quantum states of a single qubit. The purple dot is the current state—any point on the surface is valid. North pole is |0⟩, south is |1⟩. Click Measure to collapse it to a definite outcome.</p>
+</div>
+<div style="display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+  <button data-qvis="qubit-play" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">▶ Play</button>
+  <button data-qvis="qubit-measure" style="padding:8px 14px;background:rgba(240,153,123,0.15);border:1px solid var(--c-coral);color:var(--c-coral);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">🔬 Measure</button>
+  <button data-qvis="qubit-reset" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">Reset</button>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  7 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Entanglement (interactive)</h3>
+<p class="small">Correlated qubits across any distance</p>
+<div class="canvas-wrapper" id="canvas-entangle"></div>
+<div id="entangle-outcome" style="display:none;background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:12px 20px;max-width:960px;margin:12px auto 0;text-align:center">
+  <p style="font-size:0.56em;color:var(--c-white);margin:0;line-height:1.6"><strong>Measurement outcome:</strong> <span style="font-family:var(--mono);color:var(--c-coral)">Left qubit = |<span id="left-outcome">0</span>⟩</span> and <span style="font-family:var(--mono);color:var(--c-blue)">Right qubit = |<span id="right-outcome">1</span>⟩</span></p>
+</div>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:12px 20px;max-width:960px;margin:12px auto 0">
+  <p style="font-size:0.56em;color:var(--c-white);margin:0;line-height:1.6">Two entangled qubits move in perfect anti-correlation. Measuring the left qubit instantly determines the right qubit's outcome. This "spooky action at a distance" is the key resource for quantum speedup.</p>
+</div>
+<div style="display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+  <button data-qvis="entangle-play" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">▶ Play</button>
+  <button data-qvis="entangle-measure" style="padding:8px 14px;background:rgba(240,153,123,0.15);border:1px solid var(--c-coral);color:var(--c-coral);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">🔬 Measure</button>
+  <button data-qvis="entangle-reset" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">Reset</button>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  8 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Quantum interference (interactive)</h3>
+<p class="small">Cancel wrong answers, amplify correct ones</p>
+<div class="canvas-wrapper" id="canvas-interference"></div>
+<div style="display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+  <button data-interference-view="input" style="padding:8px 14px;background:rgba(224,75,74,0.2);border:1px solid #E24B4A;color:#E24B4A;border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">① Input</button>
+  <button data-interference-view="noise" style="padding:8px 14px;background:rgba(240,153,123,0.2);border:1px solid #F0997B;color:#F0997B;border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">② Cancellation</button>
+  <button data-interference-view="signal" style="padding:8px 14px;background:rgba(93,202,165,0.2);border:1px solid #5DCAA5;color:#5DCAA5;border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">③ Signal</button>
+</div>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:12px 20px;max-width:960px;margin:12px auto 0">
+  <p style="font-size:0.56em;color:var(--c-white);margin:0;line-height:1.6">The blue wave (correct answer) is in phase with itself—it amplifies. The two red waves (wrong answers) are out of phase—they cancel each other. Quantum algorithms choreograph these amplitudes so only correct answers survive. That is how you compute.</p>
+</div>
+<div style="display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap">
+  <button data-qvis="interference-play" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">▶ Play</button>
+  <button data-qvis="interference-reset" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">Reset</button>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  9 / 31" data-transition="fade">
+<h3 style="color:var(--c-amber)">But there's a catch</h3>
+<p class="small">Why you don't have a quantum laptop</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">❄️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Near absolute zero</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Most systems operate at −273°C. Colder than outer space.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">🫧</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Extreme fragility</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Slightest vibration, heat, or EM interference ruins the computation.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">⚠️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Error rates</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Errors compound quickly. Need thousands of physical qubits per logical qubit.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">🏗️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">NISQ era</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">We're in 'noisy intermediate-scale quantum.' Fault tolerance is years away.</div>
+  </div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  10 / 31" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 2 of 6</p>
+<h2>Hardware, problems, algorithms</h2>
+<div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  11 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Quantum hardware: four competing approaches</h3>
+<p class="small">No single approach has won — each has different trade-offs. Click to compare.</p>
+<div class="click-grid" style="grid-template-columns:repeat(4,1fr)" id="s4-hardware">
+  <div class="click-card" data-hw="0"><div style="font-size:1.4em;margin:0 0 4px">🧊</div><div style="font-size:0.48em;font-weight:700;color:var(--c-white)">Superconducting</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">IBM · Google</div></div>
+  <div class="click-card" data-hw="1"><div style="font-size:1.4em;margin:0 0 4px">⚛️</div><div style="font-size:0.48em;font-weight:700;color:var(--c-white)">Trapped ion</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">IonQ · Quantinuum</div></div>
+  <div class="click-card" data-hw="2"><div style="font-size:1.4em;margin:0 0 4px">💡</div><div style="font-size:0.48em;font-weight:700;color:var(--c-white)">Photonic</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Xanadu · PsiQuantum</div></div>
+  <div class="click-card" data-hw="3"><div style="font-size:1.4em;margin:0 0 4px">🔷</div><div style="font-size:0.48em;font-weight:700;color:var(--c-white)">Topological</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Microsoft</div></div>
+</div>
+<div class="click-detail" id="s4-hw-detail"><p style="color:var(--c-muted);font-style:italic">Select a hardware type above</p></div>
+<script>
+(function(){var mo=new MutationObserver(function(){var el=document.getElementById('s4-hardware');if(!el)return;var sec=el.closest('section');if(!sec||!sec.classList.contains('present'))return;
+var hw=[
+  {t:"<strong style='color:var(--c-purple)'>Superconducting qubits</strong> — tiny circuits cooled to near absolute zero. Fastest gate operations (~ns). Most mature: IBM has 1000+ qubit systems. <em style='color:var(--c-amber)'>Trade-off:</em> short coherence times, requires extreme cooling, high error rates. Currently leading in qubit count but not in quality."},
+  {t:"<strong style='color:var(--c-purple)'>Trapped ions</strong> — individual atoms held in place by electromagnetic fields, manipulated with lasers. Highest gate fidelity (lowest error rates). <em style='color:var(--c-amber)'>Trade-off:</em> slower gate speeds, harder to scale to many qubits. Best for problems that need precision over speed."},
+  {t:"<strong style='color:var(--c-purple)'>Photonic</strong> — uses particles of light. Operates at room temperature. Naturally suited to networking and communication. <em style='color:var(--c-amber)'>Trade-off:</em> photons don't interact easily, making two-qubit gates difficult. Different computation model (measurement-based). Most promising for quantum networking."},
+  {t:"<strong style='color:var(--c-purple)'>Topological</strong> — uses exotic quantum states that are inherently error-resistant. If it works, error correction would be built into the hardware. <em style='color:var(--c-amber)'>Trade-off:</em> Microsoft has been pursuing this for 20 years. First working topological qubit demonstrated 2025. Most speculative, highest potential payoff."}
+];
+el.querySelectorAll('.click-card').forEach(function(c){c.addEventListener('click',function(){el.querySelectorAll('.click-card').forEach(function(x){x.classList.remove('active');});c.classList.add('active');var i=parseInt(c.getAttribute('data-hw'));document.getElementById('s4-hw-detail').innerHTML='<p>'+hw[i].t+'</p>';});});
+mo.disconnect();});mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});})();
+</script>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  12 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Problem shapes quantum can help with</h3>
+<p class="small">Not all problems benefit. Click each shape to understand what makes it quantum-amenable.</p>
+<div class="click-grid" style="grid-template-columns:repeat(4,1fr)" id="s4-shapes">
+  <div class="click-card" data-sh="0"><div style="font-size:1.4em;margin:0 0 4px">🔀</div><div style="font-size:0.48em;font-weight:700;color:var(--c-teal)">Combinatorial</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Many possible combinations</div></div>
+  <div class="click-card" data-sh="1"><div style="font-size:1.4em;margin:0 0 4px">🧪</div><div style="font-size:0.48em;font-weight:700;color:var(--c-amber)">Simulation</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Quantum systems</div></div>
+  <div class="click-card" data-sh="2"><div style="font-size:1.4em;margin:0 0 4px">🔐</div><div style="font-size:0.48em;font-weight:700;color:var(--c-coral)">Factoring</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Large number decomposition</div></div>
+  <div class="click-card" data-sh="3"><div style="font-size:1.4em;margin:0 0 4px">🔍</div><div style="font-size:0.48em;font-weight:700;color:var(--c-blue)">Search</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Unstructured search space</div></div>
+</div>
+<div class="click-detail" id="s4-shape-detail"><p style="color:var(--c-muted);font-style:italic">Select a problem shape above</p></div>
+<script>
+(function(){var mo=new MutationObserver(function(){var el=document.getElementById('s4-shapes');if(!el)return;var sec=el.closest('section');if(!sec||!sec.classList.contains('present'))return;
+var shapes=[
+  {t:"<strong style='color:var(--c-teal)'>Combinatorial optimisation</strong> — find the best combination from an exponentially large set. Portfolio allocation (which mix of 500 assets minimises risk?), logistics routing (shortest path through 100 cities), scheduling (assign 1000 tasks to 50 machines). Classical computers try combinations one by one; quantum explores many simultaneously via superposition."},
+  {t:"<strong style='color:var(--c-amber)'>Quantum simulation</strong> — simulate systems that are themselves quantum mechanical. Drug molecules, battery materials, catalysts. A classical computer needs exponential resources to simulate a quantum system; a quantum computer simulates it naturally. This is where quantum has the clearest theoretical advantage."},
+  {t:"<strong style='color:var(--c-coral)'>Integer factoring</strong> — decompose a large number into its prime factors. RSA encryption relies on this being hard. Shor's algorithm solves it efficiently on a quantum computer. Not commercially useful — but breaks the encryption that protects the internet. This is the cryptographic threat."},
+  {t:"<strong style='color:var(--c-blue)'>Unstructured search</strong> — find a specific item in an unsorted database. Grover's algorithm provides a quadratic speedup (√N instead of N). Useful but modest — not the exponential speedup people expect. Applicable to database search, constraint satisfaction, and some ML problems."}
+];
+el.querySelectorAll('.click-card').forEach(function(c){c.addEventListener('click',function(){el.querySelectorAll('.click-card').forEach(function(x){x.classList.remove('active');});c.classList.add('active');var i=parseInt(c.getAttribute('data-sh'));document.getElementById('s4-shape-detail').innerHTML='<p>'+shapes[i].t+'</p>';});});
+mo.disconnect();});mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});})();
+</script>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  13 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Connecting the pieces</h3>
+<p class="small">Click any item to see what it connects to</p>
+<div class="match-wrap" id="s4-match">
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-col-head" style="color:var(--c-blue)">HARDWARE</div>
+    <div class="match-col-head" style="color:var(--c-purple)">ALGORITHM</div>
+    <div class="match-col-head" style="color:var(--c-teal)">PROBLEM</div>
+  </div>
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-item" data-m="sc"><div class="mi-title">Superconducting</div><div class="mi-sub">IBM · Google</div></div>
+    <div class="match-item" data-m="qaoa"><div class="mi-title">QAOA</div><div class="mi-sub">Approx. optimisation</div></div>
+    <div class="match-item" data-m="optim"><div class="mi-title">Optimisation</div><div class="mi-sub">Portfolios · routing</div></div>
+  </div>
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-item" data-m="ion"><div class="mi-title">Trapped ion</div><div class="mi-sub">IonQ · Quantinuum</div></div>
+    <div class="match-item" data-m="vqe"><div class="mi-title">VQE</div><div class="mi-sub">Variational eigensolver</div></div>
+    <div class="match-item" data-m="sim"><div class="mi-title">Simulation</div><div class="mi-sub">Chemistry · materials</div></div>
+  </div>
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-item" data-m="photo"><div class="mi-title">Photonic</div><div class="mi-sub">Xanadu · PsiQuantum</div></div>
+    <div class="match-item" data-m="shor"><div class="mi-title">Shor's</div><div class="mi-sub">Integer factoring</div></div>
+    <div class="match-item" data-m="crypto"><div class="mi-title">Cryptography</div><div class="mi-sub">Breaking RSA / ECC</div></div>
+  </div>
+  <div class="match-row">
+    <div class="match-item" data-m="topo"><div class="mi-title">Topological</div><div class="mi-sub">Microsoft (emerging)</div></div>
+    <div class="match-item" data-m="grover"><div class="mi-title">Grover's</div><div class="mi-sub">Search speedup</div></div>
+    <div class="match-item" data-m="search"><div class="mi-title">Search / ML</div><div class="mi-sub">Database · patterns</div></div>
+  </div>
+</div>
+<div class="match-detail" id="s4-match-detail"><p style="color:var(--c-muted);font-style:italic">Click any item to see its connections</p></div>
+<script>
+(function(){var mo=new MutationObserver(function(){var el=document.getElementById('s4-match');if(!el)return;var sec=el.closest('section');if(!sec||!sec.classList.contains('present'))return;
+var links={
+  sc:{lit:["sc","qaoa","vqe","optim","sim"],t:"<strong>Superconducting</strong> systems are best suited for QAOA (optimisation) and VQE (simulation). Fast gates but noisy — works for near-term hybrid algorithms that tolerate errors."},
+  ion:{lit:["ion","vqe","shor","sim","crypto"],t:"<strong>Trapped ion</strong> systems have the highest precision — ideal for VQE (chemistry simulation) and eventually Shor's (cryptography). Slower but more accurate."},
+  photo:{lit:["photo","grover","shor","crypto","search"],t:"<strong>Photonic</strong> systems use a different computation model. Best for networking, sampling problems, and potentially Grover-type search. Room temperature operation is a major advantage."},
+  topo:{lit:["topo","shor","qaoa","crypto","optim"],t:"<strong>Topological</strong> qubits — if they work — would have built-in error correction, making them ideal for algorithms that need deep circuits: Shor's and large-scale QAOA."},
+  qaoa:{lit:["qaoa","sc","topo","optim"],t:"<strong>QAOA</strong> (Quantum Approximate Optimisation Algorithm) — a hybrid quantum-classical approach for combinatorial problems. Runs on current NISQ hardware. The leading candidate for near-term quantum advantage in finance."},
+  vqe:{lit:["vqe","sc","ion","sim"],t:"<strong>VQE</strong> (Variational Quantum Eigensolver) — finds the lowest energy state of a molecular system. Used for drug discovery, battery chemistry, catalyst design. Works on today's noisy hardware."},
+  shor:{lit:["shor","ion","topo","crypto"],t:"<strong>Shor's algorithm</strong> — factors large numbers exponentially faster than classical. Breaks RSA encryption. Needs fault-tolerant hardware that doesn't exist yet. The reason governments are preparing now."},
+  grover:{lit:["grover","photo","ion","search"],t:"<strong>Grover's algorithm</strong> — searches an unsorted database in √N instead of N steps. Quadratic speedup, not exponential. Useful but modest. Applicable to constraint satisfaction and some ML optimisation."},
+  optim:{lit:["optim","qaoa","sc","topo"],t:"<strong>Optimisation problems</strong> — portfolio allocation, logistics routing, scheduling. The most commercially relevant near-term application. Banks (JPMorgan, Goldman) are actively experimenting with QAOA on superconducting hardware."},
+  sim:{lit:["sim","vqe","sc","ion"],t:"<strong>Simulation problems</strong> — modelling quantum systems like molecules, materials, and chemical reactions. The clearest theoretical advantage for quantum. Pharma and materials science are the primary customers."},
+  crypto:{lit:["crypto","shor","ion","topo"],t:"<strong>Cryptography threat</strong> — Shor's algorithm on a fault-tolerant quantum computer breaks RSA and ECC. Timeline: 10–20 years. But 'harvest now, decrypt later' makes it an immediate concern for long-lived secrets."},
+  search:{lit:["search","grover","photo"],t:"<strong>Search / ML problems</strong> — unstructured search, some pattern recognition tasks. Grover's provides √N speedup. Most ML problems do NOT benefit from quantum — this is a narrow category."}
+};
+var items=el.querySelectorAll('.match-item');
+items.forEach(function(item){
+  item.addEventListener('click',function(){
+    var key=item.getAttribute('data-m');
+    var info=links[key];
+    items.forEach(function(it){it.classList.remove('lit','dim');if(info.lit.indexOf(it.getAttribute('data-m'))===-1){it.classList.add('dim');}else{it.classList.add('lit');}});
+    var det=document.getElementById('s4-match-detail');
+    det.innerHTML='<p>'+info.t+'</p>';
+    det.style.borderColor='var(--c-purple)';
+  });
+});
+mo.disconnect();});mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});})();
+</script>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  14 / 31" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 3 of 6</p>
+<h2>When does quantum help?</h2>
+<div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  15 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">The honest answer</h3>
+<div class="cbox" style="max-width:800px;padding:22px 32px">
+  Quantum computing offers speedup<br>
+  for a <strong style="color:var(--c-purple)">small number of specific problem types</strong>.<br><br>
+  For everything else, classical computers are better<br>
+  — and will remain so.
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  16 / 31" data-transition="fade">
+<h3 style="color:var(--c-purple)">Finance applications worth knowing</h3>
+<p class="small">What banks and asset managers are exploring — all still experimental</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-teal)">
+    <div style="font-size:1.3em;margin:0 0 4px">📊</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Portfolio optimisation</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Best asset mix under constraints. QAOA on NISQ hardware.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-amber)">
+    <div style="font-size:1.3em;margin:0 0 4px">🎲</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Monte Carlo</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Derivative pricing, VaR. Quadratic speedup via amplitude estimation.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-coral)">
+    <div style="font-size:1.3em;margin:0 0 4px">🌐</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Risk modelling</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Simulating many correlated scenarios in parallel.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-blue)">
+    <div style="font-size:1.3em;margin:0 0 4px">🔍</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Fraud detection</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Finding patterns in transaction graphs. Grover-type search.</div>
+  </div>
+</div>
+<div class="cbox dim" style="padding:10px 24px;margin-top:10px">
+  <span style="font-size:0.50em">No production quantum system has beaten a classical computer at any of these tasks at commercial scale. Yet.</span>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  16 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Grover's algorithm: Searching</h3>
+<p class="small">Quadratic speedup for unstructured search</p>
+<div style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:20px;max-width:960px;margin:12px auto 0;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center">
+  <p style="font-size:0.58em;color:var(--c-muted);margin:0;font-style:italic">[Animation placeholder: Classical linear search vs. quantum amplitude amplification]</p>
+  <p style="font-size:0.56em;color:var(--c-white);margin:12px 0 0;line-height:1.6">Classical: N/2 checks on average | Quantum: √N checks</p>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  17 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Shor's algorithm: Factoring</h3>
+<p class="small">Exponential speedup that breaks RSA</p>
+<div style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:20px;max-width:960px;margin:12px auto 0;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center">
+  <p style="font-size:0.58em;color:var(--c-muted);margin:0;font-style:italic">[Animation placeholder: Classical trial division vs. quantum period finding]</p>
+  <p style="font-size:0.56em;color:var(--c-white);margin:12px 0 0;line-height:1.6">Classical: ~10^154 years for 2048-bit RSA | Quantum: hours</p>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  18 / 33" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 4 of 6</p>
+<h2>The realistic timeline</h2>
+<div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  19 / 33" data-transition="fade">
+<h3 style="color:var(--c-coral)">The crypto threat — timelines</h3>
+<p class="small">Estimates have shifted dramatically. The qubit threshold dropped 95% in six years.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:96%;margin:8px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 16px">
+    <div style="font-family:var(--mono);font-size:0.44em;color:var(--c-coral);font-weight:700;letter-spacing:0.05em;margin:0 0 8px">QUBIT REQUIREMENTS TO BREAK RSA-2048</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:var(--mono);font-size:0.42em;color:var(--c-dim);min-width:40px">2019</span>
+        <div style="background:var(--c-coral);height:10px;border-radius:5px;width:100%;opacity:0.7"></div>
+        <span style="font-family:var(--mono);font-size:0.42em;color:var(--c-coral);min-width:60px">20M qubits</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:var(--mono);font-size:0.42em;color:var(--c-dim);min-width:40px">2025</span>
+        <div style="background:var(--c-amber);height:10px;border-radius:5px;width:5%;opacity:0.7"></div>
+        <span style="font-family:var(--mono);font-size:0.42em;color:var(--c-amber);min-width:60px">&lt;1M qubits</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-family:var(--mono);font-size:0.42em;color:var(--c-dim);min-width:40px">2026</span>
+        <div style="background:var(--c-purple);height:10px;border-radius:5px;width:0.5%;opacity:0.7"></div>
+        <span style="font-family:var(--mono);font-size:0.42em;color:var(--c-purple);min-width:60px">~100K qubits</span>
+      </div>
+    </div>
+    <p style="font-size:0.38em;color:var(--c-dim);margin:6px 0 0;font-style:italic">Gidney (Google Quantum AI); Caltech/Oratomic neutral atom estimates</p>
+  </div>
+
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 16px">
+    <div style="font-family:var(--mono);font-size:0.44em;color:var(--c-amber);font-weight:700;letter-spacing:0.05em;margin:0 0 8px">WHEN COULD IT HAPPEN?</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.44em;color:var(--c-white)">23% of experts:</span><span style="font-size:0.44em;color:var(--c-coral);font-weight:700">by 2030</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.44em;color:var(--c-white)">50% of experts:</span><span style="font-size:0.44em;color:var(--c-amber);font-weight:700">by 2035</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.44em;color:var(--c-white)">NIST guidance:</span><span style="font-size:0.44em;color:var(--c-purple);font-weight:700">deprecate RSA by 2030, prohibit by 2035</span></div>
+      <div style="display:flex;align-items:center;gap:8px"><span style="font-size:0.44em;color:var(--c-white)">NSA (CNSA 2.0):</span><span style="font-size:0.44em;color:var(--c-teal);font-weight:700">all new national security systems quantum-safe by 2027</span></div>
+    </div>
+    <p style="font-size:0.38em;color:var(--c-dim);margin:6px 0 0;font-style:italic">Mosca/Piani expert survey; NIST SP 800-131A; NSA CNSA 2.0</p>
+  </div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:96%;margin:10px auto 0">
+  <div style="background:rgba(240,153,123,0.08);border:1px solid var(--c-coral);border-radius:10px;padding:10px 12px;text-align:center">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-coral)">Shor&#39;s breaks RSA &amp; ECC</div>
+    <div style="font-size:0.38em;color:var(--c-muted);margin-top:3px">Once a fault-tolerant machine reaches ~100K–1M qubits</div>
+  </div>
+  <div style="background:rgba(239,159,39,0.08);border:1px solid var(--c-amber);border-radius:10px;padding:10px 12px;text-align:center">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-amber)">ECC breaks first</div>
+    <div style="font-size:0.38em;color:var(--c-muted);margin-top:3px">P-256 (most digital signatures, crypto) may need only ~10K qubits</div>
+  </div>
+  <div style="background:rgba(175,169,236,0.08);border:1px solid var(--c-purple);border-radius:10px;padding:10px 12px;text-align:center">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-purple)">Migration takes 5–10 years</div>
+    <div style="font-size:0.38em;color:var(--c-muted);margin-top:3px">Cloudflare targeting 2029. Large banks: longer.</div>
+  </div>
+</div>
+</section>
+
+<section data-bc="Day 2  ·  S4  ·  20 / 33" data-transition="fade">
+<h3 style="color:var(--c-amber)">Why timelines keep slipping</h3>
+<p class="small">A pattern worth recognising</p>
+<div class="twocol">
+  <div class="col amber">
+    <h4>The forecasts</h4>
+    <ul>
+      <li>2015: quantum advantage by 2020</li>
+      <li>2020: useful quantum by 2025</li>
+      <li>2025: useful quantum by 2030</li>
+    </ul>
+  </div>
+  <div class="col coral">
+    <h4>Why they slip</h4>
+    <ul>
+      <li>Engineering challenges harder than expected</li>
+      <li>Error correction requires 1000x physical qubits per logical qubit</li>
+      <li>Classical computing keeps improving — closing some gaps</li>
+    </ul>
+  </div>
+</div>
+<div class="cbox amber" style="padding:10px 24px;margin-top:10px">
+  <span style="font-size:0.54em">The CEO question: 'Should we invest now?' For most businesses: no, not directly. Watch the field. Have someone tracking it. Don't bet the strategy on it.</span>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  21 / 33" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 5 of 6</p>
+<h2>Post-quantum cryptography</h2>
+<div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  22 / 33" data-transition="fade">
+<h3 style="color:var(--c-coral)">The crypto threat</h3>
+<p class="small">One area where you should pay attention now</p>
+<div style="display:flex;flex-direction:column;gap:8px;max-width:960px;margin:10px auto 0">
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Most internet encryption (RSA, ECC) relies on factoring being computationally hard</p></div>
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Shor's algorithm can factor large numbers efficiently on a quantum computer</p></div>
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Once a large enough quantum computer exists, <strong style="color:var(--c-coral)">current encryption breaks</strong></p></div>
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-amber);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">We're not there yet — but <strong style="color:var(--c-amber)">governments and banks are preparing now</strong></p></div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  23 / 33" data-transition="fade">
+<h3 style="color:var(--c-coral)">"Harvest now, decrypt later"</h3>
+<div class="cbox coral" style="max-width:800px;padding:22px 32px">
+  An adversary can intercept encrypted data <strong>today</strong>,<br>
+  store it,<br>
+  and decrypt it <strong>years from now</strong><br>
+  when quantum computers are powerful enough.<br><br>
+  For secrets that need to stay secret for decades,<br>
+  <strong style="color:var(--c-coral)">the threat is already real.</strong>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  24 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">The post-quantum migration</h3>
+<p class="small">What organisations should do — the sequence matters</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-teal)">
+    <div style="font-family:var(--mono);font-size:0.9em;color:var(--c-teal);font-weight:700;margin:0 0 6px">01</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Inventory</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Which systems use what encryption?</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-amber)">
+    <div style="font-family:var(--mono);font-size:0.9em;color:var(--c-amber);font-weight:700;margin:0 0 6px">02</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Prioritise</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Long-lived secrets first</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-coral)">
+    <div style="font-family:var(--mono);font-size:0.9em;color:var(--c-coral);font-weight:700;margin:0 0 6px">03</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Adopt standards</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">NIST post-quantum algorithms (2024)</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-purple)">
+    <div style="font-family:var(--mono);font-size:0.9em;color:var(--c-purple);font-weight:700;margin:0 0 6px">04</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Migrate</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">5–10 years for large orgs. Don't wait.</div>
+  </div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  25 / 33" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 6 of 6</p>
+<h2>Reflection</h2>
+<div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  26 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Common misconceptions</h3>
+<p class="small">Click to flip — myth on front, fact on back</p>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;width:96%;margin:10px auto 0">
+  <div style="perspective:800px;height:170px;cursor:pointer" onclick="this.querySelector('.flip-i').classList.toggle('flipped')">
+    <div class="flip-i" style="position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d">
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(240,153,123,0.08);border:1.5px solid var(--c-coral)"><div style="font-family:var(--mono);font-size:0.40em;color:var(--c-coral);font-weight:700;letter-spacing:0.1em;margin:0 0 6px">MYTH</div><div style="font-size:0.50em;color:var(--c-white);line-height:1.4">"Quantum computers are just faster classical computers."</div></div>
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(93,202,165,0.08);border:1.5px solid var(--c-teal);transform:rotateY(180deg)"><div style="font-family:var(--mono);font-size:0.40em;color:var(--c-teal);font-weight:700;letter-spacing:0.1em;margin:0 0 6px">FACT</div><div style="font-size:0.48em;color:var(--c-white);line-height:1.4">They solve a different class of problems. For most tasks, classical is and will remain better.</div></div>
+    </div>
+  </div>
+  <div style="perspective:800px;height:170px;cursor:pointer" onclick="this.querySelector('.flip-i').classList.toggle('flipped')">
+    <div class="flip-i" style="position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d">
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(240,153,123,0.08);border:1.5px solid var(--c-coral)"><div style="font-family:var(--mono);font-size:0.40em;color:var(--c-coral);font-weight:700;letter-spacing:0.1em;margin:0 0 6px">MYTH</div><div style="font-size:0.50em;color:var(--c-white);line-height:1.4">"Quantum computing will break all encryption soon."</div></div>
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(93,202,165,0.08);border:1.5px solid var(--c-teal);transform:rotateY(180deg)"><div style="font-family:var(--mono);font-size:0.40em;color:var(--c-teal);font-weight:700;letter-spacing:0.1em;margin:0 0 6px">FACT</div><div style="font-size:0.48em;color:var(--c-white);line-height:1.4">10–20 years away. But "harvest now, decrypt later" makes it a present-day concern for long-lived secrets.</div></div>
+    </div>
+  </div>
+  <div style="perspective:800px;height:170px;cursor:pointer" onclick="this.querySelector('.flip-i').classList.toggle('flipped')">
+    <div class="flip-i" style="position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d">
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(240,153,123,0.08);border:1.5px solid var(--c-coral)"><div style="font-family:var(--mono);font-size:0.40em;color:var(--c-coral);font-weight:700;letter-spacing:0.1em;margin:0 0 6px">MYTH</div><div style="font-size:0.50em;color:var(--c-white);line-height:1.4">"My company needs a quantum strategy now."</div></div>
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:rgba(93,202,165,0.08);border:1.5px solid var(--c-teal);transform:rotateY(180deg)"><div style="font-family:var(--mono);font-size:0.40em;color:var(--c-teal);font-weight:700;letter-spacing:0.1em;margin:0 0 6px">FACT</div><div style="font-size:0.48em;color:var(--c-white);line-height:1.4">You need a crypto migration plan. The quantum strategy can wait. Watch, track, don't bet.</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  27 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Discussion</h3>
+<div style="background:#0d1b2a;border:1px solid var(--c-blue);border-radius:12px;padding:12px 20px;max-width:96%;margin:8px auto 0">
+  <p style="font-size:0.44em;color:var(--c-blue);font-weight:700;margin:0 0 4px">PROMPT</p>
+  <p style="font-size:0.56em;color:#e8eaed;margin:0;font-style:italic">If you ran IT strategy for a Danish bank, what would you do about quantum computing in the next 12 months?</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-purple)">2 min</div>
+    <div style="font-size:0.40em;color:var(--c-muted)">Think individually</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-amber)">Pair up</div>
+    <div style="font-size:0.40em;color:var(--c-muted)">Compare answers</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px;text-align:center">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-blue)">Share</div>
+    <div style="font-size:0.40em;color:var(--c-muted)">+ what large banks are actually doing</div>
+  </div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  28 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Three things to carry forward</h3>
+<div style="display:flex;flex-direction:column;gap:12px;max-width:960px;margin:12px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-purple);border-radius:12px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start">
+    <div style="font-family:var(--mono);font-size:1.1em;color:var(--c-purple);font-weight:700;flex-shrink:0">01</div>
+    <div><div style="font-size:0.58em;font-weight:700;color:var(--c-white);margin-bottom:3px">Quantum is real but narrow</div><div style="font-size:0.48em;color:var(--c-muted);line-height:1.4">It helps with a small class of problems — optimisation, simulation, factoring, search. For everything else, classical wins.</div></div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-coral);border-radius:12px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start">
+    <div style="font-family:var(--mono);font-size:1.1em;color:var(--c-coral);font-weight:700;flex-shrink:0">02</div>
+    <div><div style="font-size:0.58em;font-weight:700;color:var(--c-white);margin-bottom:3px">The crypto threat is the urgent part</div><div style="font-size:0.48em;color:var(--c-muted);line-height:1.4">"Harvest now, decrypt later" means the migration to post-quantum cryptography should start now — even though fault-tolerant quantum is years away.</div></div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-amber);border-radius:12px;padding:16px 20px;display:flex;gap:14px;align-items:flex-start">
+    <div style="font-family:var(--mono);font-size:1.1em;color:var(--c-amber);font-weight:700;flex-shrink:0">03</div>
+    <div><div style="font-size:0.58em;font-weight:700;color:var(--c-white);margin-bottom:3px">Hardware → Algorithm → Problem is the matching exercise</div><div style="font-size:0.48em;color:var(--c-muted);line-height:1.4">When you see a quantum claim, ask: which hardware, which algorithm, which problem shape? If the answer isn't specific, it's probably hype.</div></div>
+  </div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  29 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Session 4 — objectives revisited</h3>
+<p class="small">How did you do? Click to mark.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:96%;margin:10px auto 0">
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-family:var(--mono);font-size:0.65em;color:var(--c-purple);font-weight:700;flex-shrink:0">01</span><p style="font-size:0.54em;color:#e8eaed;margin:0;line-height:1.4">Qubits, superposition, entanglement</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-family:var(--mono);font-size:0.65em;color:var(--c-purple);font-weight:700;flex-shrink:0">02</span><p style="font-size:0.54em;color:#e8eaed;margin:0;line-height:1.4">Hardware approaches and trade-offs</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-family:var(--mono);font-size:0.65em;color:var(--c-purple);font-weight:700;flex-shrink:0">03</span><p style="font-size:0.54em;color:#e8eaed;margin:0;line-height:1.4">Problem shapes → algorithms matching</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><span style="font-family:var(--mono);font-size:0.65em;color:var(--c-purple);font-weight:700;flex-shrink:0">04</span><p style="font-size:0.54em;color:#e8eaed;margin:0;line-height:1.4">"Harvest now, decrypt later" threat</p><div class="done-tick" style="position:absolute;top:8px;right:10px;font-size:0.46em;color:var(--c-purple);opacity:0;transition:opacity .2s">✓</div></div>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  30 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Coming up: Session 5 — Synthesis</h3>
+<div class="cbox dim" style="max-width:800px;padding:16px 28px">
+  <span style="font-size:0.60em">You now have the full conceptual toolkit:<br>AI/ML, NLP, GenAI, agentic AI, data governance, and quantum.<br><br>Session 5 connects them into a single landscape<br>and prepares you for Week 2's case studies.</span>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  31 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Session 4 — formative check</h3>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:14px;padding:20px 28px;max-width:800px;margin:12px auto 0;text-align:center">
+  <p style="font-size:0.64em;color:var(--c-white);margin:0 0 8px"><strong>Quantum readiness assessment</strong><br>For a chosen industry: what's the crypto migration priority?</p>
+  <p style="font-size:0.48em;color:var(--c-muted);font-style:italic;margin:0">Formative — not graded.</p>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  32 / 31" data-transition="fade" class="divider-section">
+<h2 style="color:var(--c-dim)">Day 2 complete</h2>
+<p style="font-size:0.6em;color:var(--c-muted);margin:12px 0 0">Tomorrow: Technology landscape synthesis</p>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js" crossorigin="anonymous"></script>
+<script>
+Reveal.initialize({
+  hash:true, transition:'fade', transitionSpeed:'default',
+  controlsTutorial:false, progress:true, center:false,
+  width:1280, height:720, margin:0.04
+});
+Reveal.on('slidechanged',function(e){
+  var bc=e.currentSlide.getAttribute('data-bc')||'';
+  var footer=document.getElementById('bc-footer');
+  if(footer)footer.textContent=bc;
+});
+
+/* Quantum Visualization Engine - Day 1 Pattern: IIFE + Event Delegation */
+(function(){
+  var engines={};
+  
+  function QuantumVisEngine(container,setupFn,animateFn){
+    this.container=container;
+    this.setupFn=setupFn;
+    this.animateFn=animateFn;
+    this.isAnimating=true;
+    this.frameCount=0;
+    this.state={};
+    this.initScene();
+    this.setupFn(this.state);
+    this.startAnimation();
+  }
+  
+  QuantumVisEngine.prototype.initScene=function(){
+    var w=this.container.clientWidth,h=this.container.clientHeight;
+    this.camera=new THREE.PerspectiveCamera(75,w/h,0.1,1000);
+    this.camera.position.z=4.5;
+    this.scene=new THREE.Scene();
+    this.scene.background=new THREE.Color(0x0a0d12);
+    this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+    this.renderer.setSize(w,h);
+    this.renderer.setPixelRatio(window.devicePixelRatio);
+    this.container.appendChild(this.renderer.domElement);
+    this.state.scene=this.scene;
+    this.state.camera=this.camera;
+    this.state.renderer=this.renderer;
+  };
+  
+  QuantumVisEngine.prototype.startAnimation=function(){
+    var self=this;
+    function loop(){
+      requestAnimationFrame(loop);
+      if(self.isAnimating)self.frameCount++;
+      var t=self.frameCount/60;
+      self.animateFn(self.state,t);
+      self.state.camera.lookAt(0,0,0);
+      self.state.renderer.render(self.state.scene,self.state.camera);
+    }
+    loop();
+  };
+  
+  QuantumVisEngine.prototype.toggleAnimation=function(){this.isAnimating=!this.isAnimating;};
+  QuantumVisEngine.prototype.reset=function(){this.frameCount=0;this.state.isMeasured=false;this.state.collapseStartFrame=null;};
+  QuantumVisEngine.prototype.measure=function(){
+    this.state.isMeasured=true;
+    this.state.measuredValue=Math.random()>0.5?1:0;
+    this.state.collapseStartFrame=this.frameCount;
+    this.isAnimating=true;
+  };
+  
+  /* Setup Functions */
+  function setupQubit(s){
+    var wg=new THREE.IcosahedronGeometry(1.8,8),wm=new THREE.MeshBasicMaterial({color:0x7F77DD,wireframe:true,transparent:true,opacity:0.25});
+    s.wire=new THREE.Mesh(wg,wm);s.scene.add(s.wire);
+    var sg=new THREE.IcosahedronGeometry(1.8,6),sm=new THREE.MeshPhysicalMaterial({color:0x7F77DD,wireframe:false,transparent:true,opacity:0.15,metalness:0,roughness:0.8,ior:1.5,transmission:0.8});
+    s.scene.add(new THREE.Mesh(sg,sm));
+    s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(1,0,0),new THREE.Vector3(0,0,0),2.0,0xE24B4A,0.2,0.12));
+    s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,0),2.0,0x85B7EB,0.2,0.12));
+    s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,0,1),new THREE.Vector3(0,0,0),2.0,0xAFA9EC,0.2,0.12));
+    var stg=new THREE.SphereGeometry(0.12,16,16),stm=new THREE.MeshPhongMaterial({color:0x7F77DD,emissive:0x5555AA});
+    s.stateVec=new THREE.Mesh(stg,stm);s.scene.add(s.stateVec);
+    s.scene.add(new THREE.DirectionalLight(0xffffff,0.7));
+    s.scene.add(new THREE.AmbientLight(0xffffff,0.5));
+    s.isMeasured=false;
+  }
+  
+  function animateQubit(s,t){
+    s.wire.rotation.x+=0.002;s.wire.rotation.y+=0.003;
+    if(!s.isMeasured){
+      var theta=t*1.2,phi=Math.PI/2+Math.sin(t*0.8)*Math.PI/4;
+      s.stateVec.position.set(Math.sin(phi)*Math.cos(theta),Math.cos(phi),Math.sin(phi)*Math.sin(theta));
+    }else{
+      var collapseFrac=Math.min(1,(t-s.collapseStartFrame/60)*3);
+      var targetY=s.measuredValue===0?1.8:-1.8;
+      var currentPos={x:s.stateVec.position.x,y:s.stateVec.position.y,z:s.stateVec.position.z};
+      var newY=currentPos.y*(1-collapseFrac)+targetY*collapseFrac;
+      var xzScale=1-collapseFrac;
+      s.stateVec.position.x=currentPos.x*xzScale;
+      s.stateVec.position.y=newY;
+      s.stateVec.position.z=currentPos.z*xzScale;
+      if(collapseFrac>=1){
+        s.stateVec.position.normalize().multiplyScalar(1.8);
+      }
+    }
+  }
+  
+  function setupEntangle(s){
+    var g1=new THREE.SphereGeometry(0.7,16,16),m1=new THREE.MeshPhongMaterial({color:0xE24B4A});
+    s.s1=new THREE.Mesh(g1,m1);s.s1.position.x=-5.5;s.scene.add(s.s1);
+    var g2=new THREE.SphereGeometry(0.7,16,16),m2=new THREE.MeshPhongMaterial({color:0x85B7EB});
+    s.s2=new THREE.Mesh(g2,m2);s.s2.position.x=5.5;s.scene.add(s.s2);
+    var tm=new THREE.MeshPhongMaterial({color:0x5DCAA5,transparent:true,opacity:0.7});
+    s.tube=new THREE.Mesh(new THREE.CylinderGeometry(0.08,0.08,1,8),tm);
+    s.scene.add(s.tube);
+    s.scene.add(new THREE.DirectionalLight(0xffffff,0.8));
+    s.scene.add(new THREE.AmbientLight(0xffffff,0.5));
+    s.isMeasured=false;
+  }
+  
+  function animateEntangle(s,t){
+    if(!s.isMeasured){
+      var o=Math.sin(t*1.5)*0.5;s.s1.position.y=o;s.s2.position.y=-o;
+    }else{
+      var collapseFrac=Math.min(1,(t-s.collapseStartFrame/60)*3);
+      var target1=s.measuredValue===0?0.7:-0.7;
+      var target2=s.measuredValue===0?-0.7:0.7;
+      s.s1.position.y=s.s1.position.y*(1-collapseFrac)+target1*collapseFrac;
+      s.s2.position.y=s.s2.position.y*(1-collapseFrac)+target2*collapseFrac;
+    }
+    var p1=new THREE.Vector3(s.s1.position.x,s.s1.position.y,s.s1.position.z);
+    var p2=new THREE.Vector3(s.s2.position.x,s.s2.position.y,s.s2.position.z);
+    var mid=new THREE.Vector3().addVectors(p1,p2).multiplyScalar(0.5);
+    var dist=p1.distanceTo(p2)+1.4;
+    s.tube.position.copy(mid);
+    s.tube.lookAt(p2);
+    s.tube.scale.z=dist;
+    var pulse=0.7+Math.sin(t*3)*0.3;
+    s.tube.material.opacity=s.isMeasured?pulse*(1-Math.min(1,(t-s.collapseStartFrame/60)*3)):pulse;
+  }
+  
+  /* Classical vs Quantum Visualizations */
+  function setupClassical(s){
+    s.classicalCanvas=document.createElement('canvas');
+    s.classicalCanvas.width=200;s.classicalCanvas.height=300;
+    s.classicalCtx=s.classicalCanvas.getContext('2d');
+    var tex=new THREE.CanvasTexture(s.classicalCanvas);
+    var geo=new THREE.PlaneGeometry(2.67,4);
+    var mat=new THREE.MeshBasicMaterial({map:tex});
+    s.classicalMesh=new THREE.Mesh(geo,mat);
+    s.scene.add(s.classicalMesh);
+    s.scene.add(new THREE.AmbientLight(0xffffff,0.8));
+  }
+  
+  function animateClassical(s,t){
+    var ctx=s.classicalCtx,w=s.classicalCanvas.width,h=s.classicalCanvas.height;
+    ctx.fillStyle='#0a0d12';ctx.fillRect(0,0,w,h);
+    
+    // Draw vertical box
+    ctx.strokeStyle='#85B7EB';ctx.lineWidth=3;
+    ctx.strokeRect(20,20,160,260);
+    
+    // Inside labels - large and visible
+    ctx.fillStyle='#85B7EB';ctx.font='bold 48px monospace';ctx.textAlign='center';
+    ctx.fillText('1',w/2,80);
+    ctx.fillText('0',w/2,260);
+    
+    // Fixed at 1 (top)
+    ctx.fillStyle='#E24B4A';
+    ctx.beginPath();ctx.arc(w/2,50,14,0,Math.PI*2);ctx.fill();
+    
+    ctx.fillStyle='#4a5568';ctx.font='11px monospace';ctx.textAlign='center';
+    ctx.fillText('Fixed at 1',w/2,h-50);
+    s.classicalMesh.material.map.needsUpdate=true;
+  }
+  
+  function setupQuantum(s){
+    s.quantumCanvas=document.createElement('canvas');
+    s.quantumCanvas.width=200;s.quantumCanvas.height=300;
+    s.quantumCtx=s.quantumCanvas.getContext('2d');
+    var tex=new THREE.CanvasTexture(s.quantumCanvas);
+    var geo=new THREE.PlaneGeometry(2.67,4);
+    var mat=new THREE.MeshBasicMaterial({map:tex});
+    s.quantumMesh=new THREE.Mesh(geo,mat);
+    s.scene.add(s.quantumMesh);
+  }
+  
+  function animateQuantum(s,t){
+    var ctx=s.quantumCtx,w=s.quantumCanvas.width,h=s.quantumCanvas.height;
+    ctx.fillStyle='#0a0d12';ctx.fillRect(0,0,w,h);
+    
+    // Draw vertical box
+    ctx.strokeStyle='#AFA9EC';ctx.lineWidth=3;
+    ctx.strokeRect(20,20,160,260);
+    
+    // Inside labels - large and visible
+    ctx.fillStyle='#AFA9EC';ctx.font='bold 48px monospace';ctx.textAlign='center';
+    ctx.fillText('1',w/2,80);
+    ctx.fillText('0',w/2,260);
+    
+    // Random position within the box - truly random walk
+    var seed=Math.floor(t*10);
+    Math.seedrandom=function(s){var x=Math.sin(s)*10000;return x-Math.floor(x);};
+    var rand=Math.seedrandom(seed);
+    var traversePos=50+rand*230;
+    ctx.fillStyle='#5DCAA5';
+    ctx.beginPath();ctx.arc(w/2,traversePos,14,0,Math.PI*2);ctx.fill();
+    
+    ctx.fillStyle='#4a5568';ctx.font='11px monospace';ctx.textAlign='center';
+    ctx.fillText('Oscillating',w/2,h-50);
+    s.quantumMesh.material.map.needsUpdate=true;
+  }
+  
+  function setupInterference(s){
+    s.interferenceState={show:'input'};
+    s.waveCanvas=document.createElement('canvas');
+    s.waveCanvas.width=800;
+    s.waveCanvas.height=450;
+    s.waveCtx=s.waveCanvas.getContext('2d');
+    var tex=new THREE.CanvasTexture(s.waveCanvas);
+    tex.magFilter=THREE.LinearFilter;tex.minFilter=THREE.LinearFilter;
+    var geo=new THREE.PlaneGeometry(10.6,6);
+    var mat=new THREE.MeshBasicMaterial({map:tex});
+    s.waveMesh=new THREE.Mesh(geo,mat);
+    s.scene.add(s.waveMesh);
+    s.scene.add(new THREE.AmbientLight(0xffffff,0.8));
+  }
+  
+  function animateInterference(s,t){
+    var ctx=s.waveCtx,w=s.waveCanvas.width,h=s.waveCanvas.height;
+    ctx.fillStyle='#0a0d12';ctx.fillRect(0,0,w,h);
+    
+    var centerY=h/2;
+    var scale=50;
+    
+    function drawSignal(yPos,label,showInput,showNoise1,showNoise2,showClean){
+      ctx.strokeStyle='#4a5568';ctx.lineWidth=1;
+      ctx.setLineDash([5,5]);ctx.beginPath();ctx.moveTo(0,yPos);ctx.lineTo(w,yPos);ctx.stroke();
+      ctx.setLineDash([]);
+      
+      ctx.fillStyle='#4a5568';ctx.font='10px var(--mono)';ctx.textAlign='left';
+      ctx.fillText(label,15,yPos-scale-20);
+      
+      if(showInput){
+        ctx.strokeStyle='#E24B4A';ctx.lineWidth=2;ctx.beginPath();
+        for(var x=0;x<w;x+=2){
+          var norm=x/w;
+          var signal=Math.sin(norm*4*Math.PI+t)*0.4;
+          var noise=Math.sin(norm*20*Math.PI+t*3)*0.2+Math.sin(norm*30*Math.PI+t*5)*0.15;
+          var y=signal+noise;
+          var py=yPos-y*scale;
+          if(x===0)ctx.moveTo(x,py);else ctx.lineTo(x,py);
+        }
+        ctx.stroke();
+      }
+      
+      if(showNoise1){
+        ctx.strokeStyle='#F0997B';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();
+        for(var x=0;x<w;x+=2){
+          var norm=x/w;
+          var noise1=Math.sin(norm*20*Math.PI+t*3)*0.2;
+          var py=yPos-noise1*scale;
+          if(x===0)ctx.moveTo(x,py);else ctx.lineTo(x,py);
+        }
+        ctx.stroke();
+        ctx.fillStyle='#F0997B';ctx.font='9px var(--mono)';ctx.textAlign='right';
+        ctx.fillText('Noise path 1',w-20,yPos-scale-5);
+      }
+      
+      if(showNoise2){
+        ctx.strokeStyle='#EBC4B4';ctx.lineWidth=2;ctx.setLineDash([4,4]);ctx.beginPath();
+        for(var x=0;x<w;x+=2){
+          var norm=x/w;
+          var noise2=Math.sin(norm*20*Math.PI+t*3+Math.PI)*0.2;
+          var py=yPos-noise2*scale;
+          if(x===0)ctx.moveTo(x,py);else ctx.lineTo(x,py);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle='#EBC4B4';ctx.font='9px var(--mono)';ctx.textAlign='right';
+        ctx.fillText('Noise path 2 (opposite)',w-20,yPos+scale+5);
+      }
+      
+      if(showClean){
+        ctx.strokeStyle='#5DCAA5';ctx.lineWidth=3;ctx.beginPath();
+        for(var x=0;x<w;x+=2){
+          var norm=x/w;
+          var signal=Math.sin(norm*4*Math.PI+t)*0.4;
+          var py=yPos-signal*scale;
+          if(x===0)ctx.moveTo(x,py);else ctx.lineTo(x,py);
+        }
+        ctx.stroke();
+      }
+    }
+    
+    if(s.interferenceState.show==='input'){
+      drawSignal(centerY,'INPUT: Signal + Noise (red)',true,false,false,false);
+      ctx.fillStyle='#e8eaed';ctx.font='11px var(--mono)';ctx.textAlign='center';
+      ctx.fillText('Noisy signal enters. Two noise paths travel through.',w/2,h-40);
+    }
+    else if(s.interferenceState.show==='noise'){
+      drawSignal(centerY-70,'INPUT: Signal + Noise (red)',true,false,false,false);
+      drawSignal(centerY+70,'NOISE CANCELLATION: Opposite phases interfere',false,true,true,false);
+      ctx.fillStyle='#e8eaed';ctx.font='11px var(--mono)';ctx.textAlign='center';
+      ctx.fillText('Red input + orange/tan noise paths: noise cancels out',w/2,h-40);
+    }
+    else if(s.interferenceState.show==='signal'){
+      drawSignal(centerY-100,'INPUT: Signal + Noise',true,false,false,false);
+      drawSignal(centerY,'NOISE PATHS cancel (opposite phase)',false,true,true,false);
+      drawSignal(centerY+100,'OUTPUT: Clean Signal (teal)',false,false,false,true);
+      ctx.fillStyle='#5DCAA5';ctx.font='11px var(--mono)';ctx.textAlign='center';
+      ctx.fillText('Noise cancels. Only the signal survives.',w/2,h-40);
+    }
+    
+    ctx.fillStyle='#4a5568';ctx.font='9px var(--mono)';ctx.textAlign='center';
+    ctx.fillText('Click buttons to reveal each stage',w/2,30);
+    
+    s.waveMesh.material.map.needsUpdate=true;
+  }
+  
+  function initVis(id,setup,animate){
+    if(engines[id])return;
+    var c=document.getElementById(id);
+    if(!c||c.children.length>0)return;
+    engines[id]=new QuantumVisEngine(c,setup,animate);
+  }
+  
+  /* Reveal Events */
+  Reveal.on('ready',function(){
+    var s=Reveal.getCurrentSlide();
+    if(s.querySelector('#canvas-classical'))initVis('canvas-classical',setupClassical,animateClassical);
+    if(s.querySelector('#canvas-quantum'))initVis('canvas-quantum',setupQuantum,animateQuantum);
+    if(s.querySelector('#canvas-qubit'))initVis('canvas-qubit',setupQubit,animateQubit);
+    if(s.querySelector('#canvas-entangle'))initVis('canvas-entangle',setupEntangle,animateEntangle);
+    if(s.querySelector('#canvas-interference'))initVis('canvas-interference',setupInterference,animateInterference);
+  });
+  
+  Reveal.on('slidechanged',function(e){
+    var s=e.currentSlide;
+    if(s.querySelector('#canvas-classical'))initVis('canvas-classical',setupClassical,animateClassical);
+    if(s.querySelector('#canvas-quantum'))initVis('canvas-quantum',setupQuantum,animateQuantum);
+    if(s.querySelector('#canvas-qubit'))initVis('canvas-qubit',setupQubit,animateQubit);
+    if(s.querySelector('#canvas-entangle'))initVis('canvas-entangle',setupEntangle,animateEntangle);
+    if(s.querySelector('#canvas-interference'))initVis('canvas-interference',setupInterference,animateInterference);
+  });
+  
+  /* Button Handlers */
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest('[data-qvis]');
+    if(!btn){
+      var vbtn=e.target.closest('[data-interference-view]');
+      if(vbtn){
+        var view=vbtn.getAttribute('data-interference-view');
+        var eng=engines['canvas-interference'];
+        if(eng)eng.state.interferenceState.show=view;
+        document.querySelectorAll('[data-interference-view]').forEach(function(b){
+          b.style.opacity='0.5';
+        });
+        vbtn.style.opacity='1';
+      }
+      return;
+    }
+    var parts=btn.getAttribute('data-qvis').split('-'),cid='canvas-'+parts[0],eng=engines[cid];
+    if(!eng)return;
+    if(parts[1]==='play')eng.toggleAnimation();
+    if(parts[1]==='reset'){
+      eng.reset();
+      if(parts[0]==='entangle'){
+        document.getElementById('entangle-outcome').style.display='none';
+      }
+    }
+    if(parts[1]==='measure'){
+      eng.measure();
+      if(parts[0]==='entangle'){
+        var leftVal=eng.state.measuredValue;
+        var rightVal=1-eng.state.measuredValue;
+        document.getElementById('left-outcome').textContent=leftVal;
+        document.getElementById('right-outcome').textContent=rightVal;
+        document.getElementById('entangle-outcome').style.display='block';
+      }
+    }
+  });
+})();
+
+</script>
+<a href="index.html" style="position:fixed;top:16px;left:16px;z-index:100;font-family:'DM Mono',monospace;font-size:11px;color:#4a5568;text-decoration:none;background:#141a22;border:1px solid #2a3342;border-radius:8px;padding:5px 12px;opacity:0.7" onmouseover="this.style.color='#e8eaed';this.style.opacity='1'" onmouseout="this.style.color='#4a5568';this.style.opacity='0.7'">&#8592; Home</a>
+<div id="bc-footer" style="position:fixed;bottom:14px;left:20px;font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:0.5px;z-index:100;pointer-events:none;opacity:0.8"></div>
+</body>
+</html>

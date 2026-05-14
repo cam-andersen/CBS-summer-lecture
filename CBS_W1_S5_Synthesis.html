@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 1 Session 5 — Synthesis · CBS Summer 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400&display=swap');
+:root {
+  --c-bg:#0b0f14; --c-surface:#141a22; --c-white:#e8eaed; --c-muted:#8b95a5;
+  --c-dim:#4a5568; --c-border:#2a3342; --c-teal:#5DCAA5; --c-amber:#EF9F27;
+  --c-coral:#F0997B; --c-blue:#85B7EB; --c-purple:#AFA9EC;
+  --font:'DM Sans',system-ui,sans-serif; --mono:'DM Mono',monospace;
+}
+.reveal { font-family: var(--font); }
+.reveal .slides section { padding-top:28px !important; }
+.reveal h1,.reveal h2,.reveal h3 { font-family:var(--font);font-weight:700;letter-spacing:-0.02em;text-transform:none;margin-bottom:6px; }
+.reveal h3 { font-size:1.4em; }
+.reveal p { margin:0; }
+p.small { font-size:0.54em;color:var(--c-muted);margin-bottom:0; }
+.divider-section { background:#0a0d12 !important; }
+
+#bc-footer { position:fixed;bottom:14px;left:20px;font-family:var(--mono);font-size:10px;color:var(--c-dim);letter-spacing:0.5px;z-index:100;pointer-events:none;opacity:0.8; }
+</style>
+</head>
+<body>
+<div id="bc-footer"></div>
+<a href="#/0" style="position:fixed;top:16px;left:16px;z-index:100;font-family:DM Mono,monospace;font-size:11px;color:#4a5568;text-decoration:none;background:#141a22;border:1px solid #2a3342;border-radius:8px;padding:5px 12px;opacity:0.7" onmouseover="this.style.color='#e8eaed';this.style.opacity='1'" onmouseout="this.style.color='#4a5568';this.style.opacity='0.7'">&#8592; Home</a>
+<div class="reveal"><div class="slides">
+
+<!-- ══════════════════════════════════════════
+     TITLE
+══════════════════════════════════════════ -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  Title" data-transition="fade">
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:680px;text-align:center">
+  <p style="font-family:var(--mono);font-size:0.44em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 14px">Session 5 · Week 1 · CBS Summer 2026</p>
+  <h2 style="font-size:2.4em;color:var(--c-white);margin:0 0 10px;line-height:1.1">The Synthesis</h2>
+  <p style="font-size:0.64em;color:var(--c-muted);margin:0 0 30px">AI · Data Governance · Quantum Computing</p>
+  <div style="display:flex;gap:20px;justify-content:center">
+    <span style="font-family:var(--mono);font-size:0.40em;padding:4px 16px;border-radius:20px;background:#0d3d2a;color:var(--c-teal);border:1px solid var(--c-teal)">How they connect now</span>
+    <span style="font-family:var(--mono);font-size:0.40em;padding:4px 16px;border-radius:20px;background:#1a1a35;color:var(--c-purple);border:1px solid var(--c-purple)">Where they are going</span>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     LEARNING OBJECTIVES
+══════════════════════════════════════════ -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  1 / 28" data-transition="fade">
+<h3 style="color:var(--c-teal)">Session 5 — Learning objectives</h3>
+<p class="small" style="margin-bottom:14px">By the end of this session, you can describe how the three domains of this week interact — now and in the next decade</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-teal);border-radius:0 12px 12px 0;padding:14px 16px;cursor:pointer" onclick="this.classList.toggle('done')">
+    <span style="font-family:var(--mono);font-size:0.60em;color:var(--c-teal);font-weight:700">01</span>
+    <p style="font-size:0.52em;color:var(--c-white);margin:4px 0 0;line-height:1.4">Trace the dependency chain across Sessions 1–4 and explain why the order matters</p>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-amber);border-radius:0 12px 12px 0;padding:14px 16px;cursor:pointer" onclick="this.classList.toggle('done')">
+    <span style="font-family:var(--mono);font-size:0.60em;color:var(--c-amber);font-weight:700">02</span>
+    <p style="font-size:0.52em;color:var(--c-white);margin:4px 0 0;line-height:1.4">Explain the three live cross-domain connections that are operational today</p>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-purple);border-radius:0 12px 12px 0;padding:14px 16px;cursor:pointer" onclick="this.classList.toggle('done')">
+    <span style="font-family:var(--mono);font-size:0.60em;color:var(--c-purple);font-weight:700">03</span>
+    <p style="font-size:0.52em;color:var(--c-white);margin:4px 0 0;line-height:1.4">Assess which emerging quantum connections will become real within 5 years vs 10+ years</p>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:14px 16px;cursor:pointer" onclick="this.classList.toggle('done')">
+    <span style="font-family:var(--mono);font-size:0.60em;color:var(--c-coral);font-weight:700">04</span>
+    <p style="font-size:0.52em;color:var(--c-white);margin:4px 0 0;line-height:1.4">Articulate the integrated architecture an organisation needs to deploy AI responsibly in 2025</p>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOCK 1: THE DEPENDENCY CHAIN
+══════════════════════════════════════════ -->
+<section class="divider-section" data-transition="fade" data-background-color="#0a0d12">
+<p style="font-family:var(--mono);font-size:0.5em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 10px">Block 1 of 3 · 45 minutes</p>
+<h2 style="font-size:2.2em;color:var(--c-white);margin:0 0 12px">Reconnecting the week</h2>
+<div style="width:60px;height:3px;background:var(--c-teal);margin:0 auto 14px"></div>
+<p style="font-size:0.52em;color:var(--c-muted)">Each session established something the next one needed. Let's trace the chain.</p>
+</section>
+
+<!-- Dependency chain slide -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  2 / 28" data-transition="fade">
+<h3 style="color:var(--c-teal)">The week as a dependency chain</h3>
+<p class="small">Nothing this week was standalone — each session was a prerequisite for what followed</p>
+<div style="position:relative;width:96%;margin:12px auto 0;height:400px">
+  <svg id="dep-chain-svg" style="width:100%;height:100%"></svg>
+</div>
+<script>
+(function(){
+var mo=new MutationObserver(function(){
+  var el=document.getElementById('dep-chain-svg');
+  if(!el)return;
+  var sec=el.closest('section');
+  if(!sec||!sec.classList.contains('present'))return;
+  if(!window.d3)return;
+
+  var W=el.getBoundingClientRect().width||1200, H=400;
+  var svg=d3.select(el).attr('viewBox','0 0 '+W+' '+H);
+
+  var sessions=[
+    {id:'S1',label:'Session 1',sub:'ML Foundations',col:'#5DCAA5',
+     desc:"Vocabulary for everything: ML, DL, measurement, data quality"},
+    {id:'S2',label:'Session 2',sub:'NLP, GenAI, Agentic',col:'#85B7EB',
+     desc:"Built on S1: DL enables transformers, LLMs, agentic loops"},
+    {id:'S3',label:'Session 3',sub:'Data Governance',col:'#EF9F27',
+     desc:"Requires S1+S2: you need AI failure modes to know why governance exists"},
+    {id:'S4',label:'Session 4',sub:'Quantum Computing',col:'#AFA9EC',
+     desc:"Requires S3: the crypto threat is a governance emergency"}
+  ];
+
+  var boxW=200, boxH=110, gap=60;
+  var totalW=sessions.length*boxW+(sessions.length-1)*gap;
+  var startX=(W-totalW)/2;
+  var cy=H/2;
+
+  // Defs
+  var defs=svg.append('defs');
+  sessions.forEach(function(s){
+    var g=defs.append('linearGradient').attr('id','grad-'+s.id)
+      .attr('x1','0%').attr('y1','0%').attr('x2','100%').attr('y2','100%');
+    g.append('stop').attr('offset','0%').attr('stop-color',s.col).attr('stop-opacity',0.25);
+    g.append('stop').attr('offset','100%').attr('stop-color',s.col).attr('stop-opacity',0.1);
+  });
+
+  var tooltip=svg.append('g').attr('id','dep-tip').style('display','none');
+  tooltip.append('rect').attr('rx',8).attr('fill','#141a22').attr('stroke','#2a3342').attr('stroke-width',1);
+  tooltip.append('text').attr('class','tip-text').attr('fill','#e8eaed')
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',11);
+
+  sessions.forEach(function(s,i){
+    var x=startX+i*(boxW+gap);
+
+    // Arrow between boxes
+    if(i>0){
+      var ax=x-gap, ay=cy;
+      // Arrow line
+      svg.append('line')
+        .attr('x1',ax).attr('y1',ay).attr('x2',ax+gap-8).attr('y2',ay)
+        .attr('stroke',sessions[i-1].col).attr('stroke-width',2).attr('stroke-opacity',0.6);
+      // Arrowhead
+      svg.append('polygon')
+        .attr('points',(ax+gap-2)+','+(ay-5)+' '+(ax+gap+8)+','+ay+' '+(ax+gap-2)+','+(ay+5))
+        .attr('fill',sessions[i-1].col).attr('fill-opacity',0.6);
+      // "requires" label
+      svg.append('text').attr('x',ax+gap/2).attr('y',ay-10)
+        .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace")
+        .attr('font-size',9).attr('fill','#4a5568').text('requires');
+    }
+
+    // Box
+    var g=svg.append('g').style('cursor','pointer')
+      .on('mouseenter',function(event){
+        tooltip.style('display','block');
+        // Wrap text
+        var words=s.desc.split(' '), line='', lines=[], maxW=260;
+        words.forEach(function(w){
+          var test=line?line+' '+w:w;
+          if(test.length*6.5>maxW){lines.push(line);line=w;}
+          else line=test;
+        });
+        if(line)lines.push(line);
+        tooltip.select('.tip-text').selectAll('tspan').remove();
+        lines.forEach(function(l,li){
+          tooltip.select('.tip-text').append('tspan')
+            .attr('x',12).attr('dy',li===0?16:16).text(l);
+        });
+        var tipH=lines.length*16+12;
+        tooltip.select('rect').attr('width',284).attr('height',tipH);
+        var tx=Math.min(x,W-294), ty=cy-boxH/2-tipH-10;
+        if(ty<0)ty=cy+boxH/2+10;
+        tooltip.attr('transform','translate('+tx+','+ty+')');
+      })
+      .on('mouseleave',function(){ tooltip.style('display','none'); });
+
+    g.append('rect').attr('x',x).attr('y',cy-boxH/2)
+      .attr('width',boxW).attr('height',boxH).attr('rx',12)
+      .attr('fill','url(#grad-'+s.id+')').attr('stroke',s.col).attr('stroke-width',1.5);
+
+    // Session label
+    g.append('text').attr('x',x+boxW/2).attr('y',cy-boxH/2+22)
+      .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace")
+      .attr('font-size',11).attr('font-weight',700).attr('fill',s.col).text(s.label);
+
+    // Session title
+    g.append('text').attr('x',x+boxW/2).attr('y',cy-boxH/2+42)
+      .attr('text-anchor','middle').attr('font-family',"'DM Sans',sans-serif")
+      .attr('font-size',13).attr('font-weight',700).attr('fill','#e8eaed').text(s.sub);
+
+    // Divider
+    g.append('line').attr('x1',x+16).attr('y1',cy-boxH/2+52).attr('x2',x+boxW-16).attr('y2',cy-boxH/2+52)
+      .attr('stroke',s.col).attr('stroke-opacity',0.3).attr('stroke-width',1);
+
+    // Hover hint
+    g.append('text').attr('x',x+boxW/2).attr('y',cy+boxH/2-14)
+      .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace")
+      .attr('font-size',9).attr('fill',s.col).attr('fill-opacity',0.6).text('hover for connection');
+
+    mo.disconnect();
+  });
+});
+mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+</script>
+</section>
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  3 / 28" data-transition="fade">
+<h3 style="color:var(--c-teal)">What Day 1 gave us — the measurement vocabulary</h3>
+<p class="small">Every AI deployment decision in this session traces back to concepts from S1</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;width:96%;margin:12px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-teal);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-teal);margin-bottom:6px">Precision & Recall</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5">The governance implication: who bears the cost of each error type? Misclassifying a loan applicant has legal consequences. The threshold decision is a policy decision.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-amber);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-amber);margin-bottom:6px">Data Quality</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5">Governance exists because data fails in four ways: bias, drift, volume, quality gaps. Governance is the systematic response to those failures.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-coral);margin-bottom:6px">Overfitting</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5">A model that only works on training data is ungovernable in production — it will fail when the world changes. Model monitoring is the governance response to drift.</div>
+  </div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-blue);border-radius:0 12px 12px 0;padding:12px 16px">
+    <div style="font-size:0.44em;font-weight:700;color:var(--c-blue);margin-bottom:4px">Confusion matrix</div>
+    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">FP and FN rates are the raw material of AI regulation. The EU AI Act essentially asks: what are your error rates, and who is harmed by them?</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-purple);border-radius:0 12px 12px 0;padding:12px 16px">
+    <div style="font-size:0.44em;font-weight:700;color:var(--c-purple);margin-bottom:4px">ML workflow</div>
+    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">The pipeline from raw data to deployed model is the governance audit trail. Lineage requires being able to trace every output back through every pipeline stage.</div>
+  </div>
+</div>
+</section>
+
+<!-- What S2 gave us -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  4 / 28" data-transition="fade">
+<h3 style="color:var(--c-blue)">What Day 1, Session 2 gave us — new failure modes</h3>
+<p class="small">NLP and GenAI introduced failure modes that classical ML governance wasn't designed for</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:96%;margin:12px auto 0">
+  <div>
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">Classical ML failure modes</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.42em;color:var(--c-white);font-weight:600">Bias in training data</div>
+        <div style="font-size:0.36em;color:var(--c-muted)">Amazon hiring AI · measurable, auditable, fixable</div>
+      </div>
+      <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.42em;color:var(--c-white);font-weight:600">Drift</div>
+        <div style="font-size:0.36em;color:var(--c-muted)">COVID demand model · detectable with monitoring</div>
+      </div>
+      <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.42em;color:var(--c-white);font-weight:600">Wrong threshold</div>
+        <div style="font-size:0.36em;color:var(--c-muted)">Fraud / cancer screening · policy decision, not technical</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">GenAI / Agentic additional failure modes</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="background:#1a1a35;border:1px solid var(--c-purple);border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.42em;color:var(--c-purple);font-weight:600">Hallucination</div>
+        <div style="font-size:0.36em;color:var(--c-muted)">Confidently wrong — not a bug, a feature of prediction. RAG mitigates but doesn't eliminate.</div>
+      </div>
+      <div style="background:#1a1a35;border:1px solid var(--c-purple);border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.42em;color:var(--c-purple);font-weight:600">No explainability</div>
+        <div style="font-size:0.36em;color:var(--c-muted)">You cannot trace why a specific output was produced. GDPR Article 22 requires this for automated decisions.</div>
+      </div>
+      <div style="background:#1a1a35;border:1px solid var(--c-coral);border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.42em;color:var(--c-coral);font-weight:600">Cascading agent errors</div>
+        <div style="font-size:0.36em;color:var(--c-muted)">95%^10 = 60% end-to-end. Each step without human review compounds. Governance must specify where humans re-enter.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- What S3 gave us -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  5 / 28" data-transition="fade">
+<h3 style="color:var(--c-amber)">What Session 3 gave us — the trust layer</h3>
+<p class="small">Governance is not a constraint on AI. It is the infrastructure that makes AI trustworthy enough to deploy.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;width:96%;margin:12px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-amber);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:0.38em;font-weight:700;color:var(--c-amber);margin-bottom:6px;font-family:var(--mono);text-transform:uppercase">Data Quality</div>
+    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">The 80% rule. Bias, drift, volume, labelling. Without this, ML produces garbage confidently.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-amber);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:0.38em;font-weight:700;color:var(--c-amber);margin-bottom:6px;font-family:var(--mono);text-transform:uppercase">Lineage & Metadata</div>
+    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">Track every transformation from raw data to model output. Required for audit, regulation, and explainability.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-amber);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:0.38em;font-weight:700;color:var(--c-amber);margin-bottom:6px;font-family:var(--mono);text-transform:uppercase">Ethics & Compliance</div>
+    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">EU AI Act risk tiers. GDPR automated decision rules. Fairness metrics. The legal framework around AI outputs.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-amber);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:0.38em;font-weight:700;color:var(--c-amber);margin-bottom:6px;font-family:var(--mono);text-transform:uppercase">Security & Access</div>
+    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">Who can read what data. Who can train what model. Who can deploy what agent. The permission layer.</div>
+  </div>
+</div>
+<div style="background:var(--c-surface);border:1px solid var(--c-amber);border-radius:12px;padding:14px 18px;width:96%;margin:12px auto 0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+  <div style="text-align:center">
+    <div style="font-family:var(--mono);font-size:0.34em;color:var(--c-dim);text-transform:uppercase;margin-bottom:4px">EU AI Act (2024)</div>
+    <div style="font-size:0.40em;color:var(--c-white)">Risk-tiered regulation. High-risk AI (credit, hiring, justice) requires conformity assessment before deployment.</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-family:var(--mono);font-size:0.34em;color:var(--c-dim);text-transform:uppercase;margin-bottom:4px">GDPR Art. 22</div>
+    <div style="font-size:0.40em;color:var(--c-white)">Right to explanation for automated decisions. Requires lineage + human override capability.</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-family:var(--mono);font-size:0.34em;color:var(--c-dim);text-transform:uppercase;margin-bottom:4px">Basel IV / BCBS 239</div>
+    <div style="font-size:0.40em;color:var(--c-white)">Banks must evidence data quality and lineage in all risk models. Same requirements, different regulator.</div>
+  </div>
+</div>
+</section>
+
+<!-- What S4 gave us -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  6 / 28" data-transition="fade">
+<h3 style="color:var(--c-purple)">What Session 4 gave us — the threat and the horizon</h3>
+<p class="small">Quantum computing is simultaneously a present security emergency and a future capability accelerant</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:96%;margin:12px auto 0">
+  <div>
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-coral);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">⚠ The present threat</div>
+    <div style="background:#3a0a0a;border:1.5px solid var(--c-coral);border-radius:12px;padding:14px 16px">
+      <div style="font-size:0.44em;font-weight:700;color:var(--c-coral);margin-bottom:6px">Shor's algorithm breaks RSA & ECC</div>
+      <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5;margin-bottom:8px">A fault-tolerant quantum computer with ~1M qubits (likely by 2030–2035) can break the encryption protecting most of the internet, banking systems, and government communications.</div>
+      <div style="font-size:0.38em;color:var(--c-white);line-height:1.5"><strong style="color:var(--c-coral)">Harvest now, decrypt later:</strong> adversaries are already collecting encrypted data today to decrypt when quantum computers arrive. The threat is present even before the capability exists.</div>
+    </div>
+    <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:10px 14px;margin-top:8px">
+      <div style="font-size:0.36em;color:var(--c-muted)">NIST: deprecate RSA by 2030, prohibit by 2035. NSA: national security systems quantum-safe by 2027.</div>
+    </div>
+  </div>
+  <div>
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-purple);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">◈ The future capability</div>
+    <div style="background:#1a1a35;border:1.5px solid var(--c-purple);border-radius:12px;padding:14px 16px">
+      <div style="font-size:0.44em;font-weight:700;color:var(--c-purple);margin-bottom:6px">Quantum accelerates AI</div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="font-size:0.38em;color:var(--c-muted)"><span style="color:var(--c-white)">Quantum ML</span> — solving optimisation problems in ML training exponentially faster. 5–10 years.</div>
+        <div style="font-size:0.38em;color:var(--c-muted)"><span style="color:var(--c-white)">Quantum optimisation</span> — portfolio, logistics, drug discovery. Grover's algorithm quadratic speedup on search. 5–10 years.</div>
+        <div style="font-size:0.38em;color:var(--c-muted)"><span style="color:var(--c-white)">Quantum simulation</span> — molecular modelling, materials science, climate. Near-term for specific domains.</div>
+        <div style="font-size:0.38em;color:var(--c-muted)"><span style="color:var(--c-white)">Quantum GenAI</span> — quantum-native transformers. 10+ years, highly speculative.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOCK 2: THE INTERSECTIONS
+══════════════════════════════════════════ -->
+<section class="divider-section" data-transition="fade" data-background-color="#0a0d12">
+<p style="font-family:var(--mono);font-size:0.5em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 10px">Block 2 of 3 · 60 minutes</p>
+<h2 style="font-size:2.2em;color:var(--c-white);margin:0 0 12px">The intersections</h2>
+<div style="width:60px;height:3px;background:var(--c-coral);margin:0 auto 14px"></div>
+<p style="font-size:0.52em;color:var(--c-muted)">Three pairs. Each pair is a different kind of relationship.</p>
+<div style="display:flex;gap:20px;justify-content:center;margin-top:16px">
+  <div style="text-align:center;padding:12px 20px;border:1px solid var(--c-border);border-radius:10px">
+    <div style="font-size:1.4em">🟢</div>
+    <div style="font-size:0.40em;color:var(--c-teal);font-family:var(--mono);margin-top:4px">Solid line</div>
+    <div style="font-size:0.36em;color:var(--c-muted)">Operational today</div>
+  </div>
+  <div style="text-align:center;padding:12px 20px;border:1px solid var(--c-border);border-radius:10px">
+    <div style="font-size:1.4em">⚪</div>
+    <div style="font-size:0.40em;color:var(--c-purple);font-family:var(--mono);margin-top:4px">Dotted line</div>
+    <div style="font-size:0.36em;color:var(--c-muted)">Emerging — 2–10 years</div>
+  </div>
+</div>
+</section>
+
+<!-- AI × Governance — intro -->
+<section data-background-color="#0a0d12" data-bc="Day 1  ·  S5  ·  14 / 28" data-transition="fade">
+<div style="position:absolute;top:0;left:0;width:1280px;height:720px;background:#0a0d12;overflow:hidden">
+
+  <!-- Header -->
+  <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none">
+    <div style="font-family:'DM Mono',monospace;font-size:11px;color:#5DCAA5;text-transform:uppercase;letter-spacing:0.18em">The Synthesis — AI · Governance · Quantum</div>
+    <div style="font-size:10px;color:#4a5568;margin-top:3px">Drag nodes · Hover for descriptions · — solid = current · - - dotted = emerging</div>
+  </div>
+
+  <!-- Show Graph button — disappears after click -->
+  <div id="s5-btn-wrap" style="position:absolute;top:0;left:0;width:1280px;height:720px;display:flex;align-items:center;justify-content:center;z-index:20;background:#0a0d12">
+    <button id="s5-show-btn" onclick="s5InitGraph()" style="font-family:'DM Mono',monospace;font-size:14px;color:#5DCAA5;background:#141a22;border:2px solid #5DCAA5;border-radius:12px;padding:14px 36px;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s" onmouseover="this.style.background='#0d3d2a'" onmouseout="this.style.background='#141a22'">
+      ▶ Show Synthesis Graph
+    </button>
+  </div>
+
+  <!-- Legend -->
+  <div style="position:absolute;bottom:14px;left:20px;z-index:5;display:flex;gap:14px;align-items:center;background:rgba(10,13,18,0.9);padding:6px 12px;border:1px solid #2a3342;border-radius:8px">
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:14px;border-radius:50%;background:#5DCAA5;opacity:0.8"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:#5DCAA5">AI</span></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:14px;border-radius:50%;background:#EF9F27;opacity:0.8"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:#EF9F27">Governance</span></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:14px;border-radius:50%;background:#AFA9EC;opacity:0.8"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:#AFA9EC">Quantum</span></div>
+    <div style="width:1px;height:14px;background:#2a3342"></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:2px;background:#8b95a5"></div><span style="font-size:9px;color:#8b95a5">Current</span></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:1px;background:#AFA9EC;border-top:2px dashed #AFA9EC"></div><span style="font-size:9px;color:#AFA9EC">Emerging</span></div>
+  </div>
+
+  <!-- Tooltip -->
+  <div id="s5-tooltip" style="position:absolute;padding:10px 13px;background:#141a22;border:1px solid #2a3342;border-radius:9px;color:#e8eaed;font-size:11px;line-height:1.5;pointer-events:none;max-width:260px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:9999;transition:opacity 0.15s;font-family:'DM Sans',sans-serif"></div>
+
+  <!-- SVG canvas -->
+  <svg id="s5-svg" style="position:absolute;top:0;left:0;width:1280px;height:720px;display:none"></svg>
+</div>
+
+<script>
+window.s5InitGraph = function(){
+  // Hide button
+  var btnWrap = document.getElementById('s5-btn-wrap');
+  if(btnWrap) btnWrap.style.display = 'none';
+
+  // Show SVG
+  var el = document.getElementById('s5-svg');
+  if(!el){ console.error('s5-svg not found'); return; }
+  el.style.display = 'block';
+
+  if(!window.d3){ console.error('D3 not loaded'); return; }
+
+  var W=1280, H=720;
+  var COLOURS={'AI':'#5DCAA5','Governance':'#EF9F27','Quantum':'#AFA9EC'};
+  function col(g){ return COLOURS[g]||'#8b95a5'; }
+
+  var nodes=[
+    {id:'AI',g:'AI',r:26,desc:"The intelligence layer — prediction, optimisation, and autonomy across all domains.",x:260,y:360},
+    {id:'Traditional AI',g:'AI',r:18,desc:"Classical ML: supervised, unsupervised, reinforcement. The foundation that GenAI and Agentic AI build on.",x:160,y:240},
+    {id:'Generative AI',g:'AI',r:20,desc:"LLMs, diffusion models, embeddings. Creates new content from learned patterns. Requires deep learning at scale.",x:160,y:360},
+    {id:'Agentic AI',g:'AI',r:20,desc:"LLMs wrapped in plan-act-observe loops with tool access. Takes real-world action. Requires GenAI-level reasoning.",x:160,y:480},
+    {id:'Machine Learning',g:'AI',r:14,desc:"Learns patterns from data rather than following written rules. The core mechanism of modern AI.",x:100,y:360},
+    {id:'Optimisation',g:'AI',r:14,desc:"Finding the best solution from a very large space of options. A core AI capability in finance and logistics.",x:100,y:440},
+    {id:'Prediction',g:'AI',r:14,desc:"Forecasting future outcomes from historical patterns. Credit default, demand forecasting, price movement.",x:100,y:280},
+    {id:'Autonomous Systems',g:'AI',r:14,desc:"AI that acts with minimal human input. Trading algorithms, autonomous vehicles, robotic process automation.",x:100,y:180},
+    {id:'Data Governance',g:'Governance',r:26,desc:"The trust layer. Ensures AI is trained on quality data, its outputs can be explained, and its deployment meets regulatory requirements.",x:760,y:220},
+    {id:'Data Quality',g:'Governance',r:16,desc:"Accuracy, completeness, consistency. The 80% rule: most AI project time is spent here. Garbage in, garbage out.",x:900,y:140},
+    {id:'Lineage & Metadata',g:'Governance',r:16,desc:"Tracking data origin and every transformation from raw source to model output. Required for audit and explainability.",x:950,y:240},
+    {id:'Ethics & Compliance',g:'Governance',r:16,desc:"Fairness, transparency, regulatory alignment. EU AI Act risk tiers. GDPR Article 22. Basel IV data standards.",x:900,y:340},
+    {id:'Security & Access Control',g:'Governance',r:16,desc:"Who can read what data. Who can train what model. Who can deploy what agent. The permission layer of governance.",x:820,y:400},
+    {id:'Quantum Computing',g:'Quantum',r:26,desc:"Exploits superposition and entanglement to solve specific problem types exponentially faster than classical computers.",x:760,y:560},
+    {id:'Quantum ML',g:'Quantum',r:16,desc:"Quantum-enhanced machine learning. Quantum kernels, quantum PCA, quantum gradient descent. 5-10 year horizon.",x:640,y:620},
+    {id:'Quantum Optimisation',g:'Quantum',r:16,desc:"Quadratic speedup on unstructured search via Grover's algorithm. Portfolio optimisation, logistics, drug discovery.",x:780,y:660},
+    {id:'Quantum Cryptography',g:'Quantum',r:16,desc:"Quantum Key Distribution uses quantum mechanics to create unbreakable encryption keys. Already deployed in some networks.",x:920,y:580},
+    {id:'Simulation',g:'Quantum',r:14,desc:"Modelling complex physical and chemical systems. Drug discovery, materials science, climate modelling. Near-term advantage demonstrated.",x:880,y:680},
+  ];
+
+  var links=[
+    {source:'Data Governance',target:'AI',tip:"Governance → AI: trustworthy data is a prerequisite for trustworthy AI",type:'solid'},
+    {source:'AI',target:'Traditional AI',tip:"Traditional AI is the foundation ML layer — supervised, unsupervised, reinforcement",type:'solid'},
+    {source:'AI',target:'Generative AI',tip:"Generative AI builds on deep learning, a subset of ML",type:'solid'},
+    {source:'AI',target:'Agentic AI',tip:"Agentic AI wraps an LLM (generative) in an action loop",type:'solid'},
+    {source:'Traditional AI',target:'Generative AI',tip:"Deep learning (classical ML) enables transformer architectures",type:'solid'},
+    {source:'Generative AI',target:'Agentic AI',tip:"Agents use LLMs as their reasoning engine",type:'solid'},
+    {source:'Data Governance',target:'Traditional AI',tip:"Governance ensures training data quality for classical ML",type:'solid'},
+    {source:'Data Governance',target:'Generative AI',tip:"Governance ensures provenance and safety for GenAI outputs",type:'solid'},
+    {source:'Data Governance',target:'Agentic AI',tip:"Governance enforces guardrails and human oversight for agents",type:'solid'},
+    {source:'AI',target:'Machine Learning',tip:"ML is the core mechanism of AI",type:'solid'},
+    {source:'AI',target:'Optimisation',tip:"AI performs optimisation across scheduling, pricing, portfolio management",type:'solid'},
+    {source:'AI',target:'Prediction',tip:"AI predicts outcomes: default probability, demand, price",type:'solid'},
+    {source:'AI',target:'Autonomous Systems',tip:"AI enables systems that act with minimal human input",type:'solid'},
+    {source:'Data Governance',target:'Data Quality',tip:"Governance defines and enforces data quality standards",type:'solid'},
+    {source:'Data Governance',target:'Lineage & Metadata',tip:"Governance requires tracking data origin and transformations",type:'solid'},
+    {source:'Data Governance',target:'Ethics & Compliance',tip:"Governance enforces ethical standards and regulatory requirements",type:'solid'},
+    {source:'Data Governance',target:'Security & Access Control',tip:"Governance controls who accesses what data and models",type:'solid'},
+    {source:'Quantum Computing',target:'Quantum Cryptography',tip:"Quantum mechanics enables physically unbreakable key distribution",type:'solid'},
+    {source:'Quantum Cryptography',target:'Security & Access Control',tip:"Post-quantum cryptography must replace RSA/ECC in governance security layer",type:'solid'},
+    {source:'Lineage & Metadata',target:'Prediction',tip:"Full data lineage enables transparent, auditable prediction models",type:'solid'},
+    {source:'Quantum Computing',target:'AI',tip:"Quantum acceleration of ML training and optimisation — 5-10 year horizon",type:'dotted'},
+    {source:'Quantum Computing',target:'Data Governance',tip:"Quantum threat to encryption creates urgent post-quantum migration obligation for governance",type:'dotted'},
+    {source:'Quantum ML',target:'Traditional AI',tip:"Quantum kernels and quantum gradient descent enhance classical ML",type:'dotted'},
+    {source:'Quantum Optimisation',target:'Traditional AI',tip:"Quantum speedup on optimisation problems in ML and logistics",type:'dotted'},
+    {source:'Quantum ML',target:'Generative AI',tip:"Quantum-native generative models — 10+ years, speculative",type:'dotted'},
+    {source:'Quantum Optimisation',target:'Agentic AI',tip:"Quantum accelerates multi-step agent planning loops",type:'dotted'},
+    {source:'Quantum Computing',target:'Quantum ML',tip:"Quantum hardware enables new ML methods",type:'dotted'},
+    {source:'Quantum Computing',target:'Quantum Optimisation',tip:"Quantum hardware accelerates optimisation algorithms",type:'dotted'},
+    {source:'Quantum Computing',target:'Simulation',tip:"Quantum simulation of physical and chemical systems — early advantage demonstrated",type:'dotted'},
+  ];
+
+  // Clear SVG
+  while(el.firstChild) el.removeChild(el.firstChild);
+  var svg = d3.select(el).attr('width',W).attr('height',H);
+  var tooltip = document.getElementById('s5-tooltip');
+  var wrap = el.parentElement;
+
+  function showTip(x,y,title,body,colour){
+    var svgRect=el.getBoundingClientRect();
+    var wrapRect=wrap.getBoundingClientRect();
+    var scX=svgRect.width/W, scY=svgRect.height/H;
+    var px=(x*scX)+(svgRect.left-wrapRect.left)+12;
+    var py=(y*scY)+(svgRect.top-wrapRect.top)-50;
+    if(px+270>wrapRect.width) px-=280;
+    if(py<10) py+=90;
+    tooltip.innerHTML='<div style="font-weight:700;color:'+colour+';margin-bottom:4px;font-size:12px">'+title+'</div><div style="color:#8b95a5;font-size:10px;line-height:1.4">'+body+'</div>';
+    tooltip.style.left=px+'px'; tooltip.style.top=py+'px'; tooltip.style.opacity='1';
+  }
+  function hideTip(){ tooltip.style.opacity='0'; }
+
+  // Hull layer
+  var hullLayer = svg.append('g');
+  function drawHulls(){
+    var groups = d3.group(nodes, function(d){ return d.g; });
+    hullLayer.selectAll('path').remove();
+    groups.forEach(function(gnodes,gname){
+      if(gnodes.length<3) return;
+      var pts = gnodes.map(function(n){ return [n.x,n.y]; });
+      var hull = d3.polygonHull(pts);
+      if(!hull) return;
+      hullLayer.append('path')
+        .attr('d','M'+hull.join('L')+'Z')
+        .attr('fill',col(gname)).attr('fill-opacity',0.07)
+        .attr('stroke',col(gname)).attr('stroke-opacity',0.25).attr('stroke-width',1.5);
+    });
+  }
+
+  // Defs
+  var defs = svg.append('defs');
+  var glow = defs.append('filter').attr('id','s5glow').attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
+  glow.append('feGaussianBlur').attr('stdDeviation','3').attr('result','b');
+  var fm = glow.append('feMerge');
+  fm.append('feMergeNode').attr('in','b'); fm.append('feMergeNode').attr('in','SourceGraphic');
+
+  // Simulation
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function(d){ return d.id; })
+      .distance(function(d){ return d.type==='dotted'?180:130; }))
+    .force('charge', d3.forceManyBody().strength(-500))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('x', d3.forceX().x(function(d){
+      if(d.g==='AI') return W*0.22;
+      if(d.g==='Governance') return W*0.72;
+      if(d.g==='Quantum') return W*0.72;
+      return W/2;
+    }).strength(0.18))
+    .force('y', d3.forceY().y(function(d){
+      if(d.g==='AI') return H*0.5;
+      if(d.g==='Governance') return H*0.32;
+      if(d.g==='Quantum') return H*0.72;
+      return H/2;
+    }).strength(0.18));
+
+  // Links
+  var linkLayer = svg.append('g');
+  var visLinks = linkLayer.selectAll('line.vis').data(links).join('line').attr('class','vis')
+    .attr('stroke',function(d){
+      var sn=nodes.find(function(n){ return n.id===(d.source.id||d.source); });
+      return d.type==='solid'?(sn?col(sn.g):'#8b95a5'):'#AFA9EC';
+    })
+    .attr('stroke-width',function(d){ return d.type==='solid'?2:1.5; })
+    .attr('stroke-opacity',function(d){ return d.type==='solid'?0.55:0.35; })
+    .attr('stroke-dasharray',function(d){ return d.type==='dotted'?'6,4':'none'; });
+
+  var hitLinks = linkLayer.selectAll('line.hit').data(links).join('line').attr('class','hit')
+    .attr('stroke','transparent').attr('stroke-width',14).style('cursor','default');
+
+  hitLinks.on('mouseenter',function(event,d){
+    var sn=nodes.find(function(n){ return n.id===(d.source.id||d.source); });
+    var tn=nodes.find(function(n){ return n.id===(d.target.id||d.target); });
+    var c=d.type==='solid'?(sn?col(sn.g):'#8b95a5'):'#AFA9EC';
+    if(sn&&tn) showTip((sn.x+tn.x)/2,(sn.y+tn.y)/2,d.source.id+' → '+d.t,d.tip+(d.type==='dotted'?' [emerging]':''),c);
+  }).on('mouseleave',hideTip);
+
+  // Nodes
+  var nodeLayer = svg.append('g');
+  var nodeGs = nodeLayer.selectAll('g').data(nodes).join('g')
+    .style('cursor','grab')
+    .call(d3.drag()
+      .on('start',function(event,d){ if(!event.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag',function(event,d){ d.fx=event.x; d.fy=event.y; })
+      .on('end',function(event,d){ if(!event.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  nodeGs.append('circle').attr('r',function(d){ return d.r+4; })
+    .attr('fill',function(d){ return col(d.g); }).attr('fill-opacity',0.1)
+    .attr('filter','url(#s5glow)');
+
+  var circles = nodeGs.append('circle').attr('r',function(d){ return d.r; })
+    .attr('fill',function(d){ return col(d.g); }).attr('fill-opacity',0.2)
+    .attr('stroke',function(d){ return col(d.g); }).attr('stroke-width',1.8);
+
+  nodeGs.append('circle').attr('r',function(d){ return Math.max(3,d.r*0.22); })
+    .attr('fill',function(d){ return col(d.g); }).attr('fill-opacity',0.9);
+
+  nodeGs.append('text').attr('y',function(d){ return d.r+11; })
+    .attr('text-anchor','middle').attr('font-family','DM Sans,sans-serif')
+    .attr('font-size',function(d){ return Math.min(11,d.r*0.75); })
+    .attr('font-weight','700').attr('fill',function(d){ return col(d.g); })
+    .text(function(d){ return d.id; });
+
+  nodeGs.on('mouseenter',function(event,d){
+    showTip(d.x,d.y,d.id,d.desc,col(d.g));
+    circles.filter(function(n){ return n===d; }).attr('stroke-width',3).attr('fill-opacity',0.35);
+  }).on('mouseleave',function(event,d){
+    hideTip();
+    circles.filter(function(n){ return n===d; }).attr('stroke-width',1.8).attr('fill-opacity',0.2);
+  });
+
+  sim.on('tick',function(){
+    drawHulls();
+    visLinks.attr('x1',function(d){ return d.source.x; }).attr('y1',function(d){ return d.source.y; })
+            .attr('x2',function(d){ return d.target.x; }).attr('y2',function(d){ return d.target.y; });
+    hitLinks.attr('x1',function(d){ return d.source.x; }).attr('y1',function(d){ return d.source.y; })
+            .attr('x2',function(d){ return d.target.x; }).attr('y2',function(d){ return d.target.y; });
+    nodeGs.attr('transform',function(d){ return 'translate('+d.x+','+d.y+')'; });
+  });
+};
+</script>
+</section>
+
+
+
+<!-- ══════════════════════════════════════════
+     BLOCK 4: CLOSE
+══════════════════════════════════════════ -->
+<!-- The integrated architecture -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  7 / 28" data-transition="fade">
+<h3 style="color:var(--c-coral)">AI × Governance — the trust relationship</h3>
+<p class="small">A mutual dependency — each makes the other possible</p>
+
+<div style="display:grid;grid-template-columns:1fr 80px 1fr;gap:0;width:96%;margin:12px auto 0;align-items:center">
+
+  <!-- LEFT: What AI needs from Governance -->
+  <div style="background:#0d3d2a;border:1.5px solid var(--c-teal);border-radius:14px;padding:16px 20px">
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-teal);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;text-align:center">What AI needs from Governance</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">🧹</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Clean training data</div><div style="font-size:0.36em;color:var(--c-muted)">Quality, labelled, representative</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">🔍</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Lineage so outputs can be audited</div><div style="font-size:0.36em;color:var(--c-muted)">Every output traceable to its source</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">🔒</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Access controls</div><div style="font-size:0.36em;color:var(--c-muted)">Models only train on permitted data</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">⚖️</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Ethics review</div><div style="font-size:0.36em;color:var(--c-muted)">Before deployment, not after harm</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">📡</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Production monitoring</div><div style="font-size:0.36em;color:var(--c-muted)">Catch drift and bias after launch</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTRE: arrow -->
+  <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+    <div style="font-size:1.4em;color:var(--c-coral)">⟵</div>
+    <div style="font-size:0.30em;color:var(--c-dim);text-align:center;line-height:1.4">mutual<br>dependency</div>
+    <div style="font-size:1.4em;color:var(--c-coral)">⟶</div>
+  </div>
+
+  <!-- RIGHT: What Governance needs from AI -->
+  <div style="background:#3a2810;border:1.5px solid var(--c-amber);border-radius:14px;padding:16px 20px">
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-amber);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;text-align:center">What Governance needs from AI</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">📊</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Error metrics</div><div style="font-size:0.36em;color:var(--c-muted)">To define acceptable performance thresholds</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">🪪</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Model cards</div><div style="font-size:0.36em;color:var(--c-muted)">Training data, known limitations, intended use</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">💬</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Explainability outputs</div><div style="font-size:0.36em;color:var(--c-muted)">For regulatory submissions and audits</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">⚠️</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Drift alerts</div><div style="font-size:0.36em;color:var(--c-muted)">To trigger retraining governance processes</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:1.2em;flex-shrink:0">🧑‍⚖️</span>
+        <div><div style="font-size:0.44em;font-weight:700;color:var(--c-white)">Human override hooks</div><div style="font-size:0.36em;color:var(--c-muted)">For high-stakes automated decisions</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="background:var(--c-surface);border-left:3px solid var(--c-coral);border-radius:0 8px 8px 0;padding:8px 16px;width:96%;margin:10px auto 0">
+  <p style="font-size:0.40em;color:var(--c-muted)">The EU AI Act is a codification of this relationship — it requires governance evidence before high-risk AI can be deployed.</p>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  8 / 28" data-transition="fade">
+<h3 style="color:var(--c-coral)">AI × Governance — the regulatory picture</h3>
+<p class="small">The EU AI Act maps governance requirements directly onto AI risk levels — hover any row for examples</p>
+
+<div style="display:grid;grid-template-columns:110px 1fr 1fr;gap:6px;width:96%;margin:8px auto 0" id="s5-reg-table">
+
+  <!-- Headers -->
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:7px;display:flex;align-items:center;justify-content:center">
+    <span style="font-family:var(--mono);font-size:0.30em;color:var(--c-dim);text-transform:uppercase">Risk tier</span>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:7px;text-align:center">
+    <span style="font-family:var(--mono);font-size:0.30em;color:var(--c-dim);text-transform:uppercase">Examples</span>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:7px;text-align:center">
+    <span style="font-family:var(--mono);font-size:0.30em;color:var(--c-dim);text-transform:uppercase">Governance requirements</span>
+  </div>
+
+  <!-- UNACCEPTABLE -->
+  <div class="reg-row" data-tier="unacceptable" style="background:#3a0a0a;border:1px solid var(--c-coral);border-radius:8px;padding:9px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-width 0.15s">
+    <span style="font-family:var(--mono);font-size:0.34em;color:var(--c-coral);font-weight:700;text-align:center">UNACCEPTABLE</span>
+  </div>
+  <div class="reg-row" data-tier="unacceptable" style="background:#3a0a0a;border:1px solid var(--c-coral);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-muted)">Social scoring · subliminal manipulation · real-time biometric surveillance</span>
+  </div>
+  <div class="reg-row" data-tier="unacceptable" style="background:#3a0a0a;border:1px solid var(--c-coral);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-coral);font-weight:700">Banned. No deployment permitted.</span>
+  </div>
+
+  <!-- HIGH RISK -->
+  <div class="reg-row" data-tier="high" style="background:#3a2810;border:1px solid var(--c-amber);border-radius:8px;padding:9px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+    <span style="font-family:var(--mono);font-size:0.34em;color:var(--c-amber);font-weight:700;text-align:center">HIGH RISK</span>
+  </div>
+  <div class="reg-row" data-tier="high" style="background:#3a2810;border:1px solid var(--c-amber);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-muted)">Credit scoring · hiring decisions · medical devices · border control · justice system</span>
+  </div>
+  <div class="reg-row" data-tier="high" style="background:#3a2810;border:1px solid var(--c-amber);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-muted)">Data governance documentation · lineage audit trail · human oversight · conformity assessment · EU registration</span>
+  </div>
+
+  <!-- LIMITED RISK -->
+  <div class="reg-row" data-tier="limited" style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:9px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+    <span style="font-family:var(--mono);font-size:0.34em;color:var(--c-muted);font-weight:700;text-align:center">LIMITED RISK</span>
+  </div>
+  <div class="reg-row" data-tier="limited" style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-muted)">Chatbots · deepfakes · GenAI content</span>
+  </div>
+  <div class="reg-row" data-tier="limited" style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-muted)">Transparency: users must know they are interacting with AI</span>
+  </div>
+
+  <!-- MINIMAL RISK -->
+  <div class="reg-row" data-tier="minimal" style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:9px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+    <span style="font-family:var(--mono);font-size:0.34em;color:var(--c-dim);font-weight:700;text-align:center">MINIMAL RISK</span>
+  </div>
+  <div class="reg-row" data-tier="minimal" style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-muted)">Spam filters · AI in video games · recommendation engines</span>
+  </div>
+  <div class="reg-row" data-tier="minimal" style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px;padding:9px;cursor:pointer">
+    <span style="font-size:0.36em;color:var(--c-dim)">No specific requirements. Voluntary codes of practice.</span>
+  </div>
+</div>
+
+<!-- Example panel — shown on row click -->
+<div id="s5-reg-panel" style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:10px;padding:10px 16px;width:96%;margin:8px auto 0;min-height:36px;transition:border-color 0.2s">
+  <p style="font-size:0.40em;color:var(--c-dim);margin:0;font-style:italic">Click any row to see real-world examples</p>
+</div>
+
+<script>
+(function(){
+var mo=new MutationObserver(function(){
+  var table=document.getElementById('s5-reg-table');
+  if(!table)return;
+  var sec=table.closest('section');
+  if(!sec||!sec.classList.contains('present'))return;
+
+  var examples={
+    unacceptable:{
+      col:'var(--c-coral)',
+      label:'Unacceptable — banned outright',
+      items:[
+        {name:"China's social credit system",desc:"Citizens blocked from flights, loans, and schools based on behavioural scores aggregated without consent. The textbook case of social scoring."},
+        {name:"Cambridge Analytica (2016)",desc:"Psychological profiles built from 87 million Facebook users without consent, used to target political advertising. Subliminal manipulation at scale."},
+        {name:"Deepfake pornography",desc:"AI-generated intimate imagery targeting real individuals without consent. Several countries have criminalised it; EU AI Act bans the AI systems that enable it."}
+      ]
+    },
+    high:{
+      col:'var(--c-amber)',
+      label:'High Risk — conformity assessment required before deployment',
+      items:[
+        {name:"Apple Card gender bias (2019)",desc:"Goldman Sachs's algorithm gave women lower credit limits than their husbands with identical financial profiles. Investigated by New York DFS. Neither Goldman nor Apple could explain the outputs."},
+        {name:"COMPAS recidivism tool (USA)",desc:"Used in US courts to predict reoffending. Found to incorrectly flag Black defendants as high risk at roughly twice the rate of white defendants. Still in use in some jurisdictions."},
+        {name:"Amazon hiring AI (2018)",desc:"Penalised CVs containing the word 'women's' (e.g. women's chess club) because historical hires were mostly male. Quietly retired when discovered internally."},
+        {name:"UK A-levels algorithm (2020)",desc:"Replaced teacher-assessed grades with a statistical model that downgraded 40% of entries, disproportionately harming state school students. Reversed after public outcry."}
+      ]
+    },
+    limited:{
+      col:'#85B7EB',
+      label:'Limited Risk — transparency obligation only',
+      items:[
+        {name:"ChatGPT, Claude, Gemini",desc:"Every conversation with a general-purpose chatbot must make clear you are talking to AI — not a human. Snapchat's My AI faced regulatory scrutiny in the UK for insufficient disclosure to minors."},
+        {name:"Sora, ElevenLabs voice cloning",desc:"AI-generated video and audio must be labelled as synthetic under EU AI Act Article 50. The obligation applies to the distributor, not just the creator."},
+        {name:"Clearview AI",desc:"Fined €20M by Italy, €20M by France, and banned by the UK ICO for building facial recognition from scraped social media photos without consent — a training data governance failure."}
+      ]
+    },
+    minimal:{
+      col:'var(--c-dim)',
+      label:'Minimal Risk — no specific obligations',
+      items:[
+        {name:"Spotify Discover Weekly",desc:"Recommendation algorithm with no legal disclosure requirement. No governance documentation required. The baseline for what AI looks like without regulation."},
+        {name:"Gmail spam filter",desc:"Automated classification that affects your inbox — but not a high-stakes decision about your rights or access to services. Minimal risk tier."},
+        {name:"Chess engines / Stockfish",desc:"AI that plays chess. No governance requirements regardless of how strong it is. Illustrates that risk tier is about impact on people, not technical sophistication."}
+      ]
+    }
+  };
+
+  table.querySelectorAll('.reg-row').forEach(function(row){
+    row.addEventListener('click',function(){
+      var tier=row.getAttribute('data-tier');
+      var ex=examples[tier];
+      if(!ex)return;
+      var panel=document.getElementById('s5-reg-panel');
+      panel.style.borderColor=ex.col;
+      var itemsHtml=ex.items.map(function(item){
+        return '<div style="display:flex;gap:8px;margin-bottom:4px"><span style="font-weight:700;color:'+ex.col+';font-size:0.42em;white-space:nowrap;flex-shrink:0">'+item.name+'</span><span style="font-size:0.40em;color:var(--c-muted)">— '+item.desc+'</span></div>';
+      }).join('');
+      panel.innerHTML='<p style="font-family:var(--mono);font-size:0.32em;color:'+ex.col+';text-transform:uppercase;letter-spacing:0.08em;margin:0 0 5px">'+ex.label+'</p>'+itemsHtml;
+    });
+  });
+  mo.disconnect();
+});
+mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+</script>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  9 / 28" data-transition="fade">
+<h3 style="color:var(--c-coral)">Governance × Quantum — the harvest-now threat</h3>
+<p class="small">The attack does not need a quantum computer today. It only needs your data today.</p>
+<div style="width:96%;margin:10px auto 0;height:370px;position:relative">
+  <svg id="harvest-svg" style="width:100%;height:100%"></svg>
+</div>
+<div style="background:var(--c-surface);border-left:3px solid var(--c-coral);border-radius:0 8px 8px 0;padding:8px 16px;width:96%;margin:8px auto 0">
+  <p style="font-size:0.40em;color:var(--c-white);margin:0">The governance question today: <strong style="color:var(--c-coral)">what data do you hold that will still be sensitive in 2030?</strong> That data needs post-quantum encryption now — not when the quantum computer arrives.</p>
+</div>
+<script>
+(function(){
+var mo=new MutationObserver(function(){
+  var el=document.getElementById('harvest-svg');
+  if(!el)return;
+  var sec=el.closest('section');
+  if(!sec||!sec.classList.contains('present'))return;
+  if(!window.d3)return;
+
+  var W=el.getBoundingClientRect().width||1200, H=370;
+  var mL=120, mR=40, mT=30, mB=30;
+  var iW=W-mL-mR, iH=H-mT-mB;
+  var svg=d3.select(el).attr('viewBox','0 0 '+W+' '+H);
+  var g=svg.append('g').attr('transform','translate('+mL+','+mT+')');
+
+  var xScale=d3.scaleLinear().domain([2024,2036]).range([0,iW]);
+
+  // Year ticks
+  [2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035].forEach(function(yr){
+    g.append('line').attr('x1',xScale(yr)).attr('y1',0).attr('x2',xScale(yr)).attr('y2',iH)
+      .attr('stroke','#1c2430').attr('stroke-width',1);
+    g.append('text').attr('x',xScale(yr)).attr('y',iH+16).attr('text-anchor','middle')
+      .attr('font-family',"'DM Mono',monospace").attr('font-size',10).attr('fill','#4a5568').text(yr);
+  });
+
+  // NOW marker
+  var nowX=xScale(2025.4);
+  g.append('line').attr('x1',nowX).attr('y1',-8).attr('x2',nowX).attr('y2',iH)
+    .attr('stroke','#5DCAA5').attr('stroke-width',1.5).attr('stroke-dasharray','4,3');
+  g.append('text').attr('x',nowX+4).attr('y',-2)
+    .attr('font-family',"'DM Mono',monospace").attr('font-size',10).attr('fill','#5DCAA5').text('TODAY');
+
+  // ── Row 1: Your encrypted data ──
+  var r1=iH*0.18;
+  g.append('text').attr('x',-10).attr('y',r1+4).attr('text-anchor','end')
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',11).attr('font-weight',700)
+    .attr('fill','#85B7EB').text('Your data');
+  // Bar: data encrypted and stored
+  g.append('rect').attr('x',nowX).attr('y',r1-11).attr('width',xScale(2036)-nowX).attr('height',22).attr('rx',5)
+    .attr('fill','#85B7EB').attr('fill-opacity',0.15).attr('stroke','#85B7EB').attr('stroke-width',1.5);
+  g.append('text').attr('x',nowX+8).attr('y',r1+4)
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',10).attr('fill','#85B7EB')
+    .text('Encrypted with RSA — looks safe today');
+
+  // ── Row 2: Adversary collects ──
+  var r2=iH*0.40;
+  g.append('text').attr('x',-10).attr('y',r2+4).attr('text-anchor','end')
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',11).attr('font-weight',700)
+    .attr('fill','#F0997B').text('Adversary');
+  // Collection bar (dashed)
+  g.append('rect').attr('x',nowX).attr('y',r2-11).attr('width',xScale(2036)-nowX).attr('height',22).attr('rx',5)
+    .attr('fill','#F0997B').attr('fill-opacity',0.1).attr('stroke','#F0997B')
+    .attr('stroke-width',1.5).attr('stroke-dasharray','6,3');
+  g.append('text').attr('x',nowX+8).attr('y',r2+4)
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',10).attr('fill','#F0997B')
+    .text('Copies & stores your encrypted data now — waiting');
+
+  // ── Row 3: Quantum computer arrives ──
+  var r3=iH*0.64;
+  // Quantum window zone
+  g.append('rect').attr('x',xScale(2029.5)).attr('y',r3-18).attr('width',xScale(2034)-xScale(2029.5)).attr('height',36).attr('rx',8)
+    .attr('fill','#AFA9EC').attr('fill-opacity',0.12).attr('stroke','#AFA9EC').attr('stroke-width',1.5).attr('stroke-dasharray','4,3');
+  g.append('text').attr('x',xScale(2031.5)).attr('y',r3-4)
+    .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace").attr('font-size',9).attr('fill','#AFA9EC').text('⚛ Fault-tolerant quantum');
+  g.append('text').attr('x',xScale(2031.5)).attr('y',r3+9)
+    .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace").attr('font-size',9).attr('fill','#AFA9EC').text('computer arrives ~2030–35');
+
+  // Decrypt arrow (from quantum zone back to data row)
+  var qx=xScale(2031), qy=r3-18;
+  var ax=xScale(2031), ay=r1+11;
+  var defs=svg.append('defs');
+  var marker=defs.append('marker').attr('id','hw-arrow').attr('markerWidth',8).attr('markerHeight',8)
+    .attr('refX',4).attr('refY',3).attr('orient','auto');
+  marker.append('path').attr('d','M0,0 L8,3 L0,6 Z').attr('fill','#F0997B');
+  g.append('path').attr('d','M'+ax+','+qy+' L'+ax+','+ay)
+    .attr('fill','none').attr('stroke','#F0997B').attr('stroke-width',2)
+    .attr('marker-end','url(#hw-arrow)');
+  g.append('text').attr('x',ax+6).attr('y',(qy+ay)/2)
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',9).attr('fill','#F0997B')
+    .text('Decrypts everything collected since 2025');
+
+  // ── Row 4: Post-quantum migration ──
+  var r4=iH*0.86;
+  g.append('text').attr('x',-10).attr('y',r4+4).attr('text-anchor','end')
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',11).attr('font-weight',700)
+    .attr('fill','#5DCAA5').text('Your response');
+  // Migration bar
+  g.append('rect').attr('x',nowX).attr('y',r4-11).attr('width',xScale(2030)-nowX).attr('height',22).attr('rx',5)
+    .attr('fill','#5DCAA5').attr('fill-opacity',0.2).attr('stroke','#5DCAA5').attr('stroke-width',1.5);
+  g.append('text').attr('x',nowX+8).attr('y',r4+4)
+    .attr('font-family',"'DM Sans',sans-serif").attr('font-size',10).attr('fill','#5DCAA5')
+    .text('Migrate to post-quantum encryption NOW → before 2030');
+  // NIST deadline
+  g.append('line').attr('x1',xScale(2030)).attr('y1',r4-18).attr('x2',xScale(2030)).attr('y2',r4+18)
+    .attr('stroke','#5DCAA5').attr('stroke-width',2);
+  g.append('text').attr('x',xScale(2030)+4).attr('y',r4-4)
+    .attr('font-family',"'DM Mono',monospace").attr('font-size',9).attr('fill','#5DCAA5').text('NIST deadline');
+
+  mo.disconnect();
+});
+mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+</script>
+</section>
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  10 / 28" data-transition="fade">
+<h3 style="color:var(--c-purple)">Governance × Quantum — the migration roadmap</h3>
+<p class="small">Three phases. Two hard deadlines. Click any bar for what you need to do in that phase.</p>
+<div style="width:96%;margin:10px auto 0;height:380px;position:relative">
+  <svg id="gantt-svg" style="width:100%;height:100%"></svg>
+</div>
+<div id="gantt-panel" style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:10px;padding:9px 16px;width:96%;margin:6px auto 0;min-height:32px">
+  <p style="font-size:0.40em;color:var(--c-dim);margin:0;font-style:italic">Click a bar to see what organisations must do in that phase</p>
+</div>
+<script>
+(function(){
+var mo=new MutationObserver(function(){
+  var el=document.getElementById('gantt-svg');
+  if(!el)return;
+  var sec=el.closest('section');
+  if(!sec||!sec.classList.contains('present'))return;
+  if(!window.d3)return;
+
+  var W=el.getBoundingClientRect().width||1200, H=380;
+  var mL=180, mR=50, mT=50, mB=40;
+  var iW=W-mL-mR, iH=H-mT-mB;
+  var svg=d3.select(el).attr('viewBox','0 0 '+W+' '+H);
+  var g=svg.append('g').attr('transform','translate('+mL+','+mT+')');
+  var xScale=d3.scaleLinear().domain([2024,2036]).range([0,iW]);
+
+  var phases=[
+    {label:'Classify & prioritise',start:2025,end:2027,col:'#F0997B',y:0,
+     action:"Audit every system using RSA-2048 or ECC encryption. Classify data by sensitivity and retention period. Any data sensitive after 2030 needs post-quantum encryption now. Set up a crypto-agility inventory.",
+     milestones:[{x:2027,label:'NSA deadline',sub:'National security\nsystems quantum-safe'}]},
+    {label:'Migrate systems',start:2027,end:2030,col:'#EF9F27',y:1,
+     action:"Replace RSA/ECC with NIST-approved post-quantum algorithms: CRYSTALS-Kyber for key exchange, CRYSTALS-Dilithium for digital signatures. Most TLS implementations already support hybrid modes — test and deploy.",
+     milestones:[{x:2030,label:'NIST deprecates RSA',sub:'No new deployments\nusing RSA/ECC'}]},
+    {label:'Complete transition',start:2030,end:2035,col:'#AFA9EC',y:2,
+     action:"RSA and ECC prohibited for all new deployments. Legacy systems that cannot be migrated must be decommissioned or air-gapped. Full audit of cryptographic infrastructure required.",
+     milestones:[{x:2035,label:'NIST prohibits RSA',sub:'RSA/ECC\nbanned entirely'}]},
+  ];
+
+  var rowH=iH/3.5, barH=rowH*0.55, rowPad=(iH/3-rowH)/2;
+
+  // Year grid
+  [2025,2026,2027,2028,2029,2030,2031,2032,2033,2034,2035].forEach(function(yr){
+    g.append('line').attr('x1',xScale(yr)).attr('y1',-10).attr('x2',xScale(yr)).attr('y2',iH)
+      .attr('stroke','#1c2430').attr('stroke-width',1);
+    g.append('text').attr('x',xScale(yr)).attr('y',iH+18).attr('text-anchor','middle')
+      .attr('font-family',"'DM Mono',monospace").attr('font-size',10).attr('fill','#4a5568').text(yr);
+  });
+
+  // TODAY line
+  var nowX=xScale(2025.4);
+  g.append('line').attr('x1',nowX).attr('y1',-15).attr('x2',nowX).attr('y2',iH)
+    .attr('stroke','#5DCAA5').attr('stroke-width',1.5).attr('stroke-dasharray','4,3');
+  g.append('text').attr('x',nowX+3).attr('y',-5)
+    .attr('font-family',"'DM Mono',monospace").attr('font-size',9).attr('fill','#5DCAA5').text('TODAY');
+
+  var panel=document.getElementById('gantt-panel');
+
+  phases.forEach(function(ph,pi){
+    var cy=pi*(iH/3)+rowH/2+rowPad;
+    var bx=xScale(ph.start), bw=xScale(ph.end)-xScale(ph.start);
+
+    // Row label
+    g.append('text').attr('x',-12).attr('y',cy+4).attr('text-anchor','end')
+      .attr('font-family',"'DM Sans',sans-serif").attr('font-size',11).attr('font-weight',700)
+      .attr('fill',ph.col).text(ph.label);
+
+    // Bar (clickable)
+    var bar=g.append('rect').attr('x',bx).attr('y',cy-barH/2)
+      .attr('width',bw).attr('height',barH).attr('rx',8)
+      .attr('fill',ph.col).attr('fill-opacity',0.18)
+      .attr('stroke',ph.col).attr('stroke-width',1.5).style('cursor','pointer');
+
+    // Phase date range label inside bar
+    g.append('text').attr('x',bx+bw/2).attr('y',cy+4).attr('text-anchor','middle')
+      .attr('font-family',"'DM Mono',monospace").attr('font-size',10).attr('fill',ph.col)
+      .attr('pointer-events','none')
+      .text(ph.start+'–'+ph.end);
+
+    bar.on('click',function(){
+      panel.style.borderColor=ph.col;
+      panel.innerHTML='<div style="font-family:\'DM Mono\',monospace;font-size:0.30em;color:'+ph.col+';text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">'+ph.label+' ('+ph.start+'–'+ph.end+')</div><p style="font-size:0.40em;color:#e8eaed;margin:0;line-height:1.5">'+ph.action+'</p>';
+    }).on('mouseenter',function(){
+      bar.attr('fill-opacity',0.35);
+    }).on('mouseleave',function(){
+      bar.attr('fill-opacity',0.18);
+    });
+
+    // Milestones
+    ph.milestones.forEach(function(m){
+      var mx=xScale(m.x);
+      g.append('line').attr('x1',mx).attr('y1',cy-barH/2-8).attr('x2',mx).attr('y2',cy+barH/2+8)
+        .attr('stroke',ph.col).attr('stroke-width',2);
+      g.append('circle').attr('cx',mx).attr('cy',cy-barH/2-8).attr('r',5)
+        .attr('fill',ph.col).attr('fill-opacity',0.9);
+      // Label above
+      var lines=m.label.split('\n');
+      lines.forEach(function(l,li){
+        g.append('text').attr('x',mx).attr('y',cy-barH/2-18-li*12).attr('text-anchor','middle')
+          .attr('font-family',"'DM Mono',monospace").attr('font-size',9).attr('fill',ph.col)
+          .text(l);
+      });
+    });
+  });
+
+  mo.disconnect();
+});
+mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+</script>
+</section>
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  11 / 28" data-transition="fade">
+<h3 style="color:var(--c-purple)">AI × Quantum — the acceleration story</h3>
+<p class="small">Hover any bubble — axes show certainty vs time horizon. Size = potential business impact.</p>
+<div style="width:96%;margin:8px auto 0;height:420px;position:relative">
+  <svg id="bubble-svg" style="width:100%;height:100%"></svg>
+</div>
+<script>
+(function(){
+var mo=new MutationObserver(function(){
+  var el=document.getElementById('bubble-svg');
+  if(!el)return;
+  var sec=el.closest('section');
+  if(!sec||!sec.classList.contains('present'))return;
+  if(!window.d3)return;
+
+  var W=el.getBoundingClientRect().width||1200, H=420;
+  var margin={left:80,right:40,top:30,bottom:60};
+  var iW=W-margin.left-margin.right, iH=H-margin.top-margin.bottom;
+  var svg=d3.select(el).attr('viewBox','0 0 '+W+' '+H);
+  var g=svg.append('g').attr('transform','translate('+margin.left+','+margin.top+')');
+
+  var bubbles=[
+    {label:"Post-quantum\ncryptography",x:0.92,y:0.05,r:28,col:'#5DCAA5',
+     desc:"Already deploying. NIST post-quantum standards published 2024. This line is becoming solid right now."},
+    {label:"Quantum\nsimulation",x:0.75,y:0.30,r:22,col:'#AFA9EC',
+     desc:"Quantum advantage demonstrated for specific molecular and materials problems. Drug discovery and climate modelling applications in 3-5 years."},
+    {label:"Quantum\noptimisation",x:0.60,y:0.45,r:32,col:'#EF9F27',
+     desc:"Grover's algorithm gives quadratic speedup on unstructured search. Portfolio optimisation, logistics, and agent planning loops. 5-10 year horizon for production use."},
+    {label:"Quantum ML\n(classical)",x:0.45,y:0.55,r:24,col:'#85B7EB',
+     desc:"Quantum kernels for SVMs, quantum PCA, quantum gradient descent. Benchmarks show advantage on specific datasets. 5-10 year horizon."},
+    {label:"Quantum ML\n→ GenAI",x:0.18,y:0.82,r:20,col:'#F0997B',
+     desc:"Quantum-native transformers. The attention mechanism doesn't map naturally to quantum circuits. 10+ years, highly speculative. Active research, no production path visible."}
+  ];
+
+  var xScale=d3.scaleLinear().domain([0,1]).range([0,iW]);
+  var yScale=d3.scaleLinear().domain([0,1]).range([0,iH]);
+
+  // Grid
+  [0.25,0.5,0.75].forEach(function(v){
+    g.append('line').attr('x1',xScale(v)).attr('y1',0).attr('x2',xScale(v)).attr('y2',iH)
+      .attr('stroke','#1c2430').attr('stroke-width',1);
+    g.append('line').attr('x1',0).attr('y1',yScale(v)).attr('x2',iW).attr('y2',yScale(v))
+      .attr('stroke','#1c2430').attr('stroke-width',1);
+  });
+
+  // Quadrant labels
+  var ql=[
+    {x:iW*0.75,y:iH*0.1,t:"Near-term & certain",c:'#5DCAA5'},
+    {x:iW*0.1, y:iH*0.1,t:"Uncertain timing",c:'#4a5568'},
+    {x:iW*0.75,y:iH*0.88,t:"Long-term but credible",c:'#4a5568'},
+    {x:iW*0.08,y:iH*0.88,t:"Speculative",c:'#4a5568'}
+  ];
+  ql.forEach(function(q){
+    g.append('text').attr('x',q.x).attr('y',q.y)
+      .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace")
+      .attr('font-size',9).attr('fill',q.c).attr('fill-opacity',0.7).text(q.t);
+  });
+
+  // Axes
+  g.append('text').attr('x',iW/2).attr('y',iH+40)
+    .attr('text-anchor','middle').attr('font-family',"'DM Mono',monospace")
+    .attr('font-size',10).attr('fill','#8b95a5').text('← More speculative · Certainty · More certain →');
+  g.append('text').attr('x',-40).attr('y',iH/2)
+    .attr('text-anchor','middle').attr('transform','rotate(-90,-40,'+iH/2+')')
+    .attr('font-family',"'DM Mono',monospace").attr('font-size',10).attr('fill','#8b95a5')
+    .text('← Near term · Time horizon · Long term →');
+
+  // Tooltip
+  var tip=svg.append('g').style('display','none');
+  tip.append('rect').attr('rx',8).attr('fill','#141a22').attr('stroke','#2a3342').attr('stroke-width',1);
+  tip.append('text').attr('fill','#e8eaed').attr('font-family',"'DM Sans',sans-serif").attr('font-size',11);
+
+  // Bubbles
+  bubbles.forEach(function(b){
+    var bx=xScale(b.x), by=yScale(b.y);
+    var bg=g.append('g').style('cursor','default');
+
+    bg.append('circle').attr('cx',bx).attr('cy',by).attr('r',b.r+5)
+      .attr('fill',b.col).attr('fill-opacity',0.1);
+    bg.append('circle').attr('cx',bx).attr('cy',by).attr('r',b.r)
+      .attr('fill',b.col).attr('fill-opacity',0.2)
+      .attr('stroke',b.col).attr('stroke-width',1.5);
+
+    var lines=b.label.split('\n');
+    lines.forEach(function(line,li){
+      bg.append('text').attr('x',bx).attr('y',by+(li-(lines.length-1)/2)*13)
+        .attr('text-anchor','middle').attr('font-family',"'DM Sans',sans-serif")
+        .attr('font-size',9).attr('font-weight',700).attr('fill',b.col).text(line);
+    });
+
+    bg.on('mouseenter',function(){
+      tip.style('display','block');
+      var words=b.desc.split(' '), line='', tipLines=[], maxW=280;
+      words.forEach(function(w){
+        var test=line?line+' '+w:w;
+        if(test.length*6.2>maxW){tipLines.push(line);line=w;}else line=test;
+      });
+      if(line)tipLines.push(line);
+      tip.select('text').selectAll('tspan').remove();
+      tipLines.forEach(function(l,li){
+        tip.select('text').append('tspan').attr('x',10).attr('dy',li===0?14:14).text(l);
+      });
+      var tipH=tipLines.length*14+10;
+      tip.select('rect').attr('width',300).attr('height',tipH);
+      var tx=Math.min(bx+margin.left+b.r+5,W-310);
+      var ty=by+margin.top-tipH/2;
+      if(ty<5)ty=5; if(ty+tipH>H-10)ty=H-tipH-10;
+      tip.attr('transform','translate('+tx+','+ty+')').select('rect').attr('stroke',b.col);
+    }).on('mouseleave',function(){ tip.style('display','none'); });
+  });
+  mo.disconnect();
+});
+mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+</script>
+</section>
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  12 / 28" data-transition="fade">
+<h3 style="color:var(--c-coral)">Discussion — which dotted lines become solid?</h3>
+<p class="small">15 minutes · In pairs, then whole class · Answer both questions</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;width:96%;margin:16px auto 0">
+  <div style="background:var(--c-surface);border:2px solid var(--c-coral);border-radius:14px;padding:22px 24px">
+    <div style="font-family:var(--mono);font-size:0.38em;color:var(--c-coral);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">Question 1</div>
+    <div style="font-size:0.58em;font-weight:700;color:var(--c-white);margin-bottom:10px;line-height:1.3">Of the four dotted lines we discussed — which one do you think will become a solid line first, and why?</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.5">Consider: technical readiness · commercial incentive · regulatory pressure · who bears the cost of inaction</div>
+  </div>
+  <div style="background:var(--c-surface);border:2px solid var(--c-purple);border-radius:14px;padding:22px 24px">
+    <div style="font-family:var(--mono);font-size:0.38em;color:var(--c-purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px">Question 2</div>
+    <div style="font-size:0.58em;font-weight:700;color:var(--c-white);margin-bottom:10px;line-height:1.3">Which dotted line do you think will remain dotted the longest — and what would have to change for it to become solid?</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.5">Consider: what technical breakthroughs are required · what regulatory frameworks don't yet exist · what economic model makes it viable</div>
+  </div>
+</div>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:10px 16px;width:96%;margin:14px auto 0">
+  <p style="font-size:0.40em;color:var(--c-dim)">Pairs: 7 min · Whole class: 8 min · There are no wrong answers — the goal is to practise reasoning about technological uncertainty</p>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BREAK
+══════════════════════════════════════════ -->
+<section class="divider-section" data-transition="fade" data-background-color="#0a0d12">
+<p style="font-family:var(--mono);font-size:0.76em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 10px">~10 minute break</p>
+<h2 style="font-size:2.0em;color:var(--c-white);margin:0 0 10px">You now see the connections.</h2>
+<p style="font-size:0.54em;color:var(--c-muted)">Block 3: building the synthesis graph together</p>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BLOCK 3: THE SYNTHESIS GRAPH
+══════════════════════════════════════════ -->
+<section class="divider-section" data-transition="fade" data-background-color="#0a0d12">
+<p style="font-family:var(--mono);font-size:0.5em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 10px">Block 3 of 3 · 45 minutes</p>
+<h2 style="font-size:2.2em;color:var(--c-white);margin:0 0 12px">Building the synthesis graph</h2>
+<div style="width:60px;height:3px;background:var(--c-purple);margin:0 auto 14px"></div>
+<p style="font-size:0.52em;color:var(--c-muted)">Start with the nodes. Call out the connections. Build it live.</p>
+</section>
+
+<!-- Instructions for building the graph live -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  13 / 28" data-transition="fade">
+<h3 style="color:var(--c-teal)">How we'll build this</h3>
+<p class="small">The graph has 19 nodes and 29 connections. You'll call them out, I'll draw them.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;width:96%;margin:14px auto 0">
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-teal);border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:2em;margin-bottom:8px">1️⃣</div>
+    <div style="font-size:0.50em;font-weight:700;color:var(--c-teal);margin-bottom:6px">Solid lines first</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5">For each connection: can you name it from this week's material? What session did we cover it in? What would break if it was missing?</div>
+  </div>
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-purple);border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:2em;margin-bottom:8px">2️⃣</div>
+    <div style="font-size:0.50em;font-weight:700;color:var(--c-purple);margin-bottom:6px">Dotted lines second</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5">For each emerging connection: is it closer to solid or further away than you thought before today? What's the single biggest blocker?</div>
+  </div>
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-coral);border-radius:12px;padding:16px;text-align:center">
+    <div style="font-size:2em;margin-bottom:8px">3️⃣</div>
+    <div style="font-size:0.50em;font-weight:700;color:var(--c-coral);margin-bottom:6px">Missing connections</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.5">Are there connections in this graph that we haven't drawn yet? What relationships between these 19 nodes might matter that aren't in the original design?</div>
+  </div>
+</div>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:10px 16px;width:96%;margin:12px auto 0">
+  <p style="font-size:0.40em;color:var(--c-dim)">Drag any node. Hover any node or link for a tooltip. The graph is fully interactive.</p>
+</div>
+</section>
+
+<!-- THE SYNTHESIS GRAPH — full interactive -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  15 / 28" data-transition="fade">
+<h3 style="color:var(--c-coral)">The integrated architecture — what organisations need now</h3>
+<p class="small">Three domains. One architecture. Hover each node and edge to explore the dependencies.</p>
+<div style="width:96%;margin:8px auto 0;height:380px;position:relative">
+  <svg id="arch-svg" style="width:100%;height:100%"></svg>
+</div>
+<div style="background:var(--c-surface);border-left:3px solid var(--c-coral);border-radius:0 8px 8px 0;padding:8px 16px;width:96%;margin:6px auto 0">
+  <p style="font-size:0.40em;color:var(--c-muted)">Organisations that treat these as three separate teams with separate roadmaps will struggle. The lines between them are not optional.</p>
+</div>
+<script>
+(function(){
+var mo=new MutationObserver(function(){
+  var el=document.getElementById('arch-svg');
+  if(!el)return;
+  var sec=el.closest('section');
+  if(!sec||!sec.classList.contains('present'))return;
+  if(!window.d3)return;
+
+  var W=el.getBoundingClientRect().width||1200, H=380;
+  var svg=d3.select(el).attr('viewBox','0 0 '+W+' '+H);
+
+  var nodes=[
+    {id:'AI',label:'AI Capability',icon:'🧠',col:'#5DCAA5',x:W*0.20,y:H*0.50,r:60,
+     desc:"The models — classical ML in production, GenAI deployed carefully, agentic AI with guardrails, RAG for knowledge-intensive tasks. Build on DL foundations. Measure precision/recall for each use case."},
+    {id:'Gov',label:'Data Governance',icon:'📋',col:'#EF9F27',x:W*0.62,y:H*0.22,r:60,
+     desc:"The trust layer — data quality standards, full lineage from source to output, ethics review for high-risk AI, access controls, regulatory compliance. Without this, AI cannot be deployed in regulated industries."},
+    {id:'Quantum',label:'Quantum Awareness',icon:'⚛',col:'#AFA9EC',x:W*0.62,y:H*0.78,r:60,
+     desc:"The security horizon — post-quantum encryption migration, classify quantum-sensitive data now, monitor NIST timelines, watch the optimisation horizon. The harvest-now-decrypt-later threat is present today."}
+  ];
+
+  var edges=[
+    {s:'AI',t:'Gov',label:'AI needs clean data + lineage',labelR:"Governance sets the rules AI must follow",
+     desc:"Governance provides the trust infrastructure AI depends on. AI failure modes (bias, hallucination, drift) require governance responses. Mutual dependency — neither works without the other."},
+    {s:'AI',t:'Quantum',label:'Agents use quantum optimisation',labelR:"Quantum encryption protects AI model data",
+     desc:"Quantum optimisation will accelerate AI planning loops. Quantum cryptography protects the data AI trains on and produces. Emerging connection — mostly dotted today, solidifying in 5-10 years."},
+    {s:'Gov',t:'Quantum',label:'Quantum threat requires governance response',labelR:"Post-quantum migration is a governance obligation",
+     desc:"The harvest-now-decrypt-later attack makes post-quantum migration a governance emergency. Data classification, encryption standards, and migration timelines all sit in the governance layer."}
+  ];
+
+  // Defs
+  var defs=svg.append('defs');
+  nodes.forEach(function(n){
+    var grd=defs.append('radialGradient').attr('id','arch-grad-'+n.id);
+    grd.append('stop').attr('offset','0%').attr('stop-color',n.col).attr('stop-opacity',0.3);
+    grd.append('stop').attr('offset','100%').attr('stop-color',n.col).attr('stop-opacity',0.05);
+  });
+
+  // Tooltip
+  var wrap=el.parentElement;
+  var tipDiv=wrap.querySelector('.arch-tip');
+  if(!tipDiv){
+    tipDiv=document.createElement('div');
+    tipDiv.className='arch-tip';
+    tipDiv.style.cssText='position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:11px;line-height:1.5;pointer-events:none;max-width:300px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:DM Sans,sans-serif;transition:opacity 0.15s';
+    wrap.appendChild(tipDiv);
+  }
+  function showTip(x,y,title,body,col){
+    var svgR=el.getBoundingClientRect(), wR=wrap.getBoundingClientRect();
+    var scX=svgR.width/W, scY=svgR.height/H;
+    var px=(x*scX)+(svgR.left-wR.left)+10, py=(y*scY)+(svgR.top-wR.top)-60;
+    if(px+310>wR.width)px-=320; if(py<5)py+=100;
+    tipDiv.innerHTML='<div style="font-weight:700;color:'+col+';margin-bottom:5px;font-size:12px">'+title+'</div><div style="color:#8b95a5;font-size:10px;line-height:1.4">'+body+'</div>';
+    tipDiv.style.left=px+'px'; tipDiv.style.top=py+'px'; tipDiv.style.opacity='1';
+  }
+  function hideTip(){ tipDiv.style.opacity='0'; }
+
+  // Draw edges
+  var nodeMap={};
+  nodes.forEach(function(n){nodeMap[n.id]=n;});
+
+  edges.forEach(function(e){
+    var sn=nodeMap[e.s], tn=nodeMap[e.t];
+    var mx=(sn.x+tn.x)/2, my=(sn.y+tn.y)/2;
+    var dx=tn.x-sn.x, dy=tn.y-sn.y, len=Math.sqrt(dx*dx+dy*dy);
+    var ux=dx/len, uy=dy/len;
+    var x1=sn.x+ux*sn.r, y1=sn.y+uy*sn.r;
+    var x2=tn.x-ux*tn.r, y2=tn.y-uy*tn.r;
+    var ecol=nodeMap[e.s].col;
+
+    var line=svg.append('line').attr('x1',x1).attr('y1',y1).attr('x2',x2).attr('y2',y2)
+      .attr('stroke',ecol).attr('stroke-width',2).attr('stroke-opacity',0.5);
+
+    svg.append('line').attr('x1',x1).attr('y1',y1).attr('x2',x2).attr('y2',y2)
+      .attr('stroke','transparent').attr('stroke-width',20).style('cursor','default')
+      .on('mouseenter',function(){
+        line.attr('stroke-width',4).attr('stroke-opacity',1);
+        showTip(mx,my,e.s+' ↔ '+e.t,e.desc,ecol);
+      })
+      .on('mouseleave',function(){
+        line.attr('stroke-width',2).attr('stroke-opacity',0.5);
+        hideTip();
+      });
+
+    svg.append('text').attr('x',mx+(uy*20)).attr('y',my-(ux*20))
+      .attr('text-anchor','middle').attr('font-family',"'DM Sans',sans-serif")
+      .attr('font-size',9).attr('fill',ecol).attr('fill-opacity',0.7).text(e.label);
+  });
+
+  // Draw nodes
+  nodes.forEach(function(n){
+    var ng=svg.append('g').style('cursor','default')
+      .on('mouseenter',function(){ showTip(n.x,n.y,n.label,n.desc,n.col); })
+      .on('mouseleave',hideTip);
+
+    ng.append('circle').attr('cx',n.x).attr('cy',n.y).attr('r',n.r+8)
+      .attr('fill','url(#arch-grad-'+n.id+')');
+    ng.append('circle').attr('cx',n.x).attr('cy',n.y).attr('r',n.r)
+      .attr('fill',n.col).attr('fill-opacity',0.15)
+      .attr('stroke',n.col).attr('stroke-width',2);
+    ng.append('text').attr('x',n.x).attr('y',n.y-14)
+      .attr('text-anchor','middle').attr('font-size',26).text(n.icon);
+    ng.append('text').attr('x',n.x).attr('y',n.y+14)
+      .attr('text-anchor','middle').attr('font-family',"'DM Sans',sans-serif")
+      .attr('font-size',13).attr('font-weight',700).attr('fill',n.col).text(n.label);
+  });
+
+  mo.disconnect();
+});
+mo.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+})();
+</script>
+</section>
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  16 / 28" data-transition="fade">
+<h3 style="color:var(--c-teal)">What this means for your career</h3>
+<p class="small">You will work with all three of these domains. The question is whether you see them as connected.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:96%;margin:14px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:16px 18px">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-coral);margin-bottom:8px">The organisations that will struggle</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      <div style="font-size:0.38em;color:var(--c-muted)">• AI team, governance team, and security team with separate roadmaps that never meet</div>
+      <div style="font-size:0.38em;color:var(--c-muted)">• Deploying GenAI without lineage infrastructure — cannot explain outputs to regulators</div>
+      <div style="font-size:0.38em;color:var(--c-muted)">• Treating quantum as "someone else's problem" — collecting sensitive data under RSA encryption with 10-year retention</div>
+      <div style="font-size:0.38em;color:var(--c-muted)">• Adding governance after deployment — technically possible, commercially and reputationally very costly</div>
+    </div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:16px 18px">
+    <div style="font-size:0.46em;font-weight:700;color:var(--c-teal);margin-bottom:8px">The organisations that will lead</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      <div style="font-size:0.38em;color:var(--c-muted)">• AI strategy built on a governance foundation from day one — governance is a competitive advantage, not a compliance cost</div>
+      <div style="font-size:0.38em;color:var(--c-muted)">• Data lineage infrastructure that makes both AI explainability and regulatory audit tractable</div>
+      <div style="font-size:0.38em;color:var(--c-muted)">• Quantum migration programme already running — classified sensitive data, hybrid encryption deployed</div>
+      <div style="font-size:0.38em;color:var(--c-muted)">• People who can speak all three languages — you, after this course</div>
+    </div>
+  </div>
+</div>
+<div style="background:var(--c-surface);border-left:3px solid var(--c-teal);border-radius:0 10px 10px 0;padding:10px 16px;width:96%;margin:10px auto 0">
+  <p style="font-size:0.42em;color:var(--c-white)">Week 2 is about how organisations navigate this in practice. You now have the map.</p>
+</div>
+</section>
+
+<!-- Session 5 wrap-up -->
+<section data-background-color="#0b0f14" data-bc="Day 1  ·  S5  ·  17 / 28" data-transition="fade">
+<h3 style="color:var(--c-teal)">Session 5 — what you now know</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:96%;margin:12px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-teal);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-teal);margin-bottom:4px">The dependency chain is real</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">S1 → S2 → S3 → S4 are not independent modules. Each session was a prerequisite for understanding the next. The synthesis graph shows why.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-amber);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-amber);margin-bottom:4px">Governance is a prerequisite for AI</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Not a constraint. Not a cost centre. The trust layer that makes AI deployable in regulated industries. The EU AI Act made this legally explicit.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-purple);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-purple);margin-bottom:4px">Quantum is a present governance obligation</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">The harvest-now-decrypt-later attack means post-quantum encryption migration starts today. NIST 2030 deadline is not speculative.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:14px 16px">
+    <div style="font-size:0.52em;font-weight:700;color:var(--c-coral);margin-bottom:4px">Dotted lines have different timelines</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Quantum optimisation for AI: 5-10 years and credible. Quantum GenAI: 10+ years and speculative. Knowing the difference matters for investment decisions.</div>
+  </div>
+</div>
+<div style="background:var(--c-surface);border:1px solid var(--c-teal);border-radius:10px;padding:10px 18px;width:96%;margin:12px auto 0;text-align:center">
+  <p style="font-size:0.48em;color:var(--c-teal)">You can now draw the synthesis graph from memory — and explain every connection on it.</p>
+</div>
+</section>
+
+<!-- Bridge to Week 2 -->
+<section class="divider-section" data-transition="fade" data-background-color="#0a0d12">
+<p style="font-family:var(--mono);font-size:0.5em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 10px">Week 1 complete</p>
+<h2 style="font-size:2.0em;color:var(--c-white);margin:0 0 14px">You have the map.</h2>
+<div style="width:60px;height:3px;background:var(--c-teal);margin:0 auto 14px"></div>
+<p style="font-size:0.52em;color:var(--c-muted);margin-bottom:16px">Week 2 is about how organisations navigate it in practice.</p>
+<div style="display:flex;gap:20px;justify-content:center">
+  <div style="text-align:center;padding:12px 20px;border:1px solid var(--c-border);border-radius:10px;max-width:200px">
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-teal);text-transform:uppercase;margin-bottom:4px">Week 2</div>
+    <div style="font-size:0.44em;color:var(--c-white)">Practice — How does this play out in real organisations?</div>
+  </div>
+  <div style="text-align:center;padding:12px 20px;border:1px solid var(--c-border);border-radius:10px;max-width:200px">
+    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-amber);text-transform:uppercase;margin-bottom:4px">Week 3</div>
+    <div style="font-size:0.44em;color:var(--c-white)">Frontiers — Where does this go from here?</div>
+  </div>
+</div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+Reveal.initialize({
+  hash: false,
+  transition: 'fade',
+  transitionSpeed: 'default',
+  controlsTutorial: false,
+  progress: true,
+  center: false,
+  width: 1280,
+  height: 720,
+  margin: 0.04,
+  slideNumber: false,
+  showSlideNumber: 'none'
+});
+Reveal.addEventListener('slidechanged', function(e){
+  var bc=e.currentSlide.getAttribute('data-bc')||'';
+  document.getElementById('bc-footer').textContent=bc;
+});
+Reveal.addEventListener('ready', function(e){
+  var bc=e.currentSlide.getAttribute('data-bc')||'';
+  document.getElementById('bc-footer').textContent=bc;
+});
+</script>
+</body>
+</html>
+<section data-background-color="#0a0d12" data-bc="Day 1  ·  S5  ·  14b / 28" data-transition="fade">
+<div style="position:absolute;top:0;left:0;width:1280px;height:720px;background:#0a0d12;overflow:hidden">
+
+  <!-- Header -->
+  <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:5;text-align:center;pointer-events:none">
+    <div style="font-family:'DM Mono',monospace;font-size:11px;color:#5DCAA5;text-transform:uppercase;letter-spacing:0.18em">The Synthesis — AI · Governance · Quantum</div>
+    <div style="font-size:10px;color:#4a5568;margin-top:3px">Drag nodes · Hover for descriptions · — solid = current · - - dotted = emerging</div>
+  </div>
+
+  <!-- Show Graph button — disappears after click -->
+  <div id="s5b-btn-wrap" style="position:absolute;top:0;left:0;width:1280px;height:720px;display:flex;align-items:center;justify-content:center;z-index:20;background:#0a0d12">
+    <button id="s5b-show-btn" onclick="s5bInitGraph()" style="font-family:'DM Mono',monospace;font-size:14px;color:#5DCAA5;background:#141a22;border:2px solid #5DCAA5;border-radius:12px;padding:14px 36px;cursor:pointer;letter-spacing:0.1em;text-transform:uppercase;transition:all 0.2s" onmouseover="this.style.background='#0d3d2a'" onmouseout="this.style.background='#141a22'">
+      ▶ Show Synthesis Graph
+    </button>
+  </div>
+
+  <!-- Legend -->
+  <div style="position:absolute;bottom:14px;left:20px;z-index:5;display:flex;gap:14px;align-items:center;background:rgba(10,13,18,0.9);padding:6px 12px;border:1px solid #2a3342;border-radius:8px">
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:14px;border-radius:50%;background:#5DCAA5;opacity:0.8"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:#5DCAA5">AI</span></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:14px;border-radius:50%;background:#EF9F27;opacity:0.8"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:#EF9F27">Governance</span></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:14px;height:14px;border-radius:50%;background:#AFA9EC;opacity:0.8"></div><span style="font-family:'DM Mono',monospace;font-size:9px;color:#AFA9EC">Quantum</span></div>
+    <div style="width:1px;height:14px;background:#2a3342"></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:2px;background:#8b95a5"></div><span style="font-size:9px;color:#8b95a5">Current</span></div>
+    <div style="display:flex;align-items:center;gap:5px"><div style="width:20px;height:1px;background:#AFA9EC;border-top:2px dashed #AFA9EC"></div><span style="font-size:9px;color:#AFA9EC">Emerging</span></div>
+  </div>
+
+  <!-- Tooltip -->
+  <div id="s5b-tooltip" style="position:absolute;padding:10px 13px;background:#141a22;border:1px solid #2a3342;border-radius:9px;color:#e8eaed;font-size:11px;line-height:1.5;pointer-events:none;max-width:260px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:9999;transition:opacity 0.15s;font-family:'DM Sans',sans-serif"></div>
+
+  <!-- SVG canvas -->
+  <svg id="s5b-svg" style="position:absolute;top:0;left:0;width:1280px;height:720px;display:none"></svg>
+</div>
+
+<script>
+window.s5bInitGraph = function(){
+  // Hide button
+  var btnWrap = document.getElementById('s5b-btn-wrap');
+  if(btnWrap) btnWrap.style.display = 'none';
+
+  // Show SVG
+  var el = document.getElementById('s5b-svg');
+  if(!el){ console.error('s5b-svg not found'); return; }
+  el.style.display = 'block';
+
+  if(!window.d3){ console.error('D3 not loaded'); return; }
+
+  var W=1280, H=720;
+  var COLOURS={'AI':'#5DCAA5','Governance':'#EF9F27','Quantum':'#AFA9EC'};
+  function col(g){ return COLOURS[g]||'#8b95a5'; }
+
+  var nodes=[
+    {id:'AI',g:'AI',r:26,desc:"The intelligence layer — prediction, optimisation, and autonomy across all domains.",x:260,y:360},
+    {id:'Traditional AI',g:'AI',r:18,desc:"Classical ML: supervised, unsupervised, reinforcement. The foundation that GenAI and Agentic AI build on.",x:160,y:240},
+    {id:'Generative AI',g:'AI',r:20,desc:"LLMs, diffusion models, embeddings. Creates new content from learned patterns. Requires deep learning at scale.",x:160,y:360},
+    {id:'Agentic AI',g:'AI',r:20,desc:"LLMs wrapped in plan-act-observe loops with tool access. Takes real-world action. Requires GenAI-level reasoning.",x:160,y:480},
+    {id:'Machine Learning',g:'AI',r:14,desc:"Learns patterns from data rather than following written rules. The core mechanism of modern AI.",x:100,y:360},
+    {id:'Optimisation',g:'AI',r:14,desc:"Finding the best solution from a very large space of options. A core AI capability in finance and logistics.",x:100,y:440},
+    {id:'Prediction',g:'AI',r:14,desc:"Forecasting future outcomes from historical patterns. Credit default, demand forecasting, price movement.",x:100,y:280},
+    {id:'Autonomous Systems',g:'AI',r:14,desc:"AI that acts with minimal human input. Trading algorithms, autonomous vehicles, robotic process automation.",x:100,y:180},
+    {id:'Data Governance',g:'Governance',r:26,desc:"The trust layer. Ensures AI is trained on quality data, its outputs can be explained, and its deployment meets regulatory requirements.",x:760,y:220},
+    {id:'Data Quality',g:'Governance',r:16,desc:"Accuracy, completeness, consistency. The 80% rule: most AI project time is spent here. Garbage in, garbage out.",x:900,y:140},
+    {id:'Lineage & Metadata',g:'Governance',r:16,desc:"Tracking data origin and every transformation from raw source to model output. Required for audit and explainability.",x:950,y:240},
+    {id:'Ethics & Compliance',g:'Governance',r:16,desc:"Fairness, transparency, regulatory alignment. EU AI Act risk tiers. GDPR Article 22. Basel IV data standards.",x:900,y:340},
+    {id:'Security & Access Control',g:'Governance',r:16,desc:"Who can read what data. Who can train what model. Who can deploy what agent. The permission layer of governance.",x:820,y:400},
+    {id:'Quantum Computing',g:'Quantum',r:26,desc:"Exploits superposition and entanglement to solve specific problem types exponentially faster than classical computers.",x:760,y:560},
+    {id:'Quantum ML',g:'Quantum',r:16,desc:"Quantum-enhanced machine learning. Quantum kernels, quantum PCA, quantum gradient descent. 5-10 year horizon.",x:640,y:620},
+    {id:'Quantum Optimisation',g:'Quantum',r:16,desc:"Quadratic speedup on unstructured search via Grover's algorithm. Portfolio optimisation, logistics, drug discovery.",x:780,y:660},
+    {id:'Quantum Cryptography',g:'Quantum',r:16,desc:"Quantum Key Distribution uses quantum mechanics to create unbreakable encryption keys. Already deployed in some networks.",x:920,y:580},
+    {id:'Simulation',g:'Quantum',r:14,desc:"Modelling complex physical and chemical systems. Drug discovery, materials science, climate modelling. Near-term advantage demonstrated.",x:880,y:680},
+  ];
+
+  var links=[
+    {source:'Data Governance',target:'AI',tip:"Governance → AI: trustworthy data is a prerequisite for trustworthy AI",type:'solid'},
+    {source:'AI',target:'Traditional AI',tip:"Traditional AI is the foundation ML layer — supervised, unsupervised, reinforcement",type:'solid'},
+    {source:'AI',target:'Generative AI',tip:"Generative AI builds on deep learning, a subset of ML",type:'solid'},
+    {source:'AI',target:'Agentic AI',tip:"Agentic AI wraps an LLM (generative) in an action loop",type:'solid'},
+    {source:'Traditional AI',target:'Generative AI',tip:"Deep learning (classical ML) enables transformer architectures",type:'solid'},
+    {source:'Generative AI',target:'Agentic AI',tip:"Agents use LLMs as their reasoning engine",type:'solid'},
+    {source:'Data Governance',target:'Traditional AI',tip:"Governance ensures training data quality for classical ML",type:'solid'},
+    {source:'Data Governance',target:'Generative AI',tip:"Governance ensures provenance and safety for GenAI outputs",type:'solid'},
+    {source:'Data Governance',target:'Agentic AI',tip:"Governance enforces guardrails and human oversight for agents",type:'solid'},
+    {source:'AI',target:'Machine Learning',tip:"ML is the core mechanism of AI",type:'solid'},
+    {source:'AI',target:'Optimisation',tip:"AI performs optimisation across scheduling, pricing, portfolio management",type:'solid'},
+    {source:'AI',target:'Prediction',tip:"AI predicts outcomes: default probability, demand, price",type:'solid'},
+    {source:'AI',target:'Autonomous Systems',tip:"AI enables systems that act with minimal human input",type:'solid'},
+    {source:'Data Governance',target:'Data Quality',tip:"Governance defines and enforces data quality standards",type:'solid'},
+    {source:'Data Governance',target:'Lineage & Metadata',tip:"Governance requires tracking data origin and transformations",type:'solid'},
+    {source:'Data Governance',target:'Ethics & Compliance',tip:"Governance enforces ethical standards and regulatory requirements",type:'solid'},
+    {source:'Data Governance',target:'Security & Access Control',tip:"Governance controls who accesses what data and models",type:'solid'},
+    {source:'Quantum Computing',target:'Quantum Cryptography',tip:"Quantum mechanics enables physically unbreakable key distribution",type:'solid'},
+    {source:'Quantum Cryptography',target:'Security & Access Control',tip:"Post-quantum cryptography must replace RSA/ECC in governance security layer",type:'solid'},
+    {source:'Lineage & Metadata',target:'Prediction',tip:"Full data lineage enables transparent, auditable prediction models",type:'solid'},
+    {source:'Quantum Computing',target:'AI',tip:"Quantum acceleration of ML training and optimisation — 5-10 year horizon",type:'dotted'},
+    {source:'Quantum Computing',target:'Data Governance',tip:"Quantum threat to encryption creates urgent post-quantum migration obligation for governance",type:'dotted'},
+    {source:'Quantum ML',target:'Traditional AI',tip:"Quantum kernels and quantum gradient descent enhance classical ML",type:'dotted'},
+    {source:'Quantum Optimisation',target:'Traditional AI',tip:"Quantum speedup on optimisation problems in ML and logistics",type:'dotted'},
+    {source:'Quantum ML',target:'Generative AI',tip:"Quantum-native generative models — 10+ years, speculative",type:'dotted'},
+    {source:'Quantum Optimisation',target:'Agentic AI',tip:"Quantum accelerates multi-step agent planning loops",type:'dotted'},
+    {source:'Quantum Computing',target:'Quantum ML',tip:"Quantum hardware enables new ML methods",type:'dotted'},
+    {source:'Quantum Computing',target:'Quantum Optimisation',tip:"Quantum hardware accelerates optimisation algorithms",type:'dotted'},
+    {source:'Quantum Computing',target:'Simulation',tip:"Quantum simulation of physical and chemical systems — early advantage demonstrated",type:'dotted'},
+  ];
+
+  // Clear SVG
+  while(el.firstChild) el.removeChild(el.firstChild);
+  var svg = d3.select(el).attr('width',W).attr('height',H);
+  var tooltip = document.getElementById('s5b-tooltip');
+  var wrap = el.parentElement;
+
+  function showTip(x,y,title,body,colour){
+    var svgRect=el.getBoundingClientRect();
+    var wrapRect=wrap.getBoundingClientRect();
+    var scX=svgRect.width/W, scY=svgRect.height/H;
+    var px=(x*scX)+(svgRect.left-wrapRect.left)+12;
+    var py=(y*scY)+(svgRect.top-wrapRect.top)-50;
+    if(px+270>wrapRect.width) px-=280;
+    if(py<10) py+=90;
+    tooltip.innerHTML='<div style="font-weight:700;color:'+colour+';margin-bottom:4px;font-size:12px">'+title+'</div><div style="color:#8b95a5;font-size:10px;line-height:1.4">'+body+'</div>';
+    tooltip.style.left=px+'px'; tooltip.style.top=py+'px'; tooltip.style.opacity='1';
+  }
+  function hideTip(){ tooltip.style.opacity='0'; }
+
+  // Hull layer
+  var hullLayer = svg.append('g');
+  function drawHulls(){
+    var groups = d3.group(nodes, function(d){ return d.g; });
+    hullLayer.selectAll('path').remove();
+    groups.forEach(function(gnodes,gname){
+      if(gnodes.length<3) return;
+      var pts = gnodes.map(function(n){ return [n.x,n.y]; });
+      var hull = d3.polygonHull(pts);
+      if(!hull) return;
+      hullLayer.append('path')
+        .attr('d','M'+hull.join('L')+'Z')
+        .attr('fill',col(gname)).attr('fill-opacity',0.07)
+        .attr('stroke',col(gname)).attr('stroke-opacity',0.25).attr('stroke-width',1.5);
+    });
+  }
+
+  // Defs
+  var defs = svg.append('defs');
+  var glow = defs.append('filter').attr('id','s5bglow').attr('x','-50%').attr('y','-50%').attr('width','200%').attr('height','200%');
+  glow.append('feGaussianBlur').attr('stdDeviation','3').attr('result','b');
+  var fm = glow.append('feMerge');
+  fm.append('feMergeNode').attr('in','b'); fm.append('feMergeNode').attr('in','SourceGraphic');
+
+  // Simulation
+  var sim = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(function(d){ return d.id; })
+      .distance(function(d){ return d.type==='dotted'?180:130; }))
+    .force('charge', d3.forceManyBody().strength(-500))
+    .force('center', d3.forceCenter(W/2, H/2))
+    .force('x', d3.forceX().x(function(d){
+      if(d.g==='AI') return W*0.22;
+      if(d.g==='Governance') return W*0.72;
+      if(d.g==='Quantum') return W*0.72;
+      return W/2;
+    }).strength(0.18))
+    .force('y', d3.forceY().y(function(d){
+      if(d.g==='AI') return H*0.5;
+      if(d.g==='Governance') return H*0.32;
+      if(d.g==='Quantum') return H*0.72;
+      return H/2;
+    }).strength(0.18));
+
+  // Links
+  var linkLayer = svg.append('g');
+  var visLinks = linkLayer.selectAll('line.vis').data(links).join('line').attr('class','vis')
+    .attr('stroke',function(d){
+      var sn=nodes.find(function(n){ return n.id===(d.source.id||d.source); });
+      return d.type==='solid'?(sn?col(sn.g):'#8b95a5'):'#AFA9EC';
+    })
+    .attr('stroke-width',function(d){ return d.type==='solid'?2:1.5; })
+    .attr('stroke-opacity',function(d){ return d.type==='solid'?0.55:0.35; })
+    .attr('stroke-dasharray',function(d){ return d.type==='dotted'?'6,4':'none'; });
+
+  var hitLinks = linkLayer.selectAll('line.hit').data(links).join('line').attr('class','hit')
+    .attr('stroke','transparent').attr('stroke-width',14).style('cursor','default');
+
+  hitLinks.on('mouseenter',function(event,d){
+    var sn=nodes.find(function(n){ return n.id===(d.source.id||d.source); });
+    var tn=nodes.find(function(n){ return n.id===(d.target.id||d.target); });
+    var c=d.type==='solid'?(sn?col(sn.g):'#8b95a5'):'#AFA9EC';
+    if(sn&&tn) showTip((sn.x+tn.x)/2,(sn.y+tn.y)/2,d.source.id+' → '+d.t,d.tip+(d.type==='dotted'?' [emerging]':''),c);
+  }).on('mouseleave',hideTip);
+
+  // Nodes
+  var nodeLayer = svg.append('g');
+  var nodeGs = nodeLayer.selectAll('g').data(nodes).join('g')
+    .style('cursor','grab')
+    .call(d3.drag()
+      .on('start',function(event,d){ if(!event.active) sim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+      .on('drag',function(event,d){ d.fx=event.x; d.fy=event.y; })
+      .on('end',function(event,d){ if(!event.active) sim.alphaTarget(0); d.fx=null; d.fy=null; }));
+
+  nodeGs.append('circle').attr('r',function(d){ return d.r+4; })
+    .attr('fill',function(d){ return col(d.g); }).attr('fill-opacity',0.1)
+    .attr('filter','url(#s5bglow)');
+
+  var circles = nodeGs.append('circle').attr('r',function(d){ return d.r; })
+    .attr('fill',function(d){ return col(d.g); }).attr('fill-opacity',0.2)
+    .attr('stroke',function(d){ return col(d.g); }).attr('stroke-width',1.8);
+
+  nodeGs.append('circle').attr('r',function(d){ return Math.max(3,d.r*0.22); })
+    .attr('fill',function(d){ return col(d.g); }).attr('fill-opacity',0.9);
+
+  nodeGs.append('text').attr('y',function(d){ return d.r+11; })
+    .attr('text-anchor','middle').attr('font-family','DM Sans,sans-serif')
+    .attr('font-size',function(d){ return Math.min(11,d.r*0.75); })
+    .attr('font-weight','700').attr('fill',function(d){ return col(d.g); })
+    .text(function(d){ return d.id; });
+
+  nodeGs.on('mouseenter',function(event,d){
+    showTip(d.x,d.y,d.id,d.desc,col(d.g));
+    circles.filter(function(n){ return n===d; }).attr('stroke-width',3).attr('fill-opacity',0.35);
+  }).on('mouseleave',function(event,d){
+    hideTip();
+    circles.filter(function(n){ return n===d; }).attr('stroke-width',1.8).attr('fill-opacity',0.2);
+  });
+
+  sim.on('tick',function(){
+    drawHulls();
+    visLinks.attr('x1',function(d){ return d.source.x; }).attr('y1',function(d){ return d.source.y; })
+            .attr('x2',function(d){ return d.target.x; }).attr('y2',function(d){ return d.target.y; });
+    hitLinks.attr('x1',function(d){ return d.source.x; }).attr('y1',function(d){ return d.source.y; })
+            .attr('x2',function(d){ return d.target.x; }).attr('y2',function(d){ return d.target.y; });
+    nodeGs.attr('transform',function(d){ return 'translate('+d.x+','+d.y+')'; });
+  });
+};
+</script>
+</section>
+
+
+
+<!-- ══════════════════════════════════════════
+     BLOCK 4: CLOSE
+══════════════════════════════════════════ -->
+<!-- The integrated architecture -->

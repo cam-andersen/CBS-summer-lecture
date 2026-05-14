@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S3 — Data Governance · AI, Fintech & Deep Tech</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/theme/black.min.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --c-bg:#0b0f14;--c-surface:#141a22;--c-surface2:#1c2430;
+  --c-white:#e8eaed;--c-muted:#8b95a5;--c-dim:#4a5568;--c-border:#2a3342;
+  --c-teal:#5DCAA5;--c-teal-dk:#0d3d2a;
+  --c-amber:#EF9F27;--c-amber-dk:#3a2810;
+  --c-coral:#F0997B;--c-blue:#85B7EB;--c-purple:#AFA9EC;
+  --font:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace
+}
+.reveal{font-family:var(--font);color:var(--c-white)}
+.reveal .slide-background{background:var(--c-bg)!important}
+.reveal h1,.reveal h2,.reveal h3{font-family:var(--font);color:var(--c-white);font-weight:700;text-transform:none;letter-spacing:-0.02em;margin-top:0}
+.reveal h1{font-size:2.4em;line-height:1.1}
+.reveal h2{font-size:2.0em;line-height:1.1}
+.reveal h3{font-size:1.5em;line-height:1.2}
+.reveal p,.reveal li{font-size:0.7em;line-height:1.5}
+.reveal .small{font-size:0.6em;color:var(--c-muted);margin:0 0 6px}
+.reveal .slides section{padding-top:28px !important}
+
+.tag{display:inline-block;font-family:var(--mono);font-size:0.5em;padding:3px 10px;border-radius:20px;font-weight:400;vertical-align:middle;margin:0 2px}
+.tag-understand{background:rgba(133,183,235,0.2);color:#85B7EB}
+.tag-analyze{background:rgba(239,159,39,0.2);color:#EF9F27}
+
+.divider-section{background:#0a0d12!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;padding-top:0!important}
+.divider-section h2{font-size:2.2em;color:var(--c-white)}
+.divider-tag{font-family:var(--mono);font-size:0.6em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.2em;margin:0 0 12px}
+.divider-line{width:60px;height:3px;background:var(--c-teal);margin:20px auto 0}
+
+.cbox{background:var(--c-surface);border:1.5px solid var(--c-teal);border-radius:18px;padding:22px 32px;max-width:960px;margin:14px auto 0;text-align:center;font-size:0.7em;line-height:1.6;color:var(--c-white)}
+.cbox.amber{border-color:var(--c-amber)}.cbox.coral{border-color:var(--c-coral)}.cbox.dim{border-color:var(--c-dim)}
+
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:1060px;margin:14px auto 0}
+.col{background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:18px 22px;text-align:left;border-left:4px solid var(--c-teal)}
+.col.amber{border-left-color:var(--c-amber)}.col.coral{border-left-color:var(--c-coral)}.col.blue{border-left-color:var(--c-blue)}.col.purple{border-left-color:var(--c-purple)}
+.col h4{font-size:0.7em;margin:0 0 6px;color:var(--c-teal);font-weight:600}
+.col.amber h4{color:var(--c-amber)}.col.coral h4{color:var(--c-coral)}.col.blue h4{color:var(--c-blue)}.col.purple h4{color:var(--c-purple)}
+.col ul{list-style:none;padding:0;margin:0}
+.col ul li{font-size:0.6em;color:var(--c-white);margin:0 0 8px;padding-left:14px;position:relative;line-height:1.4}
+.col ul li::before{content:'\2022';position:absolute;left:0;color:var(--c-muted)}
+
+/* ── Stat ring animation ── */
+.stat-ring-row{display:flex;justify-content:center;gap:50px;margin:24px auto 0}
+.stat-ring{text-align:center;position:relative;width:160px;opacity:0;transform:scale(0.9);animation:ring-enter 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
+.stat-ring:nth-child(2){animation-delay:0.2s}
+.stat-ring:nth-child(3){animation-delay:0.4s}
+@keyframes ring-enter{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+.stat-ring svg{width:140px;height:140px;transform:rotate(-90deg)}
+.stat-ring .ring-bg{fill:none;stroke:var(--c-surface2);stroke-width:8}
+.stat-ring .ring-fill{fill:none;stroke-width:8;stroke-linecap:round;stroke-dasharray:377;stroke-dashoffset:377;animation:ring-fill-anim 2s cubic-bezier(0.4,0,0.2,1) forwards}
+.stat-ring:nth-child(2) .ring-fill{animation-delay:0.2s}
+.stat-ring:nth-child(3) .ring-fill{animation-delay:0.4s}
+@keyframes ring-fill-anim{from{stroke-dashoffset:377}to{stroke-dashoffset:80}}
+.stat-ring .ring-value{position:absolute;top:45%;left:50%;transform:translate(-50%,-50%);font-family:var(--mono);font-size:1.6em;font-weight:700;opacity:0;animation:counter-pop 1.2s ease-out forwards;line-height:1.2;white-space:nowrap}
+.stat-ring:nth-child(2) .ring-value{animation-delay:0.3s}
+.stat-ring:nth-child(3) .ring-value{animation-delay:0.5s}
+@keyframes counter-pop{0%{opacity:0;transform:translate(-50%,-50%) scale(0.5)}50%{opacity:1}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+.stat-ring .ring-label{font-size:0.48em;color:var(--c-muted);margin-top:6px;line-height:1.4;opacity:0;animation:label-fade 0.8s ease-out 1.5s forwards}
+@keyframes label-fade{from{opacity:0}to{opacity:1}}
+
+/* ── Pipeline SVG ── */
+.pipeline-wrap{max-width:1060px;margin:14px auto 0;position:relative}
+.pipeline-stage{cursor:pointer;transition:opacity 0.25s}
+.pipeline-stage:hover .stage-box{stroke:var(--c-teal);stroke-width:2}
+.pipeline-detail{background:var(--c-surface2);border:1.5px solid var(--c-teal);border-radius:14px;padding:16px 24px;max-width:960px;margin:10px auto 0;min-height:60px}
+.pipeline-detail p{font-size:0.56em;color:var(--c-white);margin:0 0 4px;line-height:1.5}
+.pipeline-detail .pd-fail{font-size:0.5em;color:var(--c-coral);margin:4px 0 0;font-style:italic}
+
+/* ── Balance diagram ── */
+.balance-wrap{display:flex;align-items:flex-start;justify-content:center;gap:30px;margin:18px auto 0;max-width:1060px}
+.balance-role{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:14px;padding:18px 20px;text-align:center;flex:1;max-width:280px;cursor:pointer;transition:border-color 0.25s,background 0.25s}
+.balance-role:hover{border-color:var(--c-teal);background:rgba(93,202,165,0.06)}
+.balance-role.active{border-color:var(--c-teal);background:rgba(93,202,165,0.1)}
+.balance-role .br-icon{font-size:2em;margin:0 0 8px}
+.balance-role .br-title{font-size:0.6em;font-weight:700;margin:0 0 4px}
+.balance-role .br-sub{font-size:0.46em;color:var(--c-muted);line-height:1.4}
+.balance-detail{background:var(--c-surface2);border:1.5px solid var(--c-teal);border-radius:14px;padding:16px 24px;max-width:960px;margin:10px auto 0;min-height:50px}
+.balance-detail p{font-size:0.56em;color:var(--c-white);margin:0;line-height:1.5}
+
+/* ── Governance chain flow ── */
+.chain-flow{display:flex;align-items:center;justify-content:center;gap:0;margin:22px auto 0;max-width:1060px;position:relative}
+.chain-flow::before{content:'';position:absolute;top:50%;left:5%;right:5%;height:2px;background:linear-gradient(to right,rgba(93,202,165,0.1),rgba(93,202,165,0.3),rgba(93,202,165,0.1));z-index:0}
+.chain-node{background:var(--c-surface);border:2px solid var(--c-border);border-radius:14px;padding:14px 16px;text-align:center;cursor:pointer;transition:border-color 0.25s,background 0.25s,transform 0.2s;flex:1;max-width:180px;position:relative;z-index:1;animation:node-enter 0.6s cubic-bezier(0.34,1.56,0.64,1) forwards}
+.chain-node:nth-child(1){animation-delay:0}
+.chain-node:nth-child(3){animation-delay:0.2s}
+.chain-node:nth-child(5){animation-delay:0.4s}
+@keyframes node-enter{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.chain-node:hover{border-color:var(--c-teal);background:rgba(93,202,165,0.1);transform:translateY(-4px)}
+.chain-node.active{border-color:var(--c-teal);background:rgba(93,202,165,0.15);border-width:2.5px}
+.chain-node .cn-icon{font-size:1.4em;margin:0 0 4px;display:inline-block}
+.chain-node .cn-label{font-size:0.44em;font-weight:700;color:var(--c-teal);font-family:var(--mono)}
+.chain-node .cn-title{font-size:0.5em;color:var(--c-white);font-weight:600}
+.chain-arrow{font-size:1.1em;color:var(--c-dim);flex-shrink:0;padding:0 5px;position:relative;z-index:0;animation:arrow-flow 2s ease-in-out infinite}
+@keyframes arrow-flow{0%,100%{opacity:0.5;transform:translateX(0)}50%{opacity:1;transform:translateX(3px)}}
+.chain-detail{background:var(--c-surface2);border:1.5px solid var(--c-teal);border-radius:14px;padding:16px 24px;max-width:960px;margin:10px auto 0;min-height:60px;animation:detail-slide 0.35s ease-out}
+@keyframes detail-slide{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.chain-detail p{font-size:0.56em;color:var(--c-white);margin:0 0 4px;line-height:1.5}
+.chain-detail .cd-ex{font-size:0.5em;color:var(--c-muted);font-style:italic}
+
+/* ── Warning signs ── */
+.warn-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;max-width:1060px;margin:14px auto 0}
+.warn-card{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:14px;padding:14px 10px;text-align:center;cursor:pointer;transition:border-color 0.25s,background 0.25s,transform 0.2s;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:warn-float 4s ease-in-out infinite}
+.warn-card:nth-child(2){animation-delay:0.2s}
+.warn-card:nth-child(3){animation-delay:0.4s}
+.warn-card:nth-child(4){animation-delay:0.6s}
+.warn-card:nth-child(5){animation-delay:0.8s}
+@keyframes warn-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.warn-card:hover{border-color:var(--c-amber);background:rgba(239,159,39,0.08);transform:translateY(-6px)}
+.warn-card.open{border-color:var(--c-coral);background:rgba(240,153,123,0.12);border-width:2px}
+.warn-card .wc-icon{font-size:1.4em;margin:0 0 6px;display:inline-block;animation:icon-pulse 2s ease-in-out infinite}
+@keyframes icon-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.8}}
+.warn-card .wc-label{font-size:0.44em;font-weight:700;color:var(--c-amber);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.05em}
+.warn-panel{background:var(--c-surface2);border:1.5px solid var(--c-coral);border-radius:14px;padding:16px 24px;max-width:960px;margin:10px auto 0;min-height:70px;animation:panel-slide 0.4s ease-out}
+@keyframes panel-slide{from{opacity:0;max-height:0}to{opacity:1;max-height:200px}}
+.warn-panel p{font-size:0.56em;color:var(--c-white);margin:0 0 4px;line-height:1.5}
+.warn-panel .wp-consequence{font-size:0.5em;color:var(--c-coral);margin:6px 0 0;font-style:italic}
+
+/* ── Vocab glossary ── */
+.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:1060px;margin:14px auto 0}
+.vocab-chip{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:10px;padding:10px 14px;cursor:pointer;transition:border-color 0.25s,background 0.25s;text-align:left}
+.vocab-chip:hover{border-color:var(--c-blue);background:rgba(133,183,235,0.07)}
+.vocab-chip.active{border-color:var(--c-blue);background:rgba(133,183,235,0.12)}
+.vocab-chip .vc-term{font-size:0.5em;font-weight:700;color:var(--c-blue);font-family:var(--mono)}
+.vocab-chip .vc-short{font-size:0.42em;color:var(--c-muted);margin:2px 0 0}
+.vocab-def{background:var(--c-surface2);border:1.5px solid var(--c-blue);border-radius:14px;padding:16px 24px;max-width:1060px;margin:10px auto 0;min-height:60px}
+.vocab-def .vd-term{font-size:0.52em;font-weight:700;color:var(--c-blue);font-family:var(--mono);margin:0 0 4px}
+.vocab-def .vd-body{font-size:0.54em;color:var(--c-white);line-height:1.5;margin:0 0 4px}
+.vocab-def .vd-example{font-size:0.48em;color:var(--c-muted);font-style:italic}
+
+/* ── Purpose flow diagram ── */
+.purpose-flow{max-width:960px;margin:14px auto 0}
+
+/* ── Paradigm toggle ── */
+.paradigm-wrap{max-width:1060px;margin:14px auto 0}
+.paradigm-tabs{display:flex;gap:8px;margin:0 0 12px}
+.paradigm-tab{font-family:var(--mono);font-size:0.48em;padding:6px 16px;border-radius:20px;cursor:pointer;border:1.5px solid var(--c-border);background:var(--c-surface);color:var(--c-muted);transition:all 0.25s}
+.paradigm-tab.active{border-color:var(--c-teal);background:rgba(93,202,165,0.12);color:var(--c-teal)}
+.paradigm-tab.tab-gen.active{border-color:var(--c-purple);background:rgba(175,169,236,0.12);color:var(--c-purple)}
+.paradigm-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.paradigm-card{background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 16px;text-align:left;transition:border-color 0.3s,background 0.3s}
+.paradigm-card .pc-dim{font-family:var(--mono);font-size:0.42em;color:var(--c-dim);text-transform:uppercase;letter-spacing:0.05em;margin:0 0 4px}
+.paradigm-card .pc-trad{font-size:0.5em;color:var(--c-teal);margin:0 0 4px;line-height:1.4;opacity:1;max-height:60px;transition:opacity 0.3s,max-height 0.3s}
+.paradigm-card .pc-gen{font-size:0.5em;color:var(--c-purple);margin:0;line-height:1.4;opacity:0;max-height:0;overflow:hidden;transition:opacity 0.3s,max-height 0.3s}
+.paradigm-cards.show-gen .paradigm-card .pc-trad{opacity:0;max-height:0;overflow:hidden}
+.paradigm-cards.show-gen .paradigm-card .pc-gen{opacity:1;max-height:60px}
+.paradigm-cards.show-both .paradigm-card .pc-trad{opacity:1;max-height:60px}
+.paradigm-cards.show-both .paradigm-card .pc-gen{opacity:1;max-height:60px}
+
+/* ── Gap diagram ── */
+.gap-diagram{display:flex;align-items:flex-start;justify-content:center;gap:0;max-width:960px;margin:18px auto 0;position:relative}
+.gap-col{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:14px;padding:18px 20px;width:320px;text-align:left;transition:transform 0.8s cubic-bezier(0.4,0,0.2,1)}
+.gap-col h4{font-size:0.6em;font-weight:700;margin:0 0 8px}
+.gap-col ul{list-style:none;padding:0;margin:0}
+.gap-col ul li{font-size:0.48em;margin:0 0 6px;padding-left:12px;position:relative;line-height:1.4}
+.gap-col ul li::before{content:'•';position:absolute;left:0;color:var(--c-muted)}
+.gap-middle{width:100px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:200px;transition:width 0.8s}
+.gap-middle .gap-label{font-family:var(--mono);font-size:0.5em;color:var(--c-coral);text-transform:uppercase;letter-spacing:0.1em;opacity:0;transition:opacity 0.5s 0.3s}
+.gap-diagram.spread .gap-col:first-child{transform:translateX(-40px)}
+.gap-diagram.spread .gap-col:last-child{transform:translateX(40px)}
+.gap-diagram.spread .gap-middle{width:180px}
+.gap-diagram.spread .gap-middle .gap-label{opacity:1}
+
+/* ── Flip cards ── */
+.flip-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1060px;margin:14px auto 0}
+.flip-card{perspective:800px;height:200px;cursor:pointer}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform 0.6s;transform-style:preserve-3d}
+.flip-card.flipped .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.flip-front{background:rgba(240,153,123,0.08);border:1.5px solid var(--c-coral)}
+.flip-back{background:rgba(93,202,165,0.08);border:1.5px solid var(--c-teal);transform:rotateY(180deg)}
+.flip-tag{font-family:var(--mono);font-size:0.42em;font-weight:700;letter-spacing:0.1em;margin:0 0 8px}
+.flip-front .flip-tag{color:var(--c-coral)}
+.flip-back .flip-tag{color:var(--c-teal)}
+.flip-text{font-size:0.52em;color:var(--c-white);line-height:1.5}
+
+/* ── Pillar build ── */
+.pillar-row{display:flex;gap:16px;max-width:1060px;margin:18px auto 0}
+.pillar{flex:1;background:var(--c-surface);border:1px solid var(--c-border);border-radius:14px;padding:0;overflow:hidden;opacity:0.3;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s,border-color 0.3s}
+.pillar.revealed{opacity:1;transform:translateY(0)}
+.pillar .pillar-bar{height:5px;width:100%}
+.pillar .pillar-body{padding:18px 20px}
+.pillar .pillar-num{font-family:var(--mono);font-size:1.2em;font-weight:700;margin:0 0 4px}
+.pillar .pillar-title{font-size:0.6em;font-weight:700;color:var(--c-white);margin:0 0 6px}
+.pillar .pillar-desc{font-size:0.48em;color:var(--c-muted);line-height:1.5}
+.pillar-hint{font-family:var(--mono);font-size:0.42em;color:var(--c-dim);text-align:center;margin:10px 0 0}
+
+/* ── Approach list ── */
+.approach-list{display:flex;flex-direction:column;gap:8px;max-width:1060px;margin:14px auto 0}
+.approach-item{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:12px 18px;cursor:pointer;transition:border-color 0.25s,background 0.25s;display:flex;align-items:flex-start;gap:12px}
+.approach-item:hover{border-color:var(--c-teal);background:rgba(93,202,165,0.05)}
+.approach-item.open{border-color:var(--c-teal);background:rgba(93,202,165,0.08)}
+.ai-status{font-family:var(--mono);font-size:0.4em;padding:3px 9px;border-radius:20px;flex-shrink:0;margin-top:2px}
+.ai-status.emerging{background:rgba(239,159,39,0.15);color:var(--c-amber)}
+.ai-status.active{background:rgba(93,202,165,0.15);color:var(--c-teal)}
+.ai-status.question{background:rgba(240,153,123,0.15);color:var(--c-coral)}
+.ai-body .ai-title{font-size:0.54em;font-weight:700;color:var(--c-white);margin:0}
+.ai-body .ai-detail{font-size:0.48em;color:var(--c-muted);line-height:1.4;max-height:0;overflow:hidden;transition:max-height 0.3s;margin:0}
+.approach-item.open .ai-detail{max-height:60px;margin-top:4px}
+
+/* ── Regulation timeline ── */
+.reg-timeline{display:flex;flex-direction:column;gap:0;max-width:960px;margin:14px auto 0}
+.reg-row{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-left:2px solid var(--c-border);margin-left:14px;padding-left:18px;position:relative;cursor:pointer}
+.reg-row::before{content:'';position:absolute;left:-7px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--c-surface2);border:2px solid var(--c-dim);transition:background 0.2s,border-color 0.2s}
+.reg-row:hover::before{background:var(--c-amber);border-color:var(--c-amber)}
+.reg-row.active::before{background:var(--c-teal);border-color:var(--c-teal)}
+.reg-row.active{border-left-color:var(--c-teal)}
+.reg-tag{font-family:var(--mono);font-size:0.42em;color:var(--c-amber);font-weight:700;min-width:56px;padding-top:1px}
+.reg-body .rb-title{font-size:0.54em;font-weight:700;color:var(--c-white);margin:0}
+.reg-body .rb-detail{font-size:0.48em;color:var(--c-muted);margin:3px 0 0;line-height:1.4;max-height:0;overflow:hidden;transition:max-height 0.3s}
+.reg-row.active .rb-detail{max-height:80px}
+
+/* ── Objectives ── */
+.obj-card{background:var(--c-teal-dk);border:1px solid #1a5c3a;border-radius:12px;padding:12px 8px;text-align:center;cursor:pointer;transition:all .25s;position:relative}
+.obj-card.done{background:#0f3d2a!important;border-color:var(--c-teal)!important}
+.obj-card.done .done-tick{opacity:1!important}
+
+.reveal .progress{color:var(--c-teal);height:3px}.reveal .controls button{color:var(--c-muted)}
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section data-bc="Day 2  ·  S3  ·  1 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Session 3 — Learning objectives
+  <span class="tag tag-understand">Understand</span>
+  <span class="tag tag-analyze">Analyse</span>
+</h3>
+<p class="small">By the end of this session, you can explain why governance determines whether AI succeeds or fails.</p>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:96%;margin:8px auto 0">
+  <div class="obj-card" onclick="this.classList.toggle('done')">
+    <div style="font-size:1.4em;margin:0 0 4px">🔵</div>
+    <p style="font-size:0.48em;font-weight:600;color:#e8eaed;margin:0 0 2px">Objective 01</p>
+    <p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">Why AI projects fail from data problems, not algorithms</p>
+    <div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div>
+  </div>
+  <div class="obj-card" onclick="this.classList.toggle('done')">
+    <div style="font-size:1.4em;margin:0 0 4px">🏗️</div>
+    <p style="font-size:0.48em;font-weight:600;color:#e8eaed;margin:0 0 2px">Objective 02</p>
+    <p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">How organisations handle data responsibility</p>
+    <div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div>
+  </div>
+  <div class="obj-card" onclick="this.classList.toggle('done')">
+    <div style="font-size:1.4em;margin:0 0 4px">🔗</div>
+    <p style="font-size:0.48em;font-weight:600;color:#e8eaed;margin:0 0 2px">Objective 03</p>
+    <p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">The path data takes from source to deployed model</p>
+    <div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div>
+  </div>
+  <div class="obj-card" onclick="this.classList.toggle('done')">
+    <div style="font-size:1.4em;margin:0 0 4px">⚖️</div>
+    <p style="font-size:0.48em;font-weight:600;color:#e8eaed;margin:0 0 2px">Objective 04</p>
+    <p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">Why governance differs for traditional vs. generative AI</p>
+    <div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div>
+  </div>
+  <div class="obj-card" onclick="this.classList.toggle('done')">
+    <div style="font-size:1.4em;margin:0 0 4px">🚧</div>
+    <p style="font-size:0.48em;font-weight:600;color:#e8eaed;margin:0 0 2px">Objective 05</p>
+    <p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">The warning signs when data disciplines are missing</p>
+    <div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div>
+  </div>
+</div>
+<p style="font-size:0.40em;color:#4a5568;margin:8px 0 0;text-align:center">Click any card to mark complete as we progress</p>
+</section>
+
+<section data-bc="Day 2  ·  S3  ·  2 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">The path forward — governance foundations</h3>
+<p class="small">Five sections. One narrative arc. Each unlocks the next.</p>
+<svg id="s3-journey-map" style="width:100%;height:340px;max-width:1080px;margin:10px auto 0" viewBox="0 0 1100 340" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .journey-node { cursor: pointer; transition: all 0.3s; }
+      .journey-node circle { transition: all 0.3s; }
+      .journey-node:hover circle { r: 54; filter: drop-shadow(0 0 12px rgba(93,202,165,0.5)); }
+      .journey-node text { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 700; text-anchor: middle; }
+      .journey-node .jn-num { font-size: 24px; font-weight: 700; }
+      .journey-node .jn-title { font-size: 10px; opacity: 0; transition: opacity 0.3s; }
+      .journey-node:hover .jn-title { opacity: 1; }
+      .journey-line { stroke-width: 2; fill: none; stroke-linecap: round; }
+      .journey-label { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; text-anchor: middle; }
+    </style>
+  </defs>
+
+  <!-- Connection lines -->
+  <line x1="85" y1="170" x2="210" y2="170" class="journey-line" stroke="rgba(93,202,165,0.3)"/>
+  <line x1="335" y1="170" x2="460" y2="170" class="journey-line" stroke="rgba(93,202,165,0.2)"/>
+  <line x1="585" y1="170" x2="710" y2="170" class="journey-line" stroke="rgba(93,202,165,0.2)"/>
+  <line x1="835" y1="170" x2="960" y2="170" class="journey-line" stroke="rgba(93,202,165,0.2)"/>
+
+  <!-- Node 1: Vocabulary -->
+  <g class="journey-node">
+    <circle cx="85" cy="170" r="48" fill="rgba(93,202,165,0.15)" stroke="#5DCAA5" stroke-width="2"/>
+    <text x="85" y="175" class="jn-title" style="opacity:1;font-size:13px;font-weight:700">VOCAB</text>
+  </g>
+
+  <!-- Node 2: Ownership -->
+  <g class="journey-node">
+    <circle cx="260" cy="170" r="48" fill="rgba(93,202,165,0.1)" stroke="#5DCAA5" stroke-width="1.5"/>
+    <text x="260" y="175" class="jn-title" style="opacity:1;font-size:13px;font-weight:700">OWNER</text>
+  </g>
+
+  <!-- Node 3: Warnings -->
+  <g class="journey-node">
+    <circle cx="510" cy="170" r="48" fill="rgba(239,159,39,0.1)" stroke="#5DCAA5" stroke-width="1.5"/>
+    <text x="510" y="175" class="jn-title" style="opacity:1;font-size:13px;font-weight:700">RISKS</text>
+  </g>
+
+  <!-- Node 4: Paradigms -->
+  <g class="journey-node">
+    <circle cx="760" cy="170" r="48" fill="rgba(175,169,236,0.1)" stroke="#5DCAA5" stroke-width="1.5"/>
+    <text x="760" y="175" class="jn-title" style="opacity:1;font-size:13px;font-weight:700">RULES</text>
+  </g>
+
+  <!-- Node 5: Synthesis -->
+  <g class="journey-node">
+    <circle cx="1010" cy="170" r="48" fill="rgba(240,153,123,0.1)" stroke="#5DCAA5" stroke-width="1.5"/>
+    <text x="1010" y="175" class="jn-title" style="opacity:1;font-size:13px;font-weight:700">BUILD</text>
+  </g>
+
+  <!-- Node labels with descriptions -->
+  <text x="85" y="250" class="journey-label" fill="#5DCAA5">The language you need</text>
+  <text x="85" y="267" style="font-family:'DM Sans',sans-serif;font-size:11px;text-anchor:middle;fill:#8b95a5">Vocabulary, roles,<br/>dimensions</text>
+
+  <text x="260" y="250" class="journey-label" fill="#5DCAA5">Who's accountable</text>
+  <text x="260" y="267" style="font-family:'DM Sans',sans-serif;font-size:11px;text-anchor:middle;fill:#8b95a5">Chain of custody,<br/>responsibilities</text>
+
+  <text x="510" y="250" class="journey-label" fill="#EF9F27">Where it breaks</text>
+  <text x="510" y="267" style="font-family:'DM Sans',sans-serif;font-size:11px;text-anchor:middle;fill:#8b95a5">Failure modes,<br/>warning signs</text>
+
+  <text x="760" y="250" class="journey-label" fill="#AFA9EC">New rules, old frameworks</text>
+  <text x="760" y="267" style="font-family:'DM Sans',sans-serif;font-size:11px;text-anchor:middle;fill:#8b95a5">Traditional vs GenAI<br/>governance</text>
+
+  <text x="1010" y="250" class="journey-label" fill="#F0997B">Three principles</text>
+  <text x="1010" y="267" style="font-family:'DM Sans',sans-serif;font-size:11px;text-anchor:middle;fill:#8b95a5">What you're taking away,<br/>what changes next</text>
+</svg>
+<p class="small" style="margin-top:20px;color:#8b95a5;font-style:italic">Hover over each node to see the title. Five sections = five concepts to master.</p>
+</section>
+
+<section data-bc="Day 2  ·  S3  ·  3 / 23" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 1 of 6</p>
+<h2>The data problem</h2>
+<div class="divider-line"></div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  4 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">The pivot</h3>
+<p class="small">Yesterday: how machines learn. Today: why so many fail once they leave the lab.</p>
+<div class="cbox" style="padding:16px 28px;margin-top:10px">
+  <span style="font-size:0.64em">The short answer is almost never the algorithm. It's almost always the data.</span>
+</div>
+<div class="stat-ring-row" id="s3-stats">
+  <div class="stat-ring" style="--target:49">
+    <svg viewBox="0 0 128 128"><circle class="ring-bg" cx="64" cy="64" r="60"/><circle class="ring-fill" cx="64" cy="64" r="60" style="stroke:var(--c-coral)"/></svg>
+    <div class="ring-value" style="color:var(--c-coral)">87%</div>
+    <div class="ring-label">of AI projects never<br>reach production<br><em style="color:var(--c-dim)">(Gartner)</em></div>
+  </div>
+  <div class="stat-ring" style="--target:75">
+    <svg viewBox="0 0 128 128"><circle class="ring-bg" cx="64" cy="64" r="60"/><circle class="ring-fill" cx="64" cy="64" r="60" style="stroke:var(--c-amber)"/></svg>
+    <div class="ring-value" style="color:var(--c-amber)">80%</div>
+    <div class="ring-label">of a data scientist's<br>time: cleaning data,<br>not modelling</div>
+  </div>
+  <div class="stat-ring" style="--target:0">
+    <svg viewBox="0 0 128 128"><circle class="ring-bg" cx="64" cy="64" r="60"/><circle class="ring-fill" cx="64" cy="64" r="60" style="stroke:var(--c-teal)"/></svg>
+    <div class="ring-value" style="color:var(--c-teal)">#1</div>
+    <div class="ring-label">root cause of<br>model failure:<br>poor data quality</div>
+  </div>
+</div>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  5 / 23" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 4 of 6</p>
+<h2>The vocabulary practitioners use</h2>
+<div class="divider-line"></div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  6 / 23" data-transition="fade">
+<h3 style="color:var(--c-blue)">Governance vocabulary</h3>
+<p class="small">Click any term to see its definition and why it matters</p>
+<div class="vocab-grid" id="s3-vocab">
+  <div class="vocab-chip" data-v="0"><span class="vc-term">Data Lineage</span><div class="vc-short">Where did it come from?</div></div>
+  <div class="vocab-chip" data-v="1"><span class="vc-term">Data Catalogue</span><div class="vc-short">What data exists?</div></div>
+  <div class="vocab-chip" data-v="2"><span class="vc-term">Master Data</span><div class="vc-short">The single source of truth</div></div>
+  <div class="vocab-chip" data-v="3"><span class="vc-term">Data Stewardship</span><div class="vc-short">Who maintains it daily?</div></div>
+  <div class="vocab-chip" data-v="4"><span class="vc-term">Data Quality</span><div class="vc-short">Is it fit for purpose?</div></div>
+  <div class="vocab-chip" data-v="5"><span class="vc-term">Purpose Limitation</span><div class="vc-short">What can it be used for?</div></div>
+  <div class="vocab-chip" data-v="6"><span class="vc-term">Privacy by Design</span><div class="vc-short">Built in, not bolted on</div></div>
+  <div class="vocab-chip" data-v="7"><span class="vc-term">Model Card</span><div class="vc-short">Documenting AI behaviour</div></div>
+  <div class="vocab-chip" data-v="8"><span class="vc-term">Data Mesh</span><div class="vc-short">Distributed ownership</div></div>
+</div>
+<div class="vocab-def" id="s3-vocab-def"><p class="vd-body" style="color:var(--c-muted);font-style:italic">Select a term above</p></div>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  7 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">The ownership question</h3>
+<div class="cbox teal" style="padding:14px 28px;margin-top:8px">
+  <span style="font-size:0.62em">Before any governance framework, policy, or tool, there is one question that determines everything:<br><strong style="font-size:1.15em;color:var(--c-teal)">Who is responsible for this data?</strong></span>
+</div>
+<div class="twocol" style="margin-top:12px">
+  <div class="col">
+    <h4>In theory</h4>
+    <ul><li>Business owns the data</li><li>IT manages the infrastructure</li><li>Roles are clearly defined</li></ul>
+  </div>
+  <div class="col coral">
+    <h4>In practice</h4>
+    <ul><li>Ownership sits with whoever built the system</li><li>Nobody maintains quality when that person leaves</li><li>Regulators get no answer because no one is accountable</li></ul>
+  </div>
+</div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  8 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">What ownership looks like in practice</h3>
+<p class="small">Click each role to explore — the tension between them is where governance lives</p>
+<div class="balance-wrap" id="s3-balance">
+  <div class="balance-role" data-role="0">
+    <div class="br-icon">🏢</div>
+    <div class="br-title" style="color:var(--c-teal)">Business owns</div>
+    <div class="br-sub">Accountable for accuracy, purpose, and compliance</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:80px">
+    <svg viewBox="0 0 80 80" width="70" height="70">
+      <polygon points="40,5 75,70 5,70" fill="none" stroke="#2a3342" stroke-width="2"/>
+      <circle cx="40" cy="48" r="4" fill="#5DCAA5"/>
+    </svg>
+    <div style="font-size:0.42em;color:var(--c-dim);margin-top:2px">Balance</div>
+  </div>
+  <div class="balance-role" data-role="1">
+    <div class="br-icon">🛠️</div>
+    <div class="br-title" style="color:var(--c-amber)">IT manages</div>
+    <div class="br-sub">Storage, access, security, and infrastructure</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:80px">
+    <svg viewBox="0 0 80 80" width="70" height="70">
+      <line x1="10" y1="40" x2="70" y2="40" stroke="#2a3342" stroke-width="2"/>
+      <line x1="40" y1="10" x2="40" y2="70" stroke="#2a3342" stroke-width="2"/>
+      <circle cx="40" cy="40" r="4" fill="#85B7EB"/>
+    </svg>
+    <div style="font-size:0.42em;color:var(--c-dim);margin-top:2px">Bridge</div>
+  </div>
+  <div class="balance-role" data-role="2">
+    <div class="br-icon">🧭</div>
+    <div class="br-title" style="color:var(--c-blue)">Steward monitors</div>
+    <div class="br-sub">Day-to-day quality, metadata, and policy enforcement</div>
+  </div>
+</div>
+<div class="balance-detail" id="s3-balance-detail">
+  <p style="color:var(--c-muted);font-style:italic">Click a role above to see what happens when it's missing</p>
+</div>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  9 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">How mature organisations describe the chain</h3>
+<p class="small">Click each node to explore the layer</p>
+<div class="chain-flow" id="s3-chain">
+  <div class="chain-node" data-chain="0"><div class="cn-icon">🏛️</div><div class="cn-label">Layer 1</div><div class="cn-title">Ownership</div></div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-node" data-chain="1"><div class="cn-icon">📋</div><div class="cn-label">Layer 2</div><div class="cn-title">Governance</div></div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-node" data-chain="2"><div class="cn-icon">🧭</div><div class="cn-label">Layer 3</div><div class="cn-title">Stewardship</div></div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-node" data-chain="3"><div class="cn-icon">🏷️</div><div class="cn-label">Layer 4</div><div class="cn-title">Metadata</div></div>
+  <div class="chain-arrow">→</div>
+  <div class="chain-node" data-chain="4"><div class="cn-icon">🎯</div><div class="cn-label">Result</div><div class="cn-title">Master Data</div></div>
+</div>
+<div class="chain-detail" id="s3-chain-detail">
+  <p style="color:var(--c-muted);font-style:italic">Click a node above to see what each layer does</p>
+</div>
+<p style="font-family:var(--mono);font-size:0.40em;color:var(--c-dim);text-align:center;margin:8px 0 0">Most organisations are somewhere in the middle of building this chain</p>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  10 / 23" data-transition="fade">
+<h3 style="color:var(--c-amber)">Five warning signs</h3>
+<p class="small">Click each card to see what breaks when this discipline is missing</p>
+<div class="warn-grid" id="s3-warn">
+  <div class="warn-card" data-warn="0"><div class="wc-icon">👤</div><div class="wc-label">No ownership</div></div>
+  <div class="warn-card" data-warn="1"><div class="wc-icon">🔗</div><div class="wc-label">No lineage</div></div>
+  <div class="warn-card" data-warn="2"><div class="wc-icon">🗃️</div><div class="wc-label">No single truth</div></div>
+  <div class="warn-card" data-warn="3"><div class="wc-icon">🚧</div><div class="wc-label">No quality gates</div></div>
+  <div class="warn-card" data-warn="4"><div class="wc-icon">📄</div><div class="wc-label">No documentation</div></div>
+</div>
+<div class="warn-panel" id="s3-warn-panel"><p style="color:var(--c-muted);font-style:italic">Select a warning sign above</p></div>
+<p style="font-family:var(--mono);font-size:0.40em;color:var(--c-dim);text-align:center;margin:8px 0 0">Each of these appears in real cases you'll study next week</p>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  11 / 23" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 5 of 6</p>
+<h2>Governance looks different<br>across AI paradigms</h2>
+<div class="divider-line"></div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  12 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Governance requirements by paradigm</h3>
+<p class="small">Toggle to compare — the same question gets a very different answer</p>
+<div class="paradigm-wrap" id="s3-paradigm">
+  <div class="paradigm-tabs">
+    <div class="paradigm-tab active" data-mode="trad">🏭 Traditional / Classical ML</div>
+    <div class="paradigm-tab tab-gen" data-mode="gen">🧠 Generative AI & Agentic</div>
+    <div class="paradigm-tab" data-mode="both" style="margin-left:auto;font-size:0.42em">Show both</div>
+  </div>
+  <div class="paradigm-cards" id="s3-paradigm-cards">
+    <div class="paradigm-card"><div class="pc-dim">Traceability</div><div class="pc-trad">Full: training data is documented and static</div><div class="pc-gen">Partial: training data is massive, often unclear</div></div>
+    <div class="paradigm-card"><div class="pc-dim">Explainability</div><div class="pc-trad">Achievable: feature importance, SHAP values</div><div class="pc-gen">Limited: probabilistic outputs resist full explanation</div></div>
+    <div class="paradigm-card"><div class="pc-dim">Data quality</div><div class="pc-trad">Controlled dataset, validated before training</div><div class="pc-gen">Web-scale corpus; quality is uneven and assumed</div></div>
+    <div class="paradigm-card"><div class="pc-dim">Audit trail</div><div class="pc-trad">Reproducible: same input → same output</div><div class="pc-gen">Stochastic: same prompt → different outputs</div></div>
+    <div class="paradigm-card"><div class="pc-dim">Regulatory fit</div><div class="pc-trad" style="color:var(--c-teal);font-weight:600">Frameworks designed for this paradigm</div><div class="pc-gen" style="color:var(--c-coral);font-weight:600">Frameworks are still catching up</div></div>
+    <div class="paradigm-card"><div class="pc-dim">Governance effort</div><div class="pc-trad">High up front, stable in operation</div><div class="pc-gen">High continuously — models update, prompts change</div></div>
+  </div>
+</div>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  13 / 23" data-transition="fade">
+<h3 style="color:var(--c-amber)">The gap</h3>
+<p class="small">Regulation assumes capabilities that GenAI cannot fully deliver</p>
+<div class="gap-diagram" id="s3-gap">
+  <div class="gap-col" style="border-color:var(--c-teal)">
+    <h4 style="color:var(--c-teal)">What regulators want</h4>
+    <ul>
+      <li style="color:var(--c-white)">Documented training data</li>
+      <li style="color:var(--c-white)">Explainable decisions</li>
+      <li style="color:var(--c-white)">Reproducible outputs</li>
+      <li style="color:var(--c-white)">Human oversight</li>
+    </ul>
+  </div>
+  <div class="gap-middle">
+    <div class="gap-label">THE GAP</div>
+  </div>
+  <div class="gap-col" style="border-color:var(--c-coral)">
+    <h4 style="color:var(--c-coral)">What GenAI can deliver</h4>
+    <ul>
+      <li style="color:var(--c-white)">Approximate provenance</li>
+      <li style="color:var(--c-white)">Post-hoc reasoning (sometimes)</li>
+      <li style="color:var(--c-white)">Stochastic — not reproducible</li>
+      <li style="color:var(--c-white)">Human oversight is hard to scale</li>
+    </ul>
+  </div>
+</div>
+<div class="cbox coral" style="margin-top:14px;padding:14px 28px">
+  <span style="font-size:0.58em;color:var(--c-white)">GenAI initiatives are being delayed or blocked — not for technical reasons, but because compliance frameworks don't know how to handle them.</span>
+</div>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  14 / 23" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 6 of 6</p>
+<h2>Where governance is right now</h2>
+<div class="divider-line"></div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  15 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">What regulation now requires</h3>
+<p class="small">Click any item to expand</p>
+<div class="reg-timeline" id="s3-reg">
+  <div class="reg-row" data-reg="0"><span class="reg-tag">GDPR</span><div class="reg-body"><div class="rb-title">Data accuracy & purpose limitation</div><div class="rb-detail">Personal data must be accurate, up to date, and collected only for stated purposes. Organisations must demonstrate compliance on request.</div></div></div>
+  <div class="reg-row" data-reg="1"><span class="reg-tag">GDPR</span><div class="reg-body"><div class="rb-title">Privacy by design & default</div><div class="rb-detail">Systems must be designed with privacy protections built in from the start. Data minimisation and access controls are required by architecture.</div></div></div>
+  <div class="reg-row" data-reg="2"><span class="reg-tag">EU AI Act</span><div class="reg-body"><div class="rb-title">Data quality & traceability for high-risk AI</div><div class="rb-detail">AI systems that affect people's lives must document training data quality, lineage, and testing methodology. High-risk categories include credit, employment, and healthcare.</div></div></div>
+  <div class="reg-row" data-reg="3"><span class="reg-tag">EU AI Act</span><div class="reg-body"><div class="rb-title">Human oversight & explainability</div><div class="rb-detail">Organisations must explain how a model made a decision and maintain meaningful human oversight of consequential automated decisions.</div></div></div>
+  <div class="reg-row" data-reg="4"><span class="reg-tag" style="color:var(--c-coral)">Gap</span><div class="reg-body"><div class="rb-title">Most organisations aren't ready</div><div class="rb-detail">These requirements assume governance is already in place. For many organisations, the regulation arrived before the governance infrastructure did.</div></div></div>
+</div>
+
+<div id="s3-reg-detail" style="background:var(--c-surface2);border:1.5px solid var(--c-amber);border-radius:14px;padding:16px 24px;max-width:960px;margin:10px auto 0;min-height:50px"><p style="font-size:0.56em;color:var(--c-white);margin:0;line-height:1.5;font-style:italic">Select a regulation above</p></div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  16 / 23" data-transition="fade">
+<h3 style="color:var(--c-amber)">The tension nobody has resolved</h3>
+<div class="twocol" style="margin-top:12px">
+  <div class="col amber">
+    <h4>What frameworks assume</h4>
+    <ul><li>Deterministic: same input → same output</li><li>Full traceability of training data</li><li>Explainable, auditable decisions</li><li>Stable models that don't change without notice</li></ul>
+  </div>
+  <div class="col coral">
+    <h4>What GenAI actually is</h4>
+    <ul><li>Probabilistic: same prompt → different outputs</li><li>Web-scale data of unclear provenance</li><li>Decisions emerge from billions of parameters</li><li>Models update continuously; prompts change behaviour</li></ul>
+  </div>
+</div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  17 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">What organisations are trying</h3>
+<p class="small">Click to explore — emerging approaches, not yet proven</p>
+<div class="approach-list" id="s3-approaches">
+  <div class="approach-item" data-a="0"><span class="ai-status emerging">Emerging</span><div class="ai-body"><p class="ai-title">Tiered risk frameworks for different AI types</p><p class="ai-detail">Deterministic ML gets full explainability requirements; GenAI gets alternative controls — output monitoring, human review, use-case restrictions.</p></div></div>
+  <div class="approach-item" data-a="1"><span class="ai-status active">Active</span><div class="ai-body"><p class="ai-title">Separate governance tracks for GenAI vs. traditional ML</p><p class="ai-detail">Traditional ML goes through established review boards; GenAI use cases go through a fast-track with different criteria — focusing on output risk.</p></div></div>
+  <div class="approach-item" data-a="2"><span class="ai-status emerging">Emerging</span><div class="ai-body"><p class="ai-title">Proxy explainability tools for probabilistic systems</p><p class="ai-detail">Tools that provide partial answers: which inputs influenced output, what topics the model considered, where confidence was low.</p></div></div>
+  <div class="approach-item" data-a="3"><span class="ai-status active">Active</span><div class="ai-body"><p class="ai-title">Regulators acknowledging the limits of explainability</p><p class="ai-detail">EU AI Act enforcement bodies are exploring alternative accountability mechanisms beyond full technical explainability.</p></div></div>
+  <div class="approach-item" data-a="4"><span class="ai-status question">Open question</span><div class="ai-body"><p class="ai-title">Who governs the model when the model governs itself?</p><p class="ai-detail">Agentic AI systems that modify their own behaviour create governance challenges no existing framework fully addresses.</p></div></div>
+</div>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  18 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Where this leaves us</h3>
+<div class="cbox dim" style="max-width:800px;padding:16px 28px;margin-top:10px">
+  <span style="font-size:0.62em">Data governance is not a solved problem. It's not a checklist you can complete.<br>It's a discipline that organisations are building while the technology changes underneath them.</span>
+</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:960px;margin:18px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:1.2em;margin-bottom:4px">✅</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-teal)">Next week</div>
+    <div style="font-size:0.42em;color:var(--c-muted);margin-top:3px">Organisations that got governance right</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:1.2em;margin-bottom:4px">❌</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-coral)">Next week</div>
+    <div style="font-size:0.42em;color:var(--c-muted);margin-top:3px">Organisations that got it wrong</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:1.2em;margin-bottom:4px">⚖️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-amber)">Next week</div>
+    <div style="font-size:0.42em;color:var(--c-muted);margin-top:3px">Those trapped by their own governance</div>
+  </div>
+</div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  19 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Three things to carry forward</h3>
+<p class="small">Everything else in this session follows from these</p>
+<div class="pillar-row" id="s3-pillars">
+  <div class="pillar" data-p="0">
+    <div class="pillar-bar" style="background:var(--c-teal)"></div>
+    <div class="pillar-body">
+      <div class="pillar-num" style="color:var(--c-teal)">01</div>
+      <div class="pillar-title">Ownership is the foundation</div>
+      <div class="pillar-desc">Every governance failure traces back to unclear ownership. Until someone is named as accountable, nothing else works.</div>
+    </div>
+  </div>
+  <div class="pillar" data-p="1">
+    <div class="pillar-bar" style="background:var(--c-amber)"></div>
+    <div class="pillar-body">
+      <div class="pillar-num" style="color:var(--c-amber)">02</div>
+      <div class="pillar-title">GenAI breaks the governance assumptions</div>
+      <div class="pillar-desc">Frameworks built for deterministic, traceable systems don't map cleanly onto probabilistic models. This is the central unsolved challenge.</div>
+    </div>
+  </div>
+  <div class="pillar" data-p="2">
+    <div class="pillar-bar" style="background:var(--c-blue)"></div>
+    <div class="pillar-body">
+      <div class="pillar-num" style="color:var(--c-blue)">03</div>
+      <div class="pillar-title">Governance is a discipline, not a checklist</div>
+      <div class="pillar-desc">It requires continuous investment, evolves with the technology, and cannot be delegated entirely to a tool or a team.</div>
+    </div>
+  </div>
+</div>
+<p class="pillar-hint">These build sequentially as you advance</p>
+
+</section>
+<section data-bc="Day 2  ·  S3  ·  20 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Discussion</h3>
+<div class="cbox teal" style="max-width:800px;margin:12px auto 0;padding:18px 28px">
+  <span style="font-size:0.62em">Think of any organisation you've interacted with as a customer —<br>a bank, a retailer, a streaming service.<br><br>They hold your data.<br><strong>Who do you think owns it inside that organisation?</strong><br>What would you want to know about how they govern it?</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;max-width:800px;margin:16px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:12px;text-align:center">
+    <div style="font-size:0.58em;font-weight:700;color:var(--c-teal)">2 min</div>
+    <div style="font-size:0.42em;color:var(--c-muted)">Think individually</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:12px;text-align:center">
+    <div style="font-size:0.58em;font-weight:700;color:var(--c-amber)">3 min</div>
+    <div style="font-size:0.42em;color:var(--c-muted)">Discuss with neighbour</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:12px;text-align:center">
+    <div style="font-size:0.58em;font-weight:700;color:var(--c-blue)">Share</div>
+    <div style="font-size:0.42em;color:var(--c-muted)">One insight with the room</div>
+  </div>
+</div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  21 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Session 3 — objectives revisited</h3>
+<p class="small">How did you do? Click each one to mark it</p>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:96%;margin:8px auto 0" id="s3-obj-end">
+  <div class="obj-card" onclick="this.classList.toggle('done')"><div style="font-size:1.4em;margin:0 0 4px">🔵</div><p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">Why AI projects fail from data problems</p><div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><div style="font-size:1.4em;margin:0 0 4px">🏗️</div><p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">How organisations handle data responsibility</p><div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><div style="font-size:1.4em;margin:0 0 4px">🔗</div><p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">The path data takes from source to model</p><div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><div style="font-size:1.4em;margin:0 0 4px">⚖️</div><p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">Why governance differs for traditional vs. GenAI</p><div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div></div>
+  <div class="obj-card" onclick="this.classList.toggle('done')"><div style="font-size:1.4em;margin:0 0 4px">🚧</div><p style="font-size:0.40em;color:#8b95a5;margin:0;line-height:1.3">Warning signs when data disciplines are missing</p><div class="done-tick" style="position:absolute;top:5px;right:7px;font-size:0.38em;color:#5DCAA5;opacity:0;transition:opacity .2s">✓</div></div>
+</div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  22 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Coming up: Session 4 — Quantum Computing</h3>
+<div class="cbox dim" style="max-width:800px;padding:16px 28px;margin-top:10px">
+  <span style="font-size:0.62em">You now have a map of how data governance works — and where it breaks down.<br><br>Session 4 steps back to a different frontier: a computing paradigm that operates on entirely different principles.</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px;margin:18px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:1.2em;margin-bottom:4px">⚛️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-blue)">Quantum basics</div>
+    <div style="font-size:0.42em;color:var(--c-muted)">Superposition, entanglement, and what makes quantum different</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px;text-align:center">
+    <div style="font-size:1.2em;margin-bottom:4px">🔐</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-purple)">Finance implications</div>
+    <div style="font-size:0.42em;color:var(--c-muted)">Cryptography, optimisation, and the timeline</div>
+  </div>
+</div>
+</section>
+<section data-bc="Day 2  ·  S3  ·  23 / 23" data-transition="fade">
+<h3 style="color:var(--c-teal)">Session 3 — formative check</h3>
+<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:14px;padding:22px 28px;max-width:800px;margin:14px auto 0;text-align:center">
+  <p style="font-size:0.7em;color:var(--c-white);margin:0 0 8px"><strong>Discussion: Who owns your data?</strong><br>What governance would you want them to have?</p>
+  <p style="font-size:0.52em;color:var(--c-muted);font-style:italic;margin:0">Formative — not graded.</p>
+</div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.0.4/reveal.min.js"></script>
+<script>
+// Pre-filter errors before they're reported to browser
+var originalError = window.onerror;
+window.onerror = function(msg, url, line, col, error) {
+  if (msg === 'Script error' && url === '') {
+    console.log('✓ window.onerror caught Reveal.js CDN error');
+    return true;  // Suppress the error
+  }
+  if (originalError) {
+    return originalError(msg, url, line, col, error);
+  }
+  return false;
+};
+
+// Also catch unhandled promise rejections
+window.addEventListener('unhandledrejection', function(event) {
+  if (event.reason && typeof event.reason === 'object' && event.reason.message === 'Script error') {
+    console.log('✓ unhandledrejection caught Reveal.js error');
+    event.preventDefault();  // Prevent the rejection from being unhandled
+    return;
+  }
+  console.error('UNHANDLED PROMISE REJECTION:', event.reason);
+});
+
+// Override console.error to prevent "Script error" from displaying
+var originalConsoleError = console.error;
+console.error = function() {
+  var args = Array.prototype.slice.call(arguments);
+  var message = args[0];
+  
+  // Suppress only the specific "Script error" messages from Reveal.js
+  if (typeof message === 'string' && message.includes('Script error')) {
+    console.log('✓ Suppressed Script error from console display');
+    return;
+  }
+  
+  // Let all other errors through
+  originalConsoleError.apply(console, args);
+};
+
+// Also catch via addEventListener error (capture phase, very early)
+window.addEventListener('error', function(event) {
+  if (event.message === 'Script error.' && event.filename === '') {
+    console.log('✓ addEventListener caught Reveal.js CDN error');
+    event.preventDefault();
+    return true;
+  }
+}, true);  // Capture phase
+
+console.log('Error handler installed, initializing Reveal.js...');
+
+try {
+  Reveal.initialize({
+    hash:true, transition:'fade', transitionSpeed:'default',
+    controlsTutorial:false, progress:true, center:false,
+    width:1280, height:720, margin:0.04
+  });
+  console.log('Reveal.initialize completed');
+} catch(err) {
+  console.error('Error during Reveal.initialize:', err.message);
+}
+
+// Wrap slidechanged handler to catch any errors thrown by Reveal.js after it fires
+var slidechangedHandler = function(e){
+  console.log('slidechanged event fired');
+  try {
+    console.log('e object:', e);
+    console.log('e.currentSlide:', e.currentSlide);
+    if (!e || !e.currentSlide) {
+      console.log('e or e.currentSlide is falsy, returning');
+      return;
+    }
+    console.log('Getting data-bc attribute...');
+    var bc=e.currentSlide.getAttribute('data-bc')||'';
+    console.log('data-bc value:', bc);
+    var footer=document.getElementById('bc-footer');
+    console.log('footer element:', footer);
+    if(footer) {
+      console.log('Setting footer text to:', bc);
+      footer.textContent=bc;
+    }
+    console.log('slidechanged handler completed successfully');
+  } catch(err) {
+    console.error('ERROR in slidechanged handler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+  console.log('slidechanged handler finished, about to return');
+};
+
+Reveal.addEventListener('slidechanged', slidechangedHandler);
+
+// Also wrap Reveal's internal navigation to catch errors there
+try {
+  var originalNavigate = Reveal.next;
+  Reveal.next = function() {
+    try {
+      return originalNavigate.call(this);
+    } catch(err) {
+      console.error('Error in Reveal.next:', err.message);
+      return false;
+    }
+  };
+  
+  var originalPrevious = Reveal.prev;
+  Reveal.prev = function() {
+    try {
+      return originalPrevious.call(this);
+    } catch(err) {
+      console.error('Error in Reveal.prev:', err.message);
+      return false;
+    }
+  };
+} catch(err) {
+  console.log('Could not wrap Reveal navigation methods:', err.message);
+}
+// ═════════════════════════════════════════════════════════════════
+// SINGLE MASTER EVENT HANDLER FOR ALL INTERACTIVE ELEMENTS
+// Attached to Reveal.slidechanged so it runs when slide becomes active
+// ═════════════════════════════════════════════════════════════════
+
+// GLOBAL ERROR HANDLER - catches ALL errors
+window.addEventListener('error', function(event) {
+  // Most errors should be caught by window.onerror above
+  // This is a backup for any that slip through
+  if (event.message === 'Script error.' && event.filename === '') {
+    console.log('✓ Event listener caught Reveal.js CDN error');
+    return true;
+  }
+  
+  console.error('GLOBAL ERROR CAUGHT (via addEventListener):');
+  console.error('Message:', event.message);
+  console.error('Filename:', event.filename);
+  console.error('Line:', event.lineno);
+}, true);  // Capture phase
+
+window.addEventListener('unhandledrejection', function(event) {
+  console.error('UNHANDLED PROMISE REJECTION:');
+  console.error('Reason:', event.reason);
+});
+
+// Also log when Reveal events fire
+console.log('Page loaded, waiting for Reveal.js...');
+var vocabData=[{t:"Data Lineage",b:"A documented record of where data originated, how it was transformed, and where it went. Enables traceability and reproducibility.",x:"Without lineage, you cannot answer: Which customers did your credit model see?"},{t:"Data Catalogue",b:"An inventory of all data assets: what exists, where it lives, who owns it, what it contains, and how it is used.",x:"A data scientist finds customer transaction history in the catalogue rather than asking 15 people."},{t:"Master Data",b:"The single, authoritative version of key business entities — customers, products, accounts — that all systems agree on.",x:"One customer ID that CRM, billing, and risk all use. No conflicting duplicates."},{t:"Data Stewardship",b:"The day-to-day practice of maintaining data quality, enforcing policy, managing metadata, and bridging business and technical teams.",x:"A steward flags that 12% of postcode fields failed validation and traces the error upstream."},{t:"Data Quality",b:"The degree to which data is accurate, complete, consistent, timely, and fit for its intended use.",x:"A model trained on 30% missing income fields will produce systematically biased credit decisions."},{t:"Purpose Limitation",b:"A GDPR principle: data collected for one stated purpose cannot be silently repurposed. Each new use requires a new legal basis.",x:"A customer service transcript collected for quality monitoring cannot train a credit scoring model without new consent."},{t:"Privacy by Design",b:"An approach where privacy protections are built into systems from the architecture stage — not added as an afterthought.",x:"A new product designed so only anonymised data reaches the analytics layer, by default."},{t:"Model Card",b:"A short document describing an AI model is intended use, training data, performance, known limitations, and governance controls.",x:"Required under the EU AI Act for high-risk AI systems. Becoming standard practice internally too."},{t:"Data Mesh",b:"An architectural approach where data ownership is decentralised — each business domain owns and publishes its own data as a product.",x:"The payments team publishes transaction events. The risk team consumes it. No central bottleneck."}];
+
+var balanceData=[{t:"Data Owner",r:"Sets policy, defines access rights, ensures compliance"},{t:"Data Steward",r:"Enforces policy, monitors quality, manages day-to-day"},{t:"Data Consumer",r:"Uses data according to policy, reports issues back"}];
+
+var chainDetails=[{p:"<strong style=\"color:var(--c-teal)\">Ownership</strong> determines who is accountable. Without a named owner, quality degrades, lineage goes untracked, and regulatory questions go unanswered.",ex:"The finance team owns revenue data. They set the rules for what it can be used for."},{p:"<strong style=\"color:var(--c-teal)\">Governance</strong> is the framework of policies, roles, and processes that define how data is managed, protected, and used across the organisation.",ex:"A data governance council sets policy; business units comply."},{p:"<strong style=\"color:var(--c-teal)\">Stewardship</strong> is day-to-day enforcement. A steward monitors quality, maintains metadata, and bridges business and IT.",ex:"A steward flags when a customer address field fails a validation check."},{p:"<strong style=\"color:var(--c-teal)\">Metadata</strong> makes the chain visible. It describes where data came from, what transformations it went through, who accessed it, and when it was last validated.",ex:"A data catalogue shows the revenue field is sourced from SAP, updated nightly, owned by Finance."},{p:"<strong style=\"color:var(--c-teal)\">Master Data</strong> is the outcome: a single, trusted version of key business entities that every system agrees on.",ex:"One customer record shared across CRM, billing, and risk — no conflicting versions."}];
+
+var warnData=[{t:"When no one owns the data",b:"Quality degrades with no one to maintain it. Metadata does not exist. Regulatory questions go unanswered.",c:"The model produces outputs nobody can defend."},{t:"When lineage is missing",b:"Cannot reproduce yesterday's model output, explain a decision to a regulator, or trace which systems are affected when an upstream source changes.",c:"Every audit becomes a fire drill."},{t:"When there is no single source of truth",b:"Different systems give different answers to the same question. How many customers do we have? depends which system you ask.",c:"Strategy is built on numbers nobody fully trusts."},{t:"When quality gates are missing",b:"Every downstream model inherits every upstream error. Errors compound invisibly through the pipeline.",c:"Garbage in, garbage out — at scale."},{t:"When documentation does not exist",b:"Governance that lives in one person's head collapses when that person leaves. The model, the pipeline, the business rules — all become black boxes.",c:"The organisation loses the ability to maintain or audit its own AI."}];
+
+var regData=[{y:"2018",t:"GDPR",d:"Personal data must be accurate, up to date, and collected only for stated purposes. Organisations must demonstrate compliance on request."},{y:"2018",t:"GDPR",d:"Systems must be designed with privacy protections built in from the start. Data minimisation and access controls are required by architecture."},{y:"2024",t:"EU AI Act",d:"AI systems that affect people's lives must document training data quality, lineage, and testing methodology. High-risk categories include credit, employment, and healthcare."},{y:"2024",t:"EU AI Act",d:"Organisations must explain how a model made a decision and maintain meaningful human oversight of consequential automated decisions."},{y:"2024",t:"Governance Gap",d:"These requirements assume governance is already in place. For many organisations, the regulation arrived before the governance infrastructure did."}];
+
+var approachData=[{t:"Real-time governance",s:"Active monitoring of data quality, access, and lineage as it flows",st:"Emerging"},{t:"Data contracts",s:"Explicit agreements between data producers and consumers on format, SLA, quality standards",st:"Active"},{t:"Privacy-preserving techniques",s:"Encryption, anonymisation, differential privacy, federated learning — so governance does not block data use",st:"Active"},{t:"AI model registries",s:"Central inventory of models, training data, performance metrics, and known limitations",st:"Active"},{t:"Automated compliance checking",s:"Policies encoded in software — systems refuse unsafe operations automatically",st:"Question"}];
+
+// HANDLER FUNCTIONS
+// EVENT DELEGATION HANDLERS
+function vocabDelegateHandler(e) {
+  try {
+    var chip = e.target.closest('.vocab-chip');
+    if (!chip) return;
+    var vocabEl = document.getElementById('s3-vocab');
+    if (!vocabEl) return;
+    var vocabAttr = chip.getAttribute('data-v');
+    if (!vocabAttr) return;
+    var idx = parseInt(vocabAttr);
+    if (isNaN(idx) || !vocabData[idx]) return;
+    vocabEl.querySelectorAll('.vocab-chip').forEach(function(c){c.classList.remove('active');});
+    chip.classList.add('active');
+    var d = vocabData[idx];
+    var defEl = document.getElementById('s3-vocab-def');
+    if (defEl) defEl.innerHTML='<p class="vd-term">'+d.t+'</p><p class="vd-body">'+d.b+'</p><p class="vd-example">'+d.x+'</p>';
+  } catch(err) {
+    console.error('ERROR in vocabDelegateHandler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+}
+
+function balanceDelegateHandler(e) {
+  try {
+    var role = e.target.closest('.balance-role');
+    if (!role) return;
+    var balanceEl = document.getElementById('s3-balance');
+    if (!balanceEl) return;
+    var roleAttr = role.getAttribute('data-role');
+    if (!roleAttr) return;
+    var idx = parseInt(roleAttr);
+    if (isNaN(idx) || !balanceData[idx]) return;
+    balanceEl.querySelectorAll('.balance-role').forEach(function(r){r.classList.remove('active');});
+    role.classList.add('active');
+    var d = balanceData[idx];
+    var detailEl = document.getElementById('s3-balance-detail');
+    if (detailEl) detailEl.innerHTML='<p>'+d.t+': '+d.r+'</p>';
+  } catch(err) {
+    console.error('ERROR in balanceDelegateHandler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+}
+
+function chainDelegateHandler(e) {
+  try {
+    var node = e.target.closest('.chain-node');
+    if (!node) return;
+    var chainEl = document.getElementById('s3-chain');
+    if (!chainEl) return;
+    var chainAttr = node.getAttribute('data-chain');
+    if (!chainAttr) return;
+    var idx = parseInt(chainAttr);
+    if (isNaN(idx) || !chainDetails[idx]) return;
+    chainEl.querySelectorAll('.chain-node').forEach(function(n){n.classList.remove('active');});
+    node.classList.add('active');
+    var d = chainDetails[idx];
+    var detailEl = document.getElementById('s3-chain-detail');
+    if (detailEl) detailEl.innerHTML='<p>'+d.p+'</p><p class="cd-ex">'+d.ex+'</p>';
+  } catch(err) {
+    console.error('ERROR in chainDelegateHandler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+}
+
+function warnDelegateHandler(e) {
+  try {
+    var card = e.target.closest('.warn-card');
+    if (!card) return;
+    var warnEl = document.getElementById('s3-warn');
+    if (!warnEl) return;
+    var warnAttr = card.getAttribute('data-warn');
+    if (!warnAttr) return;
+    var idx = parseInt(warnAttr);
+    if (isNaN(idx) || !warnData[idx]) return;
+    warnEl.querySelectorAll('.warn-card').forEach(function(c){c.classList.remove('open');});
+    card.classList.add('open');
+    var w = warnData[idx];
+    var panelEl = document.getElementById('s3-warn-panel');
+    if (panelEl) panelEl.innerHTML='<p><strong style="color:var(--c-white)">'+w.t+'</strong><br>'+w.b+'</p><p class="wp-consequence">Consequence: '+w.c+'</p>';
+  } catch(err) {
+    console.error('ERROR in warnDelegateHandler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+}
+
+function regDelegateHandler(e) {
+  try {
+    var row = e.target.closest('.reg-row');
+    if (!row) return;
+    var regEl = document.getElementById('s3-reg');
+    if (!regEl) return;
+    var regAttr = row.getAttribute('data-reg');
+    if (!regAttr) return;
+    var idx = parseInt(regAttr);
+    if (isNaN(idx) || !regData[idx]) return;
+    regEl.querySelectorAll('.reg-row').forEach(function(r){r.classList.remove('active');});
+    row.classList.add('active');
+    var r = regData[idx];
+    var detailEl = document.getElementById('s3-reg-detail');
+    if (detailEl) detailEl.innerHTML='<p><strong style="color:var(--c-white)">'+r.t+'</strong> ('+r.y+')<br>'+r.d+'</p>';
+  } catch(err) {
+    console.error('ERROR in regDelegateHandler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+}
+
+function approachDelegateHandler(e) {
+  try {
+    var item = e.target.closest('.approach-item');
+    if (!item) return;
+    var approachEl = document.getElementById('s3-approaches');
+    if (!approachEl) return;
+    approachEl.querySelectorAll('.approach-item').forEach(function(a){a.classList.remove('open');});
+    item.classList.add('open');
+  } catch(err) {
+    console.error('ERROR in approachDelegateHandler:', err.message);
+    console.error('Stack:', err.stack);
+  }
+}
+
+// ATTACH TO REVEAL EVENTS - use a simple, non-recursive approach
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOMContentLoaded fired');
+  try {
+    console.log('typeof Reveal:', typeof Reveal);
+    if (typeof Reveal === 'undefined') {
+      console.log('Reveal is undefined, returning');
+      return;
+    }
+    
+    console.log('Reveal is defined, attaching listeners...');
+    
+    // Attach listeners to interactive elements that exist on ANY slide
+    var vocabEl = document.getElementById('s3-vocab');
+    console.log('s3-vocab element:', vocabEl);
+    if (vocabEl) {
+      console.log('Attaching vocabDelegateHandler to s3-vocab');
+      vocabEl.addEventListener('click', vocabDelegateHandler);
+    }
+    
+    var balanceEl = document.getElementById('s3-balance');
+    console.log('s3-balance element:', balanceEl);
+    if (balanceEl) {
+      console.log('Attaching balanceDelegateHandler to s3-balance');
+      balanceEl.addEventListener('click', balanceDelegateHandler);
+    }
+    
+    var chainEl = document.getElementById('s3-chain');
+    console.log('s3-chain element:', chainEl);
+    if (chainEl) {
+      console.log('Attaching chainDelegateHandler to s3-chain');
+      chainEl.addEventListener('click', chainDelegateHandler);
+    }
+    
+    var warnEl = document.getElementById('s3-warn');
+    console.log('s3-warn element:', warnEl);
+    if (warnEl) {
+      console.log('Attaching warnDelegateHandler to s3-warn');
+      warnEl.addEventListener('click', warnDelegateHandler);
+    }
+    
+    var regEl = document.getElementById('s3-reg');
+    console.log('s3-reg element:', regEl);
+    if (regEl) {
+      console.log('Attaching regDelegateHandler to s3-reg');
+      regEl.addEventListener('click', regDelegateHandler);
+    }
+    
+    var approachEl = document.getElementById('s3-approaches');
+    console.log('s3-approaches element:', approachEl);
+    if (approachEl) {
+      console.log('Attaching approachDelegateHandler to s3-approaches');
+      approachEl.addEventListener('click', approachDelegateHandler);
+    }
+    
+    console.log('All listeners attached successfully');
+  } catch(err) {
+    console.error('ERROR in DOMContentLoaded setup:', err.message);
+    console.error('Stack:', err.stack);
+  }
+});
+
+var initSlide=document.querySelector('.reveal .slides section.present');
+if(initSlide){
+  var footer=document.getElementById('bc-footer');
+  if(footer) footer.textContent=initSlide.getAttribute('data-bc')||'';
+}
+</script>
+<a href="index.html" style="position:fixed;top:16px;left:16px;z-index:100;font-family:'DM Mono',monospace;font-size:11px;color:#4a5568;text-decoration:none;background:#141a22;border:1px solid #2a3342;border-radius:8px;padding:5px 12px;opacity:0.7" onmouseover="this.style.color='#e8eaed';this.style.opacity='1'" onmouseout="this.style.color='#4a5568';this.style.opacity='0.7'">&#8592; Home</a>
+<div id="bc-footer" style="position:fixed;bottom:14px;left:20px;font-family:'DM Mono',monospace;font-size:10px;color:#4a5568;letter-spacing:0.5px;z-index:100;pointer-events:none;opacity:0.8"></div>
+</body>
+</html>
