@@ -979,10 +979,10 @@ document.addEventListener('click', function(e) {
     ctx.fillText('1',w/2,80);
     ctx.fillText('0',w/2,260);
     
-    // Random position within the box - truly random walk
+    // Seeded random position within the box
     var seed=Math.floor(t*10);
-    Math.seedrandom=function(s){var x=Math.sin(s)*10000;return x-Math.floor(x);};
-    var rand=Math.seedrandom(seed);
+    var x=Math.sin(seed*127.1+311.7)*43758.5453;
+    var rand=x-Math.floor(x);
     var traversePos=50+rand*230;
     ctx.fillStyle='#5DCAA5';
     ctx.beginPath();ctx.arc(w/2,traversePos,14,0,Math.PI*2);ctx.fill();
@@ -1103,6 +1103,7 @@ document.addEventListener('click', function(e) {
     if(engines[id])return;
     var c=document.getElementById(id);
     if(!c||c.children.length>0)return;
+    if(!c.clientWidth||!c.clientHeight)return;
     engines[id]=new QuantumVisEngine(c,setup,animate);
   }
   
