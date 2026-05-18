@@ -893,10 +893,8 @@ document.addEventListener('click', function(e) {
   
   /* Setup Functions */
   function setupQubit(s){
-    var wg=new THREE.IcosahedronGeometry(1.8,8),wm=new THREE.MeshBasicMaterial({color:0x7F77DD,wireframe:true,transparent:true,opacity:0.25});
-    s.wire=new THREE.Mesh(wg,wm);s.scene.add(s.wire);
-    var sg=new THREE.IcosahedronGeometry(1.8,6),sm=new THREE.MeshPhysicalMaterial({color:0x7F77DD,wireframe:false,transparent:true,opacity:0.15,metalness:0,roughness:0.8,ior:1.5,transmission:0.8});
-    s.scene.add(new THREE.Mesh(sg,sm));
+    var sg=new THREE.SphereGeometry(1.8,48,48),sm=new THREE.MeshPhysicalMaterial({color:0x7F77DD,transparent:true,opacity:0.35,metalness:0.05,roughness:0.2,ior:1.5,transmission:0.6,thickness:0.8,clearcoat:0.4});
+    s.sphere=new THREE.Mesh(sg,sm);s.scene.add(s.sphere);
     s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(1,0,0),new THREE.Vector3(0,0,0),2.0,0xE24B4A,0.2,0.12));
     s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,0),2.0,0x85B7EB,0.2,0.12));
     s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,0,1),new THREE.Vector3(0,0,0),2.0,0xAFA9EC,0.2,0.12));
@@ -912,7 +910,7 @@ document.addEventListener('click', function(e) {
   }
   
   function animateQubit(s,t){
-    s.wire.rotation.x+=0.002;s.wire.rotation.y+=0.003;
+    s.sphere.rotation.y+=0.001;
     if(!s.isMeasured){
       var theta=t*1.2,phi=Math.PI/2+Math.sin(t*0.8)*Math.PI/4;
       var px=Math.sin(phi)*Math.cos(theta),py=Math.cos(phi),pz=Math.sin(phi)*Math.sin(theta);
