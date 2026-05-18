@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 :root{
   --c-bg:#0b0f14;--c-surface:#141a22;--c-surface2:#1c2430;
@@ -728,7 +728,7 @@
 
 </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
 <script>
 /* Suppress known Reveal.js CDN cross-origin error on slide transitions */
 window.onerror=function(msg,src,line){if(msg==='Script error.'&&!src)return true;};
@@ -893,11 +893,25 @@ document.addEventListener('click', function(e) {
   
   /* Setup Functions */
   function setupQubit(s){
-    var sg=new THREE.SphereGeometry(1.8,48,48),sm=new THREE.MeshPhysicalMaterial({color:0x7F77DD,transparent:true,opacity:0.35,metalness:0.05,roughness:0.2,ior:1.5,transmission:0.6,thickness:0.8,clearcoat:0.4});
+    s.camera.position.set(0,0,5);
+    s.camera.fov=50;
+    s.camera.updateProjectionMatrix();
+    var sg=new THREE.SphereGeometry(1.8,48,48),sm=new THREE.MeshPhysicalMaterial({color:0x7F77DD,transparent:true,opacity:0.38,metalness:0.05,roughness:0.2,ior:1.5,transmission:0.45,thickness:0.8,clearcoat:0.4});
     s.sphere=new THREE.Mesh(sg,sm);s.scene.add(s.sphere);
     s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(1,0,0),new THREE.Vector3(0,0,0),2.0,0xE24B4A,0.2,0.12));
-    s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,0),2.0,0x85B7EB,0.2,0.12));
     s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,0,1),new THREE.Vector3(0,0,0),2.0,0xAFA9EC,0.2,0.12));
+    // N-S axis: dim shaft pole-to-pole, small arrowhead at north
+    (function(){
+      var mat=new THREE.MeshBasicMaterial({color:0x85B7EB,transparent:true,opacity:0.35});
+      var shaftGeo=new THREE.CylinderGeometry(0.012,0.012,3.6,8);
+      var shaft=new THREE.Mesh(shaftGeo,mat);
+      shaft.position.set(0,0,0);
+      s.scene.add(shaft);
+      var coneGeo=new THREE.ConeGeometry(0.07,0.20,8);
+      var cone=new THREE.Mesh(coneGeo,mat);
+      cone.position.set(0,1.9,0);
+      s.scene.add(cone);
+    })();
     // Sphere dot — shown after collapse
     var stg=new THREE.SphereGeometry(0.14,16,16),stm=new THREE.MeshPhongMaterial({color:0x7F77DD,emissive:0x5555AA});
     s.stateVec=new THREE.Mesh(stg,stm);s.stateVec.visible=false;s.scene.add(s.stateVec);
@@ -934,44 +948,66 @@ document.addEventListener('click', function(e) {
       );
       var collapseFrac=Math.min(1,(t-s.collapseStartFrame/60)*3);
       var targetY=s.measuredValue===0?1.8:-1.8;
-      var currentPos={x:s.stateVec.position.x,y:s.stateVec.position.y,z:s.stateVec.position.z};
-      var newY=currentPos.y*(1-collapseFrac)+targetY*collapseFrac;
-      var xzScale=1-collapseFrac;
-      s.stateVec.position.x=currentPos.x*xzScale;
-      s.stateVec.position.y=newY;
-      s.stateVec.position.z=currentPos.z*xzScale;
       if(collapseFrac>=1){
-        s.stateVec.position.normalize().multiplyScalar(1.8);
+        s.stateVec.position.set(0,targetY,0);
+      }else{
+        var currentPos={x:s.stateVec.position.x,y:s.stateVec.position.y,z:s.stateVec.position.z};
+        var newY=currentPos.y*(1-collapseFrac)+targetY*collapseFrac;
+        var xzScale=1-collapseFrac;
+        s.stateVec.position.x=currentPos.x*xzScale;
+        s.stateVec.position.y=newY;
+        s.stateVec.position.z=currentPos.z*xzScale;
       }
     }
   }
   
   function setupEntangle(s){
+    s.camera.position.set(0,0,10);
+    s.camera.fov=30;
+    s.camera.updateProjectionMatrix();
     /* Left Bloch sphere (Qubit A) - teal */
-    var wgA=new THREE.IcosahedronGeometry(1.4,8),wmA=new THREE.MeshBasicMaterial({color:0x5DCAA5,wireframe:true,transparent:true,opacity:0.2});
-    s.wireA=new THREE.Mesh(wgA,wmA);s.wireA.position.x=-3.5;s.scene.add(s.wireA);
-    var sgA=new THREE.IcosahedronGeometry(1.4,6),smA=new THREE.MeshPhysicalMaterial({color:0x5DCAA5,wireframe:false,transparent:true,opacity:0.1,metalness:0,roughness:0.8,ior:1.5,transmission:0.8});
+    var sgA=new THREE.SphereGeometry(1.4,48,48),smA=new THREE.MeshPhysicalMaterial({color:0x5DCAA5,transparent:true,opacity:0.38,metalness:0.05,roughness:0.1,ior:1.5,transmission:0.45,thickness:0.8,clearcoat:0.4,depthWrite:false});
     var solidA=new THREE.Mesh(sgA,smA);solidA.position.x=-3.5;s.scene.add(solidA);
-    s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,1,0),new THREE.Vector3(-3.5,-1.6,0),3.2,0x5DCAA5,0.15,0.1));
+    // N-S axis sphere A: dim shaft pole-to-pole, small arrowhead at north
+    (function(){
+      var mat=new THREE.MeshBasicMaterial({color:0x5DCAA5,transparent:true,opacity:0.35});
+      var shaftGeo=new THREE.CylinderGeometry(0.010,0.010,2.8,8);
+      var shaft=new THREE.Mesh(shaftGeo,mat);
+      shaft.position.set(-3.5,0,0);
+      s.scene.add(shaft);
+      var coneGeo=new THREE.ConeGeometry(0.06,0.16,8);
+      var cone=new THREE.Mesh(coneGeo,mat);
+      cone.position.set(-3.5,1.48,0);
+      s.scene.add(cone);
+    })();
     // Flat disc for dotA — shown during superposition
-    var dgA=new THREE.CircleGeometry(0.20,32),dmA=new THREE.MeshBasicMaterial({color:0x5DCAA5,side:THREE.DoubleSide,transparent:true,opacity:0.95});
-    s.discA=new THREE.Mesh(dgA,dmA);s.scene.add(s.discA);
+    var dgA=new THREE.CircleGeometry(0.20,32),dmA=new THREE.MeshBasicMaterial({color:0x5DCAA5,side:THREE.DoubleSide,transparent:true,opacity:0.95,depthTest:false});
+    s.discA=new THREE.Mesh(dgA,dmA);s.discA.renderOrder=999;s.scene.add(s.discA);
     // Sphere dot for dotA — shown during/after collapse
-    var stgA=new THREE.SphereGeometry(0.14,16,16),stmA=new THREE.MeshPhongMaterial({color:0x5DCAA5,emissive:0x2a8a6a});
-    s.dotA=new THREE.Mesh(stgA,stmA);s.dotA.visible=false;s.scene.add(s.dotA);
+    var stgA=new THREE.SphereGeometry(0.14,16,16),stmA=new THREE.MeshPhongMaterial({color:0x5DCAA5,emissive:0x2a8a6a,depthTest:false});
+    s.dotA=new THREE.Mesh(stgA,stmA);s.dotA.renderOrder=999;s.dotA.visible=false;s.scene.add(s.dotA);
 
     /* Right Bloch sphere (Qubit B) - coral */
-    var wgB=new THREE.IcosahedronGeometry(1.4,8),wmB=new THREE.MeshBasicMaterial({color:0xF0997B,wireframe:true,transparent:true,opacity:0.2});
-    s.wireB=new THREE.Mesh(wgB,wmB);s.wireB.position.x=3.5;s.scene.add(s.wireB);
-    var sgB=new THREE.IcosahedronGeometry(1.4,6),smB=new THREE.MeshPhysicalMaterial({color:0xF0997B,wireframe:false,transparent:true,opacity:0.1,metalness:0,roughness:0.8,ior:1.5,transmission:0.8});
+    var sgB=new THREE.SphereGeometry(1.4,48,48),smB=new THREE.MeshPhysicalMaterial({color:0xF0997B,transparent:true,opacity:0.38,metalness:0.05,roughness:0.1,ior:1.5,transmission:0.45,thickness:0.8,clearcoat:0.4,depthWrite:false});
     var solidB=new THREE.Mesh(sgB,smB);solidB.position.x=3.5;s.scene.add(solidB);
-    s.scene.add(new THREE.ArrowHelper(new THREE.Vector3(0,1,0),new THREE.Vector3(3.5,-1.6,0),3.2,0xF0997B,0.15,0.1));
+    // N-S axis sphere B: dim shaft pole-to-pole, small arrowhead at north
+    (function(){
+      var mat=new THREE.MeshBasicMaterial({color:0xF0997B,transparent:true,opacity:0.35});
+      var shaftGeo=new THREE.CylinderGeometry(0.010,0.010,2.8,8);
+      var shaft=new THREE.Mesh(shaftGeo,mat);
+      shaft.position.set(3.5,0,0);
+      s.scene.add(shaft);
+      var coneGeo=new THREE.ConeGeometry(0.06,0.16,8);
+      var cone=new THREE.Mesh(coneGeo,mat);
+      cone.position.set(3.5,1.48,0);
+      s.scene.add(cone);
+    })();
     // Flat disc for dotB — shown during superposition
-    var dgB=new THREE.CircleGeometry(0.20,32),dmB=new THREE.MeshBasicMaterial({color:0xF0997B,side:THREE.DoubleSide,transparent:true,opacity:0.95});
-    s.discB=new THREE.Mesh(dgB,dmB);s.scene.add(s.discB);
+    var dgB=new THREE.CircleGeometry(0.20,32),dmB=new THREE.MeshBasicMaterial({color:0xF0997B,side:THREE.DoubleSide,transparent:true,opacity:0.95,depthTest:false});
+    s.discB=new THREE.Mesh(dgB,dmB);s.discB.renderOrder=999;s.scene.add(s.discB);
     // Sphere dot for dotB — shown during/after collapse
-    var stgB=new THREE.SphereGeometry(0.14,16,16),stmB=new THREE.MeshPhongMaterial({color:0xF0997B,emissive:0x8a4a3a});
-    s.dotB=new THREE.Mesh(stgB,stmB);s.dotB.visible=false;s.scene.add(s.dotB);
+    var stgB=new THREE.SphereGeometry(0.14,16,16),stmB=new THREE.MeshPhongMaterial({color:0xF0997B,emissive:0x8a4a3a,depthTest:false});
+    s.dotB=new THREE.Mesh(stgB,stmB);s.dotB.renderOrder=999;s.dotB.visible=false;s.scene.add(s.dotB);
 
     /* Connection line between dots */
     var lineMat=new THREE.LineBasicMaterial({color:0x85B7EB,transparent:true,opacity:0.5});
@@ -986,10 +1022,6 @@ document.addEventListener('click', function(e) {
   }
   
   function animateEntangle(s,t){
-    /* Rotate wireframes like qubit slide */
-    s.wireA.rotation.x+=0.002;s.wireA.rotation.y+=0.003;
-    s.wireB.rotation.x+=0.002;s.wireB.rotation.y-=0.003;
-
     if(!s.isMeasured){
       /* Anti-correlated motion on Bloch spheres */
       var thetaA=t*1.2,phiA=Math.PI/2+Math.sin(t*0.8)*Math.PI/4;
@@ -1017,11 +1049,16 @@ document.addEventListener('click', function(e) {
       var targetA=s.measuredValue===0?1.4:-1.4;
       var targetB=s.measuredValue===0?-1.4:1.4;
       s.dotA.position.x=-3.5;
-      s.dotA.position.y=s.dotA.position.y*(1-cf)+targetA*cf;
-      s.dotA.position.z=s.dotA.position.z*(1-cf);
       s.dotB.position.x=3.5;
-      s.dotB.position.y=s.dotB.position.y*(1-cf)+targetB*cf;
-      s.dotB.position.z=s.dotB.position.z*(1-cf);
+      if(cf>=1){
+        s.dotA.position.set(-3.5,targetA,0);
+        s.dotB.position.set(3.5,targetB,0);
+      }else{
+        s.dotA.position.y=s.dotA.position.y*(1-cf)+targetA*cf;
+        s.dotA.position.z=s.dotA.position.z*(1-cf);
+        s.dotB.position.y=s.dotB.position.y*(1-cf)+targetB*cf;
+        s.dotB.position.z=s.dotB.position.z*(1-cf);
+      }
       s.link.material.opacity=0.6+0.4*Math.sin(t*6);
     }
 
