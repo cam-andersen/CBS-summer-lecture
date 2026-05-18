@@ -938,26 +938,22 @@ document.addEventListener('click', function(e) {
       s.disc.visible=true;
       s.stateVec.visible=false;
     }else{
-      // Switch to sphere dot during/after collapse
+      // Instant snap to pole on first collapsed frame
       s.disc.visible=false;
       s.stateVec.visible=true;
-      s.stateVec.position.set(
-        s.disc.position.x/1.8*1.8,
-        s.disc.position.y/1.8*1.8,
-        s.disc.position.z/1.8*1.8
-      );
-      var collapseFrac=Math.min(1,(t-s.collapseStartFrame/60)*3);
       var targetY=s.measuredValue===0?1.8:-1.8;
-      if(collapseFrac>=1){
-        s.stateVec.position.set(0,targetY,0);
-      }else{
-        var currentPos={x:s.stateVec.position.x,y:s.stateVec.position.y,z:s.stateVec.position.z};
-        var newY=currentPos.y*(1-collapseFrac)+targetY*collapseFrac;
-        var xzScale=1-collapseFrac;
-        s.stateVec.position.x=currentPos.x*xzScale;
-        s.stateVec.position.y=newY;
-        s.stateVec.position.z=currentPos.z*xzScale;
-      }
+      s.stateVec.position.set(0,targetY,0);
+      // Emissive pulse: bright flash decaying over 0.6s
+      var age=t-s.collapseStartFrame/60;
+      var pulse=Math.max(0,1-age/0.6);
+      var baseCol=new THREE.Color(0x7F77DD);
+      var flashCol=new THREE.Color(0xffffff);
+      s.stateVec.material.emissive.copy(flashCol).lerp(baseCol,1-pulse);
+      s.stateVec.material.emissiveIntensity=0.4+pulse*2.5;
+      // Sphere flash
+      s.sphere.material.opacity=0.38+pulse*0.35;
+      s.sphere.material.emissive=new THREE.Color(0x7F77DD);
+      s.sphere.material.emissiveIntensity=pulse*0.6;
     }
   }
   
@@ -1045,21 +1041,22 @@ document.addEventListener('click', function(e) {
       // Switch to sphere dots for collapse
       s.discA.visible=false;s.dotA.visible=true;
       s.discB.visible=false;s.dotB.visible=true;
-      var cf=Math.min(1,(t-s.collapseStartFrame/60)*4);
+      // Instant snap to poles
       var targetA=s.measuredValue===0?1.4:-1.4;
       var targetB=s.measuredValue===0?-1.4:1.4;
-      s.dotA.position.x=-3.5;
-      s.dotB.position.x=3.5;
-      if(cf>=1){
-        s.dotA.position.set(-3.5,targetA,0);
-        s.dotB.position.set(3.5,targetB,0);
-      }else{
-        s.dotA.position.y=s.dotA.position.y*(1-cf)+targetA*cf;
-        s.dotA.position.z=s.dotA.position.z*(1-cf);
-        s.dotB.position.y=s.dotB.position.y*(1-cf)+targetB*cf;
-        s.dotB.position.z=s.dotB.position.z*(1-cf);
-      }
-      s.link.material.opacity=0.6+0.4*Math.sin(t*6);
+      s.dotA.position.set(-3.5,targetA,0);
+      s.dotB.position.set(3.5,targetB,0);
+      // Emissive pulse on both dots
+      var age=t-s.collapseStartFrame/60;
+      var pulse=Math.max(0,1-age/0.6);
+      var flashA=new THREE.Color(0xffffff),baseA=new THREE.Color(0x5DCAA5);
+      s.dotA.material.emissive.copy(flashA).lerp(baseA,1-pulse);
+      s.dotA.material.emissiveIntensity=0.3+pulse*2.5;
+      var flashB=new THREE.Color(0xffffff),baseB=new THREE.Color(0xF0997B);
+      s.dotB.material.emissive.copy(flashB).lerp(baseB,1-pulse);
+      s.dotB.material.emissiveIntensity=0.3+pulse*2.5;
+      // Link flashes bright then fades
+      s.link.material.opacity=Math.max(0.5,pulse*1.0);
     }
 
     /* Update connection line endpoints */
