@@ -580,10 +580,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
     </ul>
   </div>
 </div>
-<div style="display:flex;gap:8px;justify-content:center;margin:12px 0;flex-wrap:wrap">
-  <button data-qvis="classical-play" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">▶ Play</button>
-  <button data-qvis="classical-reset" style="padding:8px 14px;background:rgba(175,169,236,0.1);border:1px solid var(--c-purple);color:var(--c-purple);border-radius:8px;cursor:pointer;font-size:0.55em;font-weight:600;transition:all 0.2s;font-family:var(--font)">Reset</button>
-</div>
+
 
 </section>
 
@@ -665,38 +662,121 @@ section.has-light-background, section.has-light-background h1, section.has-light
 </section>
 
 
-<section data-bc="Day 2  ·  S4  ·  9 / 33" data-transition="fade">
-<h3 style="color:var(--c-amber)">But there's a catch</h3>
-<p class="small">Why you don't have a quantum laptop</p>
-<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:96%;margin:10px auto 0">
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
-    <div style="font-size:1.4em;margin:0 0 6px">❄️</div>
-    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Near absolute zero</div>
-    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Most systems operate at −273°C. Colder than outer space.</div>
-  </div>
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
-    <div style="font-size:1.4em;margin:0 0 6px">🫧</div>
-    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Extreme fragility</div>
-    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Slightest vibration, heat, or EM interference ruins the computation.</div>
-  </div>
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
-    <div style="font-size:1.4em;margin:0 0 6px">⚠️</div>
-    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Error rates</div>
-    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Errors compound quickly. Need thousands of physical qubits per logical qubit.</div>
-  </div>
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
-    <div style="font-size:1.4em;margin:0 0 6px">🏗️</div>
-    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">NISQ era</div>
-    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">We're in 'noisy intermediate-scale quantum.' Fault tolerance is years away.</div>
-  </div>
+<section data-bc="Day 2  ·  S4  ·  17 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Grover's algorithm: Searching</h3>
+<p class="small">Quadratic speedup for unstructured search</p>
+<div style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:20px;max-width:960px;margin:12px auto 0;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center">
+  <p style="font-size:0.58em;color:var(--c-muted);margin:0;font-style:italic">[Animation placeholder: Classical linear search vs. quantum amplitude amplification]</p>
+  <p style="font-size:0.56em;color:var(--c-white);margin:12px 0 0;line-height:1.5">Classical: N/2 checks on average | Quantum: √N checks</p>
 </div>
 </section>
 
 
-<section data-bc="Day 2  ·  S4  ·  10 / 33" data-transition="fade" class="divider-section">
-<p class="divider-tag">Part 2 of 6</p>
-<h2>Hardware, problems, algorithms</h2>
+<section data-bc="Day 2  ·  S4  ·  18 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Shor's algorithm: Factoring</h3>
+<p class="small">Exponential speedup that breaks RSA</p>
+<div style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:20px;max-width:960px;margin:12px auto 0;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center">
+  <p style="font-size:0.58em;color:var(--c-muted);margin:0;font-style:italic">[Animation placeholder: Classical trial division vs. quantum period finding]</p>
+  <p style="font-size:0.56em;color:var(--c-white);margin:12px 0 0;line-height:1.5">Classical: ~10^154 years for 2048-bit RSA | Quantum: hours</p>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  12 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Problem shapes quantum can help with</h3>
+<p class="small">Not all problems benefit. Click each shape to understand what makes it quantum-amenable.</p>
+<div class="click-grid" style="grid-template-columns:repeat(4,1fr)" id="s4-shapes">
+  <div class="click-card" data-sh="0"><div style="font-size:1.4em;margin:0 0 4px">🔀</div><div style="font-size:0.48em;font-weight:700;color:var(--c-teal)">Combinatorial</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Many possible combinations</div></div>
+  <div class="click-card" data-sh="1"><div style="font-size:1.4em;margin:0 0 4px">🧪</div><div style="font-size:0.48em;font-weight:700;color:var(--c-amber)">Simulation</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Quantum systems</div></div>
+  <div class="click-card" data-sh="2"><div style="font-size:1.4em;margin:0 0 4px">🔐</div><div style="font-size:0.48em;font-weight:700;color:var(--c-coral)">Factoring</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Large number decomposition</div></div>
+  <div class="click-card" data-sh="3"><div style="font-size:1.4em;margin:0 0 4px">🔍</div><div style="font-size:0.48em;font-weight:700;color:var(--c-blue)">Search</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Unstructured search space</div></div>
+</div>
+<div class="click-detail" id="s4-shape-detail"><p style="color:var(--c-muted);font-style:italic">Select a problem shape above</p></div>
+
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  14 / 33" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 3 of 6</p>
+<h2>When does quantum help?</h2>
 <div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  16 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Finance applications worth knowing</h3>
+<p class="small">What banks and asset managers are exploring — all still experimental</p>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:96%;margin:10px auto 0">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-teal)">
+    <div style="font-size:1.3em;margin:0 0 4px">📊</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Portfolio optimisation</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Best asset mix under constraints. QAOA on NISQ hardware.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-amber)">
+    <div style="font-size:1.3em;margin:0 0 4px">🎲</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Monte Carlo</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Derivative pricing, VaR. Quadratic speedup via amplitude estimation.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-coral)">
+    <div style="font-size:1.3em;margin:0 0 4px">🌐</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Risk modelling</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Simulating many correlated scenarios in parallel.</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-blue)">
+    <div style="font-size:1.3em;margin:0 0 4px">🔍</div>
+    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Fraud detection</div>
+    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Finding patterns in transaction graphs. Grover-type search.</div>
+  </div>
+</div>
+<div class="cbox dim" style="padding:10px 24px;margin-top:10px">
+  <span style="font-size:0.50em">No production quantum system has beaten a classical computer at any of these tasks at commercial scale. Yet.</span>
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  15 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">The honest answer</h3>
+<div class="cbox" style="max-width:800px;padding:12px 32px">
+  Quantum computing offers speedup<br>
+  for a <strong style="color:var(--c-purple)">small number of specific problem types</strong>.<br><br>
+  For everything else, classical computers are better<br>
+  — and will remain so.
+</div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  13 / 33" data-transition="fade">
+<h3 style="color:var(--c-purple)">Connecting the pieces</h3>
+<p class="small">Click any item to see what it connects to</p>
+<div class="match-wrap" id="s4-match">
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-col-head" style="color:var(--c-blue)">HARDWARE</div>
+    <div class="match-col-head" style="color:var(--c-purple)">ALGORITHM</div>
+    <div class="match-col-head" style="color:var(--c-teal)">PROBLEM</div>
+  </div>
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-item" data-m="sc"><div class="mi-title">Superconducting</div><div class="mi-sub">IBM · Google</div></div>
+    <div class="match-item" data-m="qaoa"><div class="mi-title">QAOA</div><div class="mi-sub">Approx. optimisation</div></div>
+    <div class="match-item" data-m="optim"><div class="mi-title">Optimisation</div><div class="mi-sub">Portfolios · routing</div></div>
+  </div>
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-item" data-m="ion"><div class="mi-title">Trapped ion</div><div class="mi-sub">IonQ · Quantinuum</div></div>
+    <div class="match-item" data-m="vqe"><div class="mi-title">VQE</div><div class="mi-sub">Variational eigensolver</div></div>
+    <div class="match-item" data-m="sim"><div class="mi-title">Simulation</div><div class="mi-sub">Chemistry · materials</div></div>
+  </div>
+  <div class="match-row" style="margin-bottom:6px">
+    <div class="match-item" data-m="photo"><div class="mi-title">Photonic</div><div class="mi-sub">Xanadu · PsiQuantum</div></div>
+    <div class="match-item" data-m="shor"><div class="mi-title">Shor's</div><div class="mi-sub">Integer factoring</div></div>
+    <div class="match-item" data-m="crypto"><div class="mi-title">Cryptography</div><div class="mi-sub">Breaking RSA / ECC</div></div>
+  </div>
+  <div class="match-row">
+    <div class="match-item" data-m="topo"><div class="mi-title">Topological</div><div class="mi-sub">Microsoft (emerging)</div></div>
+    <div class="match-item" data-m="grover"><div class="mi-title">Grover's</div><div class="mi-sub">Search speedup</div></div>
+    <div class="match-item" data-m="search"><div class="mi-title">Search / ML</div><div class="mi-sub">Database · patterns</div></div>
+  </div>
+</div>
+<div class="match-detail" id="s4-match-detail"><p style="color:var(--c-muted);font-style:italic">Click any item to see its connections</p></div>
+
 </section>
 
 
@@ -869,120 +949,57 @@ section.has-light-background, section.has-light-background h1, section.has-light
 </script>
 </section>
 
-<section data-bc="Day 2  ·  S4  ·  12 / 33" data-transition="fade">
-<h3 style="color:var(--c-purple)">Problem shapes quantum can help with</h3>
-<p class="small">Not all problems benefit. Click each shape to understand what makes it quantum-amenable.</p>
-<div class="click-grid" style="grid-template-columns:repeat(4,1fr)" id="s4-shapes">
-  <div class="click-card" data-sh="0"><div style="font-size:1.4em;margin:0 0 4px">🔀</div><div style="font-size:0.48em;font-weight:700;color:var(--c-teal)">Combinatorial</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Many possible combinations</div></div>
-  <div class="click-card" data-sh="1"><div style="font-size:1.4em;margin:0 0 4px">🧪</div><div style="font-size:0.48em;font-weight:700;color:var(--c-amber)">Simulation</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Quantum systems</div></div>
-  <div class="click-card" data-sh="2"><div style="font-size:1.4em;margin:0 0 4px">🔐</div><div style="font-size:0.48em;font-weight:700;color:var(--c-coral)">Factoring</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Large number decomposition</div></div>
-  <div class="click-card" data-sh="3"><div style="font-size:1.4em;margin:0 0 4px">🔍</div><div style="font-size:0.48em;font-weight:700;color:var(--c-blue)">Search</div><div style="font-size:0.36em;color:var(--c-muted);margin-top:2px">Unstructured search space</div></div>
-</div>
-<div class="click-detail" id="s4-shape-detail"><p style="color:var(--c-muted);font-style:italic">Select a problem shape above</p></div>
-
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  13 / 33" data-transition="fade">
-<h3 style="color:var(--c-purple)">Connecting the pieces</h3>
-<p class="small">Click any item to see what it connects to</p>
-<div class="match-wrap" id="s4-match">
-  <div class="match-row" style="margin-bottom:6px">
-    <div class="match-col-head" style="color:var(--c-blue)">HARDWARE</div>
-    <div class="match-col-head" style="color:var(--c-purple)">ALGORITHM</div>
-    <div class="match-col-head" style="color:var(--c-teal)">PROBLEM</div>
-  </div>
-  <div class="match-row" style="margin-bottom:6px">
-    <div class="match-item" data-m="sc"><div class="mi-title">Superconducting</div><div class="mi-sub">IBM · Google</div></div>
-    <div class="match-item" data-m="qaoa"><div class="mi-title">QAOA</div><div class="mi-sub">Approx. optimisation</div></div>
-    <div class="match-item" data-m="optim"><div class="mi-title">Optimisation</div><div class="mi-sub">Portfolios · routing</div></div>
-  </div>
-  <div class="match-row" style="margin-bottom:6px">
-    <div class="match-item" data-m="ion"><div class="mi-title">Trapped ion</div><div class="mi-sub">IonQ · Quantinuum</div></div>
-    <div class="match-item" data-m="vqe"><div class="mi-title">VQE</div><div class="mi-sub">Variational eigensolver</div></div>
-    <div class="match-item" data-m="sim"><div class="mi-title">Simulation</div><div class="mi-sub">Chemistry · materials</div></div>
-  </div>
-  <div class="match-row" style="margin-bottom:6px">
-    <div class="match-item" data-m="photo"><div class="mi-title">Photonic</div><div class="mi-sub">Xanadu · PsiQuantum</div></div>
-    <div class="match-item" data-m="shor"><div class="mi-title">Shor's</div><div class="mi-sub">Integer factoring</div></div>
-    <div class="match-item" data-m="crypto"><div class="mi-title">Cryptography</div><div class="mi-sub">Breaking RSA / ECC</div></div>
-  </div>
-  <div class="match-row">
-    <div class="match-item" data-m="topo"><div class="mi-title">Topological</div><div class="mi-sub">Microsoft (emerging)</div></div>
-    <div class="match-item" data-m="grover"><div class="mi-title">Grover's</div><div class="mi-sub">Search speedup</div></div>
-    <div class="match-item" data-m="search"><div class="mi-title">Search / ML</div><div class="mi-sub">Database · patterns</div></div>
-  </div>
-</div>
-<div class="match-detail" id="s4-match-detail"><p style="color:var(--c-muted);font-style:italic">Click any item to see its connections</p></div>
-
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  14 / 33" data-transition="fade" class="divider-section">
-<p class="divider-tag">Part 3 of 6</p>
-<h2>When does quantum help?</h2>
-<div class="divider-line"></div>
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  15 / 33" data-transition="fade">
-<h3 style="color:var(--c-purple)">The honest answer</h3>
-<div class="cbox" style="max-width:800px;padding:12px 32px">
-  Quantum computing offers speedup<br>
-  for a <strong style="color:var(--c-purple)">small number of specific problem types</strong>.<br><br>
-  For everything else, classical computers are better<br>
-  — and will remain so.
-</div>
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  16 / 33" data-transition="fade">
-<h3 style="color:var(--c-purple)">Finance applications worth knowing</h3>
-<p class="small">What banks and asset managers are exploring — all still experimental</p>
+<section data-bc="Day 2  ·  S4  ·  9 / 33" data-transition="fade">
+<h3 style="color:var(--c-amber)">But there's a catch</h3>
+<p class="small">Why you don't have a quantum laptop</p>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:96%;margin:10px auto 0">
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-teal)">
-    <div style="font-size:1.3em;margin:0 0 4px">📊</div>
-    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Portfolio optimisation</div>
-    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Best asset mix under constraints. QAOA on NISQ hardware.</div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">❄️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Near absolute zero</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Most systems operate at −273°C. Colder than outer space.</div>
   </div>
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-amber)">
-    <div style="font-size:1.3em;margin:0 0 4px">🎲</div>
-    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Monte Carlo</div>
-    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Derivative pricing, VaR. Quadratic speedup via amplitude estimation.</div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">🫧</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Extreme fragility</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Slightest vibration, heat, or EM interference ruins the computation.</div>
   </div>
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-coral)">
-    <div style="font-size:1.3em;margin:0 0 4px">🌐</div>
-    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Risk modelling</div>
-    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Simulating many correlated scenarios in parallel.</div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">⚠️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">Error rates</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">Errors compound quickly. Need thousands of physical qubits per logical qubit.</div>
   </div>
-  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center;border-top:3px solid var(--c-blue)">
-    <div style="font-size:1.3em;margin:0 0 4px">🔍</div>
-    <div style="font-size:0.48em;font-weight:700;color:var(--c-white);margin-bottom:3px">Fraud detection</div>
-    <div style="font-size:0.38em;color:var(--c-muted);line-height:1.4">Finding patterns in transaction graphs. Grover-type search.</div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:12px;padding:14px 12px;text-align:center">
+    <div style="font-size:1.4em;margin:0 0 6px">🏗️</div>
+    <div style="font-size:0.5em;font-weight:700;color:var(--c-white);margin-bottom:4px">NISQ era</div>
+    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.4">We're in 'noisy intermediate-scale quantum.' Fault tolerance is years away.</div>
   </div>
-</div>
-<div class="cbox dim" style="padding:10px 24px;margin-top:10px">
-  <span style="font-size:0.50em">No production quantum system has beaten a classical computer at any of these tasks at commercial scale. Yet.</span>
 </div>
 </section>
 
 
-<section data-bc="Day 2  ·  S4  ·  17 / 33" data-transition="fade">
-<h3 style="color:var(--c-purple)">Grover's algorithm: Searching</h3>
-<p class="small">Quadratic speedup for unstructured search</p>
-<div style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:20px;max-width:960px;margin:12px auto 0;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center">
-  <p style="font-size:0.58em;color:var(--c-muted);margin:0;font-style:italic">[Animation placeholder: Classical linear search vs. quantum amplitude amplification]</p>
-  <p style="font-size:0.56em;color:var(--c-white);margin:12px 0 0;line-height:1.5">Classical: N/2 checks on average | Quantum: √N checks</p>
+<section data-bc="Day 2  ·  S4  ·  21 / 33" data-transition="fade">
+<h3 style="color:var(--c-amber)">Why timelines keep slipping</h3>
+<p class="small">A pattern worth recognising</p>
+<div class="twocol">
+  <div class="col amber">
+    <h4>The forecasts</h4>
+    <ul>
+      <li>2015: quantum advantage by 2020</li>
+      <li>2020: useful quantum by 2025</li>
+      <li>2025: useful quantum by 2030</li>
+    </ul>
+  </div>
+  <div class="col coral">
+    <h4>Why they slip</h4>
+    <ul>
+      <li>Engineering challenges harder than expected</li>
+      <li>Error correction requires 1000x physical qubits per logical qubit</li>
+      <li>Classical computing keeps improving — closing some gaps</li>
+    </ul>
+  </div>
 </div>
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  18 / 33" data-transition="fade">
-<h3 style="color:var(--c-purple)">Shor's algorithm: Factoring</h3>
-<p class="small">Exponential speedup that breaks RSA</p>
-<div style="background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:12px;padding:20px;max-width:960px;margin:12px auto 0;text-align:center;min-height:200px;display:flex;flex-direction:column;justify-content:center">
-  <p style="font-size:0.58em;color:var(--c-muted);margin:0;font-style:italic">[Animation placeholder: Classical trial division vs. quantum period finding]</p>
-  <p style="font-size:0.56em;color:var(--c-white);margin:12px 0 0;line-height:1.5">Classical: ~10^154 years for 2048-bit RSA | Quantum: hours</p>
+<div class="cbox amber" style="padding:10px 24px;margin-top:10px">
+  <span style="font-size:0.54em">The CEO question: 'Should we invest now?' For most businesses: no, not directly. Watch the field. Have someone tracking it. Don't bet the strategy on it.</span>
 </div>
 </section>
 
@@ -991,6 +1008,18 @@ section.has-light-background, section.has-light-background h1, section.has-light
 <p class="divider-tag">Part 4 of 6</p>
 <h2>The realistic timeline</h2>
 <div class="divider-line"></div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  23 / 33" data-transition="fade">
+<h3 style="color:var(--c-coral)">The crypto threat</h3>
+<p class="small">One area where you should pay attention now</p>
+<div style="display:flex;flex-direction:column;gap:8px;max-width:960px;margin:10px auto 0">
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Most internet encryption (RSA, ECC) relies on factoring being computationally hard</p></div>
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Shor's algorithm can factor large numbers efficiently on a quantum computer</p></div>
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Once a large enough quantum computer exists, <strong style="color:var(--c-coral)">current encryption breaks</strong></p></div>
+  <div style="background:var(--c-surface);border-left:4px solid var(--c-amber);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">We're not there yet — but <strong style="color:var(--c-amber)">governments and banks are preparing now</strong></p></div>
+</div>
 </section>
 
 
@@ -1049,52 +1078,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
 </div>
 </section>
 
-<section data-bc="Day 2  ·  S4  ·  21 / 33" data-transition="fade">
-<h3 style="color:var(--c-amber)">Why timelines keep slipping</h3>
-<p class="small">A pattern worth recognising</p>
-<div class="twocol">
-  <div class="col amber">
-    <h4>The forecasts</h4>
-    <ul>
-      <li>2015: quantum advantage by 2020</li>
-      <li>2020: useful quantum by 2025</li>
-      <li>2025: useful quantum by 2030</li>
-    </ul>
-  </div>
-  <div class="col coral">
-    <h4>Why they slip</h4>
-    <ul>
-      <li>Engineering challenges harder than expected</li>
-      <li>Error correction requires 1000x physical qubits per logical qubit</li>
-      <li>Classical computing keeps improving — closing some gaps</li>
-    </ul>
-  </div>
-</div>
-<div class="cbox amber" style="padding:10px 24px;margin-top:10px">
-  <span style="font-size:0.54em">The CEO question: 'Should we invest now?' For most businesses: no, not directly. Watch the field. Have someone tracking it. Don't bet the strategy on it.</span>
-</div>
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  22 / 33" data-transition="fade" class="divider-section">
-<p class="divider-tag">Part 5 of 6</p>
-<h2>Post-quantum cryptography</h2>
-<div class="divider-line"></div>
-</section>
-
-
-<section data-bc="Day 2  ·  S4  ·  23 / 33" data-transition="fade">
-<h3 style="color:var(--c-coral)">The crypto threat</h3>
-<p class="small">One area where you should pay attention now</p>
-<div style="display:flex;flex-direction:column;gap:8px;max-width:960px;margin:10px auto 0">
-  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Most internet encryption (RSA, ECC) relies on factoring being computationally hard</p></div>
-  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Shor's algorithm can factor large numbers efficiently on a quantum computer</p></div>
-  <div style="background:var(--c-surface);border-left:4px solid var(--c-coral);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">Once a large enough quantum computer exists, <strong style="color:var(--c-coral)">current encryption breaks</strong></p></div>
-  <div style="background:var(--c-surface);border-left:4px solid var(--c-amber);border-radius:0 12px 12px 0;padding:12px 18px"><p style="font-size:0.54em;color:var(--c-white);margin:0">We're not there yet — but <strong style="color:var(--c-amber)">governments and banks are preparing now</strong></p></div>
-</div>
-</section>
-
-
 <section data-bc="Day 2  ·  S4  ·  24 / 33" data-transition="fade">
 <h3 style="color:var(--c-coral)">"Harvest now, decrypt later"</h3>
 <div class="cbox coral" style="max-width:800px;padding:12px 32px">
@@ -1105,6 +1088,13 @@ section.has-light-background, section.has-light-background h1, section.has-light
   For secrets that need to stay secret for decades,<br>
   <strong style="color:var(--c-coral)">the threat is already real.</strong>
 </div>
+</section>
+
+
+<section data-bc="Day 2  ·  S4  ·  22 / 33" data-transition="fade" class="divider-section">
+<p class="divider-tag">Part 5 of 6</p>
+<h2>Post-quantum cryptography</h2>
+<div class="divider-line"></div>
 </section>
 
 
