@@ -43,74 +43,106 @@ p.small { font-size:0.54em;color:var(--c-muted);margin-bottom:0; }
 </section>
 
 <!-- ══ MOTIVATION ═════════════════════════════════════════════ -->
-<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  1 / 8" data-transition="fade">
-<h3 style="color:var(--c-amber)">Session 5 — Learning objectives</h3>
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  1 / 19" data-transition="fade">
+<h3 style="color:var(--c-teal)">Session 5 — Learning objectives</h3>
 <p class="small">By the end of this session, you can explain how blockchain solves the trust problem — and where it does not.</p>
-
-<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;width:96%;margin:16px auto 0">
-
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px 12px;text-align:center;position:relative;cursor:default" onclick="this.classList.toggle('done')">
-    <div style="font-size:1.5em;margin-bottom:8px">🔐</div>
-    <p style="font-size:0.44em;font-weight:700;color:#e8eaed;margin:0;line-height:1.4">Why trust without an intermediary is the core problem blockchain solves</p>
+<div style="display:flex;flex-direction:column;gap:12px;width:80%;margin:24px auto 0">
+  <div style="display:flex;align-items:center;gap:16px;background:#141a22;border-left:4px solid #5DCAA5;border-radius:0 10px 10px 0;padding:12px 18px">
+    <span style="font-size:1.4em">🔐</span>
+    <span style="font-size:0.52em;color:#e8eaed;font-weight:600">Why trust is the core problem — and how blockchain replaces intermediaries</span>
   </div>
-
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px 12px;text-align:center;position:relative;cursor:default" onclick="this.classList.toggle('done')">
-    <div style="font-size:1.5em;margin-bottom:8px">⛓️</div>
-    <p style="font-size:0.44em;font-weight:700;color:#e8eaed;margin:0;line-height:1.4">How hash chains, distributed ledgers, and consensus work together</p>
+  <div style="display:flex;align-items:center;gap:16px;background:#141a22;border-left:4px solid #5DCAA5;border-radius:0 10px 10px 0;padding:12px 18px">
+    <span style="font-size:1.4em">⛓️</span>
+    <span style="font-size:0.52em;color:#e8eaed;font-weight:600">How hash chains, distributed ledgers, and consensus work together</span>
   </div>
-
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px 12px;text-align:center;position:relative;cursor:default" onclick="this.classList.toggle('done')">
-    <div style="font-size:1.5em;margin-bottom:8px">🏦</div>
-    <p style="font-size:0.44em;font-weight:700;color:#e8eaed;margin:0;line-height:1.4">Where blockchain is actually used in finance — and where it has not delivered</p>
+  <div style="display:flex;align-items:center;gap:16px;background:#141a22;border-left:4px solid #5DCAA5;border-radius:0 10px 10px 0;padding:12px 18px">
+    <span style="font-size:1.4em">🔓</span>
+    <span style="font-size:0.52em;color:#e8eaed;font-weight:600">Public, private, and consortium blockchains — which fits which use case</span>
   </div>
-
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px 12px;text-align:center;position:relative;cursor:default" onclick="this.classList.toggle('done')">
-    <div style="font-size:1.5em;margin-bottom:8px">🔓</div>
-    <p style="font-size:0.44em;font-weight:700;color:#e8eaed;margin:0;line-height:1.4">The difference between public, private, and consortium blockchains</p>
+  <div style="display:flex;align-items:center;gap:16px;background:#141a22;border-left:4px solid #5DCAA5;border-radius:0 10px 10px 0;padding:12px 18px">
+    <span style="font-size:1.4em">🏦</span>
+    <span style="font-size:0.52em;color:#e8eaed;font-weight:600">Where blockchain is actually used in finance — and where it has not delivered</span>
   </div>
-
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px 12px;text-align:center;position:relative;cursor:default" onclick="this.classList.toggle('done')">
-    <div style="font-size:1.5em;margin-bottom:8px">🔮</div>
-    <p style="font-size:0.44em;font-weight:700;color:#e8eaed;margin:0;line-height:1.4">The near-term trajectory — tokenisation, CBDCs, and convergence with AI</p>
+  <div style="display:flex;align-items:center;gap:16px;background:#141a22;border-left:4px solid #5DCAA5;border-radius:0 10px 10px 0;padding:12px 18px">
+    <span style="font-size:1.4em">🔮</span>
+    <span style="font-size:0.52em;color:#e8eaed;font-weight:600">The near-term trajectory — tokenisation, CBDCs, and convergence with AI</span>
   </div>
-
-</div>
-<p style="font-size:0.38em;color:#4a5568;margin:10px 0 0;text-align:center">Click any card to mark complete as we progress</p>
-</section>
-
-<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  2 / 8" data-transition="fade">
-<h3 style="color:var(--c-amber)">Why does blockchain exist?</h3>
-<p class="small">One problem. Two thousand years of solutions. One new architecture.</p>
-<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;width:96%;margin:14px auto 0;align-items:center">
-
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-coral);border-radius:12px;padding:16px 18px">
-    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-coral);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">The problem</div>
-    <div style="font-size:0.52em;font-weight:700;color:var(--c-white);margin-bottom:8px;line-height:1.3">How do two parties who don't trust each other transact safely?</div>
-    <div style="font-size:0.40em;color:var(--c-muted);line-height:1.5">If I send you digital money, what stops me from sending the same money to someone else? Digital files can be copied. Digital money needs something a physical coin has: you can only spend it once.</div>
-  </div>
-
-  <div style="font-size:1.4em;color:var(--c-border)">→</div>
-
-  <div style="display:flex;flex-direction:column;gap:8px">
-    <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:12px 14px">
-      <div style="font-size:0.40em;font-weight:700;color:var(--c-white);margin-bottom:4px">Traditional answer (2000 years old)</div>
-      <div style="font-size:0.36em;color:var(--c-muted)">Trusted intermediary — a bank, a notary, a clearinghouse — keeps the authoritative record. Everyone trusts the institution.</div>
-      <div style="font-size:0.34em;color:var(--c-dim);margin-top:4px;font-style:italic">Works well. But: single point of control, single point of failure, cost, speed.</div>
-    </div>
-    <div style="background:#0d3d2a;border:1.5px solid var(--c-teal);border-radius:10px;padding:12px 14px">
-      <div style="font-size:0.40em;font-weight:700;color:var(--c-teal);margin-bottom:4px">Blockchain answer (2008)</div>
-      <div style="font-size:0.36em;color:var(--c-muted)">No central authority. Instead: a shared ledger replicated across thousands of nodes. Rules enforced by cryptography and consensus, not institutions.</div>
-      <div style="font-size:0.34em;color:var(--c-dim);margin-top:4px;font-style:italic">Slower and more expensive to run. But: no single controller, no single point of failure.</div>
-    </div>
-  </div>
-
-</div>
-<div style="background:var(--c-surface);border-left:3px solid var(--c-amber);border-radius:0 8px 8px 0;padding:8px 16px;width:96%;margin:8px auto 0">
-  <p style="font-size:0.40em;color:var(--c-muted)">Blockchain only wins where you <em>specifically need to remove the trusted intermediary</em> — either because none exists, or because participants don't want to cede control to a single party.</p>
 </div>
 </section>
 
-<!-- ══ ANIMATION SLIDE ════════════════════════════════════════ -->
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  2 / 21" data-transition="fade">
+<h3 style="color:var(--c-amber);margin-bottom:2px">Why blockchain exists</h3>
+<p class="small" style="margin-bottom:8px">Every traditional settlement weakness maps to a blockchain design decision</p>
+
+<div style="width:97%;margin:0 auto;display:flex;flex-direction:column;gap:5px">
+
+  <!-- Header -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0">
+    <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#4a5568;text-transform:uppercase;letter-spacing:0.06em;padding:3px 10px;border-bottom:1px solid #2a3342">Weakness</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#4a5568;text-transform:uppercase;letter-spacing:0.06em;padding:3px 10px;border-bottom:1px solid #2a3342">What goes wrong</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#4a5568;text-transform:uppercase;letter-spacing:0.06em;padding:3px 10px;border-bottom:1px solid #2a3342">Layer</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#4a5568;text-transform:uppercase;letter-spacing:0.06em;padding:3px 10px;border-bottom:1px solid #2a3342">How it solves it</div>
+  </div>
+
+  <!-- Row 1 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#141a22;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">Single point<br>of failure</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">Clearinghouse goes down — entire pipeline halts. Every transaction in flight is frozen.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a;border-right:1px solid #0b0f14;border-left:3px solid #5DCAA5"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#5DCAA5;font-weight:700;line-height:1.4">🌐 Distributed<br>ledger</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">Thousands of nodes hold identical copies — no single node matters</span></div>
+  </div>
+
+  <!-- Row 2 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#0f1923;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">T+2<br>settlement</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">Funds locked 48 hours while banks reconcile. Capital sits idle. Risk accumulates overnight.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0a1a30;border-right:1px solid #0b0f14;border-left:3px solid #AFA9EC"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#AFA9EC;font-weight:700">🗳 Consensus</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0a1a30"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">Agreement is near-instant — settlement in minutes, not days</span></div>
+  </div>
+
+  <!-- Row 3 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#141a22;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">Counterparty<br>risk</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">Any intermediary could default between T+0 and T+2. Lehman Brothers proved this is not theoretical.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a;border-right:1px solid #0b0f14;border-left:3px solid #EF9F27"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#EF9F27;font-weight:700;line-height:1.4">🔗 Hash chain<br>+ 🗳 Consensus</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">Settlement is final and immediate — no exposure window between trade and settlement</span></div>
+  </div>
+
+  <!-- Row 4 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#0f1923;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">Opacity</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">You cannot see where your payment is in the pipeline. The record is held by the intermediary, not visible to you.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0a1a30;border-right:1px solid #0b0f14;border-left:3px solid #5DCAA5"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#5DCAA5;font-weight:700;line-height:1.4">🌐 Distributed<br>ledger</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0a1a30"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">Every transaction visible to all nodes — full auditability in real time</span></div>
+  </div>
+
+  <!-- Row 5 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#141a22;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">Tampering<br>risk</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">A compromised intermediary can alter the authoritative record. Single attack vector.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a;border-right:1px solid #0b0f14;border-left:3px solid #EF9F27"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#EF9F27;font-weight:700">🔗 Hash chain</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">Any change breaks the hash — detectable immediately across all copies</span></div>
+  </div>
+
+  <!-- Row 6 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#0f1923;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">Cost</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">Each intermediary takes a fee. A cross-border payment can pass through 4–6 correspondent banks.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0a1a30;border-right:1px solid #0b0f14;border-left:3px solid #5DCAA5"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#5DCAA5;font-weight:700;line-height:1.4">🌐 Distributed<br>ledger</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0a1a30"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">No intermediaries — only miner fees, which are competitive and transparent</span></div>
+  </div>
+
+  <!-- Row 7 -->
+  <div style="display:grid;grid-template-columns:140px 1fr 130px 1fr;gap:0;background:#141a22;border-radius:6px;overflow:hidden">
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.46em;color:#F0997B;font-weight:700;line-height:1.3">Geographic<br>friction</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;border-right:1px solid #0b0f14"><span style="font-size:0.40em;color:#8b95a5;line-height:1.4">Cross-border payments require correspondent banking chains. Denmark→Ghana can take 3–5 days.</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a;border-right:1px solid #0b0f14;border-left:3px solid #AFA9EC"><span style="font-family:DM Mono,monospace;font-size:0.36em;color:#AFA9EC;font-weight:700">🗳 Consensus</span></div>
+    <div style="padding:9px 12px;display:flex;align-items:center;background:#0d2a1a"><span style="font-size:0.40em;color:#e8eaed;line-height:1.4">Same protocol worldwide — no correspondent banks needed, no geographic limit</span></div>
+  </div>
+
+</div>
+</section>
+
 <section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  3 / 8" data-transition="fade">
 <h3 style="color:var(--c-amber);margin-bottom:2px">Traditional vs blockchain — settlement flow</h3>
 <p style="font-size:0.44em;color:#8b95a5;margin:0 0 8px">Same transaction. Very different paths. Click Play to animate, then drag the failure slider.</p>
@@ -163,7 +195,11 @@ p.small { font-size:0.54em;color:var(--c-muted);margin-bottom:0; }
 </div>
 
 <script>
-function bcAnimInit(){
+function bcTradAnimInit(){
+// Always rebuild SVGs (they're empty on entry)
+// Only attach button listeners once
+var _alreadyBound = window._bcTradAnimBound;
+window._bcTradAnimBound = true;
 
 // ── TRADITIONAL SVG SETUP ─────────────────────────────────────
 // SVG elements looked up lazily inside build functions
@@ -171,11 +207,11 @@ var tradSvg, chainSvg;
 
 // Traditional nodes: Buyer, Buyer Bank, Clearinghouse, Seller Bank, Seller
 var tradNodes = [
-  {id:'seller',  label:"Seller",         x:30,  y:120, col:'#5DCAA5'},
-  {id:'sbank',   label:"Seller's Bank",  x:120, y:120, col:'#85B7EB'},
-  {id:'clear',   label:"Clearing\nhouse", x:220, y:120, col:'#EF9F27'},
-  {id:'bbank',   label:"Buyer's Bank",   x:320, y:120, col:'#85B7EB'},
-  {id:'buyer',   label:"Buyer",          x:410, y:120, col:'#AFA9EC'}
+  {id:'seller',  label:"Sender",         icon:"📤", x:30,  y:120, col:'#AFA9EC'},
+  {id:'sbank',   label:"Sender's\nBank",  icon:"🏦", x:120, y:120, col:'#85B7EB'},
+  {id:'clear',   label:"Clearing\nhouse", icon:"🏛", x:220, y:120, col:'#EF9F27'},
+  {id:'bbank',   label:"Receiver's\nBank",  icon:"🏦", x:320, y:120, col:'#85B7EB'},
+  {id:'buyer',   label:"Receiver",       icon:"📥", x:410, y:120, col:'#5DCAA5'}
 ];
 
 var tradEdges = [
@@ -221,14 +257,22 @@ function buildTrad(){
     var g = document.createElementNS('http://www.w3.org/2000/svg','g');
     g.setAttribute('id','trad-node-'+n.id);
     var circ = document.createElementNS('http://www.w3.org/2000/svg','circle');
-    circ.setAttribute('cx',n.x); circ.setAttribute('cy',n.y); circ.setAttribute('r','18');
+    circ.setAttribute('cx',n.x); circ.setAttribute('cy',n.y); circ.setAttribute('r','20');
     circ.setAttribute('fill','#1c2430'); circ.setAttribute('stroke',n.col||'#4a5568'); circ.setAttribute('stroke-width','2.5');
     circ.setAttribute('id','trad-circ-'+n.id);
     g.appendChild(circ);
+    // Icon inside circle
+    if(n.icon){
+      var ic = document.createElementNS('http://www.w3.org/2000/svg','text');
+      ic.setAttribute('x',n.x); ic.setAttribute('y',n.y+5);
+      ic.setAttribute('text-anchor','middle'); ic.setAttribute('dominant-baseline','middle');
+      ic.setAttribute('font-size','15'); ic.textContent = n.icon;
+      g.appendChild(ic);
+    }
     var lines = n.label.split('\n');
     lines.forEach(function(l,li){
       var t = document.createElementNS('http://www.w3.org/2000/svg','text');
-      t.setAttribute('x',n.x); t.setAttribute('y',n.y+(li-(lines.length-1)/2)*11);
+      t.setAttribute('x',n.x); t.setAttribute('y',n.y+26+li*11);
       t.setAttribute('text-anchor','middle'); t.setAttribute('dominant-baseline','middle');
       t.setAttribute('font-size','8'); t.setAttribute('fill','#c0ccd8');
       t.setAttribute('font-family','DM Sans,sans-serif');
@@ -247,17 +291,17 @@ function buildTrad(){
 
 // ── BLOCKCHAIN SVG SETUP ──────────────────────────────────────
 var chainNodes = [
-  {id:'s',   label:"Seller",   x:35,  y:120, col:'#5DCAA5'},
-  {id:'n1',  label:"Node 1",   x:150, y:55,  col:'#EF9F27'},
-  {id:'n2',  label:"Node 2",   x:240, y:55,  col:'#EF9F27'},
-  {id:'n3',  label:"Node 3",   x:150, y:185, col:'#EF9F27'},
-  {id:'n4',  label:"Node 4",   x:240, y:185, col:'#EF9F27'},
-  {id:'b',   label:"Buyer",    x:405, y:120, col:'#AFA9EC'}
+  {id:'s',   label:"Sender",   icon:"📤",  x:35,  y:120, col:'#AFA9EC'},
+  {id:'n1',  label:"📒",       icon:"",    x:150, y:55,  col:'#EF9F27'},
+  {id:'n2',  label:"📒",       icon:"",    x:240, y:55,  col:'#EF9F27'},
+  {id:'n3',  label:"📒",       icon:"",    x:150, y:185, col:'#EF9F27'},
+  {id:'n4',  label:"📒",       icon:"",    x:240, y:185, col:'#EF9F27'},
+  {id:'b',   label:"Receiver", icon:"📥",  x:405, y:120, col:'#5DCAA5'}
 ];
 
 var chainEdges = [
-  {a:'b',b:'n2'},{a:'b',b:'n4'},{a:'n1',b:'n2'},{a:'n1',b:'n3'},{a:'n1',b:'n4'},
-  {a:'n2',b:'n3'},{a:'n2',b:'n4'},{a:'n3',b:'n4'},{a:'n1',b:'s'},{a:'n3',b:'s'}
+  {a:'s',b:'n1'},{a:'s',b:'n3'},{a:'n1',b:'n2'},{a:'n1',b:'n3'},{a:'n1',b:'n4'},
+  {a:'n2',b:'n3'},{a:'n2',b:'n4'},{a:'n3',b:'n4'},{a:'n2',b:'b'},{a:'n4',b:'b'}
 ];
 
 function buildChain(){
@@ -298,11 +342,17 @@ function buildChain(){
 
 buildTrad();
 buildChain();
-// Attach button listeners here — safe because DOM is ready and bcAnimInit has run
-var bp=document.getElementById('bc-play-btn'); if(bp) bp.onclick=function(){bcPlay();};
-var br=document.getElementById('bc-reset-btn'); if(br) br.onclick=function(){bcReset();};
-var bft=document.getElementById('bc-fail-trad'); if(bft) bft.onclick=function(){bcFail('trad');};
-var bfn=document.getElementById('bc-fail-node'); if(bfn) bfn.onclick=function(){bcFail('node');};
+// Attach button listeners here — safe because DOM is ready and bcTradAnimInit has run
+if(!_alreadyBound){
+  var bp=document.getElementById('bc-play-btn');
+  var br=document.getElementById('bc-reset-btn');
+  var bft=document.getElementById('bc-fail-trad');
+  var bfn=document.getElementById('bc-fail-node');
+  if(bp) bp.addEventListener('click',function(){ bcPlay(); });
+  if(br) br.addEventListener('click',function(){ bcReset(); });
+  if(bft) bft.addEventListener('click',function(){ bcFail('trad'); });
+  if(bfn) bfn.addEventListener('click',function(){ bcFail('node'); });
+}
 
 // ── ANIMATION ─────────────────────────────────────────────────
 var timers = [];
@@ -449,26 +499,26 @@ window.bcPlay = function(){
     }, delay));
   }
 
-  var chainOrder = ['b','n2','n4','n1','n3','s'];
+  var chainOrder = ['s','n1','n3','n2','n4','b'];
   var chainLabels2 = [
-    'Buyer broadcasts transaction',
+    'Sender broadcasts transaction',
     'Nodes receive simultaneously',
     'Nodes validate in parallel',
     'Consensus reached — block added',
     'All ledgers update simultaneously',
-    'Settlement complete \u2713  (~seconds)'
+    'Payee confirmed \u2713  Settlement complete (~seconds)'
   ];
   var chainTimes = [0, 400, 400, 1000, 1000, 1800];
 
   // Animate edges: buyer→n2, buyer→n4, then mesh, then n1→s, n3→s
-  animateChainEdge('b','n2', 400, 500);
-  animateChainEdge('b','n4', 400, 500);
-  animateChainEdge('n2','n1', 900, 400);
-  animateChainEdge('n2','n3', 900, 400);
-  animateChainEdge('n4','n1', 900, 400);
-  animateChainEdge('n4','n3', 900, 400);
-  animateChainEdge('n1','s', 1500, 500);
-  animateChainEdge('n3','s', 1500, 500);
+  animateChainEdge('s','n1', 400, 500);
+  animateChainEdge('s','n3', 400, 500);
+  animateChainEdge('n1','n2', 900, 400);
+  animateChainEdge('n1','n4', 900, 400);
+  animateChainEdge('n3','n2', 900, 400);
+  animateChainEdge('n3','n4', 900, 400);
+  animateChainEdge('n2','b', 1500, 500);
+  animateChainEdge('n4','b', 1500, 500);
 
   chainOrder.forEach(function(nid,i){
     timers.push(setTimeout(function(){
@@ -502,101 +552,1156 @@ window.bcFail = function(type){
 </section>
 
 <!-- ══ HOW IT WORKS ═══════════════════════════════════════════ -->
-<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  4 / 8" data-transition="fade">
-<h3 style="color:var(--c-amber)">How blockchain works — one slide</h3>
-<p class="small">No mathematics needed. Three mechanisms do the work.</p>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;width:96%;margin:14px auto 0">
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  4 / 9" data-transition="fade">
+<h3 style="color:var(--c-amber)">How blockchain solves the trust problem — in three layers</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:97%;margin:10px auto 0">
 
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-teal);border-radius:12px;padding:16px;text-align:center">
-    <div style="font-size:2em;margin-bottom:8px">🔗</div>
-    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-teal);text-transform:uppercase;margin-bottom:6px">Hash chain</div>
-    <div style="font-size:0.42em;font-weight:700;color:var(--c-white);margin-bottom:6px">Every block contains the fingerprint of the previous block</div>
-    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">Change one transaction and you change the block's fingerprint — which breaks every subsequent block. Tampering is computationally detectable.</div>
+  <!-- Hash chain -->
+  <div style="background:#141a22;border:1.5px solid #EF9F27;border-radius:12px;padding:12px 10px">
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#EF9F27;text-transform:uppercase;letter-spacing:0.08em;text-align:center;margin-bottom:8px">🔗 Hash chain</div>
+    <svg viewBox="0 0 280 160" style="width:100%;display:block" xmlns="http://www.w3.org/2000/svg">
+      <!-- Block 1 -->
+      <rect x="4" y="30" width="72" height="80" rx="6" fill="#0b0f14" stroke="#EF9F27" stroke-width="1.5"/>
+      <text x="40" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#EF9F27" font-weight="700">Block 1</text>
+      <text x="40" y="65" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#8b95a5">prev: 0000</text>
+      <text x="40" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#e8eaed">Alice→Bob</text>
+      <text x="40" y="91" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#e8eaed">50 BTC</text>
+      <rect x="8" y="98" width="64" height="9" rx="2" fill="#1c2430"/>
+      <text x="40" y="106" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#5DCAA5">hash: 3f7a…</text>
+      <!-- Arrow -->
+      <line x1="76" y1="70" x2="96" y2="70" stroke="#EF9F27" stroke-width="1.5"/>
+      <polygon points="96,66 104,70 96,74" fill="#EF9F27"/>
+      <!-- Block 2 -->
+      <rect x="104" y="30" width="72" height="80" rx="6" fill="#0b0f14" stroke="#EF9F27" stroke-width="1.5"/>
+      <text x="140" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#EF9F27" font-weight="700">Block 2</text>
+      <text x="140" y="65" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#5DCAA5">prev: 3f7a…</text>
+      <text x="140" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#e8eaed">Carol→Dave</text>
+      <text x="140" y="91" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#e8eaed">12 BTC</text>
+      <rect x="108" y="98" width="64" height="9" rx="2" fill="#1c2430"/>
+      <text x="140" y="106" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#5DCAA5">hash: a91c…</text>
+      <!-- Arrow -->
+      <line x1="176" y1="70" x2="196" y2="70" stroke="#EF9F27" stroke-width="1.5"/>
+      <polygon points="196,66 204,70 196,74" fill="#EF9F27"/>
+      <!-- Block 3 tampered -->
+      <rect x="204" y="30" width="72" height="80" rx="6" fill="#2a0a0a" stroke="#E24B4A" stroke-width="2"/>
+      <text x="240" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#E24B4A" font-weight="700">Block 3 ✗</text>
+      <text x="240" y="65" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#5DCAA5">prev: a91c…</text>
+      <text x="240" y="78" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#E24B4A" text-decoration="line-through">Eve→Bob</text>
+      <text x="240" y="91" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#E24B4A">TAMPERED</text>
+      <rect x="208" y="98" width="64" height="9" rx="2" fill="#1c2430"/>
+      <text x="240" y="106" text-anchor="middle" font-family="DM Mono,monospace" font-size="6.5" fill="#E24B4A">hash: ????</text>
+      <!-- Crack line -->
+      <line x1="196" y1="58" x2="208" y2="46" stroke="#E24B4A" stroke-width="1.5"/>
+      <line x1="208" y1="46" x2="200" y2="38" stroke="#E24B4A" stroke-width="1.5"/>
+      <!-- Label -->
+      <text x="140" y="148" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8b95a5">Change one block → chain breaks</text>
+    </svg>
   </div>
 
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px;text-align:center">
-    <div style="font-size:2em;margin-bottom:8px">🌐</div>
-    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-amber);text-transform:uppercase;margin-bottom:6px">Distributed ledger</div>
-    <div style="font-size:0.42em;font-weight:700;color:var(--c-white);margin-bottom:6px">Thousands of identical copies held by independent nodes</div>
-    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">To falsify a record you would need to rewrite the chain on more than half the network simultaneously — practically impossible on large public chains.</div>
+  <!-- Distributed ledger -->
+  <div style="background:#141a22;border:1.5px solid #5DCAA5;border-radius:12px;padding:12px 10px">
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#5DCAA5;text-transform:uppercase;letter-spacing:0.08em;text-align:center;margin-bottom:8px">🌐 Distributed ledger</div>
+    <svg viewBox="0 0 280 160" style="width:100%;display:block" xmlns="http://www.w3.org/2000/svg">
+      <!-- Central concept -->
+      <text x="140" y="18" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">Every node holds identical copy</text>
+      <!-- 6 nodes in a ring -->
+      <!-- Positions: top, top-right, bottom-right, bottom, bottom-left, top-left -->
+      <!-- Center: 140,88. Radius: 55 -->
+      <!-- Edges between all adjacent -->
+      <line x1="140" y1="35" x2="188" y2="60" stroke="#2a3342" stroke-width="1"/>
+      <line x1="188" y1="60" x2="188" y2="110" stroke="#2a3342" stroke-width="1"/>
+      <line x1="188" y1="110" x2="140" y2="138" stroke="#2a3342" stroke-width="1"/>
+      <line x1="140" y1="138" x2="92" y2="110" stroke="#2a3342" stroke-width="1"/>
+      <line x1="92" y1="110" x2="92" y2="60" stroke="#2a3342" stroke-width="1"/>
+      <line x1="92" y1="60" x2="140" y2="35" stroke="#2a3342" stroke-width="1"/>
+      <!-- Cross connections -->
+      <line x1="140" y1="35" x2="188" y2="110" stroke="#2a3342" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="188" y1="60" x2="92" y2="110" stroke="#2a3342" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="188" y1="60" x2="140" y2="138" stroke="#2a3342" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="92" y1="60" x2="188" y2="110" stroke="#2a3342" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="92" y1="60" x2="140" y2="138" stroke="#2a3342" stroke-width="0.8" stroke-opacity="0.5"/>
+      <line x1="140" y1="35" x2="92" y2="110" stroke="#2a3342" stroke-width="0.8" stroke-opacity="0.5"/>
+      <!-- Nodes -->
+      <circle cx="140" cy="33" r="13" fill="#0b0f14" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="140" y="37" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">📒</text>
+      <circle cx="190" cy="60" r="13" fill="#0b0f14" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="190" y="64" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">📒</text>
+      <circle cx="190" cy="110" r="13" fill="#0b0f14" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="190" y="114" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">📒</text>
+      <circle cx="140" cy="138" r="13" fill="#0b0f14" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="140" y="142" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">📒</text>
+      <circle cx="90" cy="110" r="13" fill="#0b0f14" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="90" y="114" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">📒</text>
+      <!-- One node highlighted -->
+      <circle cx="90" cy="60" r="13" fill="#0d3d2a" stroke="#5DCAA5" stroke-width="2.5"/>
+      <text x="90" y="64" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">📒</text>
+      <text x="90" y="48" text-anchor="middle" font-family="DM Mono,monospace" font-size="7" fill="#5DCAA5">you</text>
+      <!-- Label -->
+      <text x="140" y="158" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8b95a5">No single point of failure</text>
+    </svg>
   </div>
 
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-purple);border-radius:12px;padding:16px;text-align:center">
-    <div style="font-size:2em;margin-bottom:8px">🗳️</div>
-    <div style="font-family:var(--mono);font-size:0.36em;color:var(--c-purple);text-transform:uppercase;margin-bottom:6px">Consensus</div>
-    <div style="font-size:0.42em;font-weight:700;color:var(--c-white);margin-bottom:6px">The network agrees on the valid version of the ledger</div>
-    <div style="font-size:0.36em;color:var(--c-muted);line-height:1.5">Proof of Work (Bitcoin — energy intensive), Proof of Stake (Ethereum — efficient), or BFT variants (enterprise chains — fast, permissioned).</div>
+  <!-- Consensus -->
+  <div style="background:#141a22;border:1.5px solid #AFA9EC;border-radius:12px;padding:12px 10px">
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#AFA9EC;text-transform:uppercase;letter-spacing:0.08em;text-align:center;margin-bottom:8px">🗳 Consensus</div>
+    <svg viewBox="0 0 280 160" style="width:100%;display:block" xmlns="http://www.w3.org/2000/svg">
+      <!-- 5 validator nodes voting -->
+      <text x="140" y="14" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#AFA9EC">5 validators. 3 must agree.</text>
+      <!-- Node 1 - agree -->
+      <circle cx="50" cy="55" r="18" fill="#0d1f2a" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="50" y="52" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">Node</text>
+      <text x="50" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">1 ✓</text>
+      <!-- Node 2 - agree -->
+      <circle cx="140" cy="35" r="18" fill="#0d1f2a" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="140" y="32" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">Node</text>
+      <text x="140" y="43" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">2 ✓</text>
+      <!-- Node 3 - agree -->
+      <circle cx="230" cy="55" r="18" fill="#0d1f2a" stroke="#5DCAA5" stroke-width="2"/>
+      <text x="230" y="52" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">Node</text>
+      <text x="230" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#5DCAA5">3 ✓</text>
+      <!-- Node 4 - pending -->
+      <circle cx="80" cy="110" r="18" fill="#141a22" stroke="#4a5568" stroke-width="1.5"/>
+      <text x="80" y="107" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#4a5568">Node</text>
+      <text x="80" y="118" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#4a5568">4 …</text>
+      <!-- Node 5 - pending -->
+      <circle cx="200" cy="110" r="18" fill="#141a22" stroke="#4a5568" stroke-width="1.5"/>
+      <text x="200" y="107" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#4a5568">Node</text>
+      <text x="200" y="118" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#4a5568">5 …</text>
+      <!-- Vote arrows to centre -->
+      <line x1="67" y1="65" x2="118" y2="80" stroke="#5DCAA5" stroke-width="1.5"/>
+      <polygon points="118,76 124,82 116,86" fill="#5DCAA5"/>
+      <line x1="140" y1="53" x2="140" y2="72" stroke="#5DCAA5" stroke-width="1.5"/>
+      <polygon points="136,72 140,80 144,72" fill="#5DCAA5"/>
+      <line x1="213" y1="65" x2="162" y2="80" stroke="#5DCAA5" stroke-width="1.5"/>
+      <polygon points="162,76 156,82 164,86" fill="#5DCAA5"/>
+      <!-- Majority result -->
+      <rect x="108" y="78" width="64" height="22" rx="6" fill="#0d3d2a" stroke="#5DCAA5" stroke-width="1.5"/>
+      <text x="140" y="93" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" fill="#5DCAA5" font-weight="700">✓ AGREED</text>
+      <!-- Block added arrow -->
+      <line x1="140" y1="100" x2="140" y2="118" stroke="#5DCAA5" stroke-width="1.5"/>
+      <polygon points="136,118 140,126 144,118" fill="#5DCAA5"/>
+      <rect x="104" y="126" width="72" height="18" rx="4" fill="#141a22" stroke="#EF9F27" stroke-width="1.5"/>
+      <text x="140" y="139" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27" font-weight="700">Block added</text>
+      <text x="140" y="156" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#8b95a5">No single party decides</text>
+    </svg>
   </div>
 
 </div>
-<div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:10px;padding:10px 16px;width:96%;margin:10px auto 0;display:grid;grid-template-columns:1fr auto 1fr">
-  <div style="font-size:0.38em;color:var(--c-muted)"><strong style="color:var(--c-white)">Smart contracts</strong> — code that executes automatically when conditions are met. "If payment received AND goods delivered THEN release funds." No intermediary needed to enforce the contract.</div>
-  <div style="width:1px;background:var(--c-border);margin:0 14px"></div>
-  <div style="font-size:0.38em;color:var(--c-muted)"><strong style="color:var(--c-white)">The key insight:</strong> the rules are in the protocol, not in an institution. Bitcoin has never been hacked at the protocol level — though the exchanges that hold bitcoin have been.</div>
+<div style="width:97%;margin:8px auto 0;background:#141a22;border:1px solid #2a3342;border-radius:8px;padding:7px 16px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:8px">
+  <div style="text-align:center;font-size:0.36em;color:#EF9F27">Hash chain makes tampering <em>detectable</em> — but only if copies exist to compare</div>
+  <div style="color:#2a3342;font-size:1.2em">→</div>
+  <div style="text-align:center;font-size:0.36em;color:#5DCAA5">Distributed copies make tampering <em>impractical</em> — but copies can diverge without agreement</div>
+  <div style="color:#2a3342;font-size:1.2em">→</div>
+  <div style="text-align:center;font-size:0.36em;color:#AFA9EC">Consensus keeps all copies <em>identical</em> — completing the loop back to the hash chain</div>
 </div>
 </section>
 
-<!-- ══ TYPES ══════════════════════════════════════════════════ -->
-<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  5 / 8" data-transition="fade">
-<h3 style="color:var(--c-amber)">Types of blockchain</h3>
-<p class="small">Not all blockchains are Bitcoin. The relevant question for finance is always: who can participate?</p>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:96%;margin:8px auto 0">
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  6 / 16" data-transition="fade">
+<h3 style="color:var(--c-amber)">Meet the entities in every transaction</h3>
+<p class="small">No banks. No head office. These are the only players that matter on a blockchain.</p>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;width:96%;margin:16px auto 0">
 
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-teal);border-radius:12px;padding:10px 12px">
-    <div style="font-family:var(--mono);font-size:0.34em;color:var(--c-teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px">Public / Permissionless</div>
-    <div style="font-size:0.42em;font-weight:700;color:#e8eaed;margin-bottom:6px">Anyone can join, read, write, validate</div>
-    <div style="font-size:0.33em;color:var(--c-muted);line-height:1.4;margin-bottom:5px">No central authority. Maximum decentralisation. Slow (~7 tx/sec for Bitcoin vs ~1,700 for Visa). All transactions visible.</div>
-    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-teal);margin-bottom:3px">Examples:</div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px">
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-teal);border-radius:4px;padding:2px 7px;color:var(--c-teal)">Bitcoin</span>
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-teal);border-radius:4px;padding:2px 7px;color:var(--c-teal)">Ethereum</span>
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-teal);border-radius:4px;padding:2px 7px;color:var(--c-teal)">Solana</span>
-    </div>
-    <div style="font-size:0.32em;color:var(--c-dim);margin-top:6px;font-style:italic">Use: digital assets, DeFi, crypto payments</div>
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-teal);border-radius:12px;padding:16px 12px;text-align:center">
+    <div style="font-size:1.5em;margin-bottom:8px">👤</div>
+    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-teal);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">You</div>
+    <p style="font-size:0.38em;color:var(--c-muted);line-height:1.5;margin:0">Decide to send value and authorise the transaction.</p>
   </div>
 
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:10px 12px">
-    <div style="font-family:var(--mono);font-size:0.34em;color:var(--c-amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px">Private / Permissioned</div>
-    <div style="font-size:0.42em;font-weight:700;color:#e8eaed;margin-bottom:6px">Known participants only — invitation required</div>
-    <div style="font-size:0.33em;color:var(--c-muted);line-height:1.4;margin-bottom:5px">Faster (~1,000s tx/sec). Privacy controls. Regulators know who participants are. Most financial applications use this model.</div>
-    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-amber);margin-bottom:3px">Examples:</div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px">
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-amber);border-radius:4px;padding:2px 7px;color:var(--c-amber)">Hyperledger Fabric</span>
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-amber);border-radius:4px;padding:2px 7px;color:var(--c-amber)">R3 Corda</span>
-    </div>
-    <div style="font-size:0.32em;color:var(--c-dim);margin-top:6px;font-style:italic">Use: interbank settlement, trade finance, CBDCs</div>
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-amber);border-radius:12px;padding:16px 12px;text-align:center">
+    <div style="font-size:1.5em;margin-bottom:8px">👛</div>
+    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-amber);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Your Wallet</div>
+    <p style="font-size:0.38em;color:var(--c-muted);line-height:1.5;margin:0">Prepares and cryptographically signs the transaction.</p>
   </div>
 
-  <div style="background:var(--c-surface);border:1.5px solid var(--c-purple);border-radius:12px;padding:10px 12px">
-    <div style="font-family:var(--mono);font-size:0.34em;color:var(--c-purple);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:5px">Consortium</div>
-    <div style="font-size:0.42em;font-weight:700;color:#e8eaed;margin-bottom:6px">Group of organisations share control</div>
-    <div style="font-size:0.33em;color:var(--c-muted);line-height:1.4;margin-bottom:5px">Multiple institutions jointly operate the network. Balance between decentralisation and governance. No single controller.</div>
-    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-purple);margin-bottom:3px">Examples:</div>
-    <div style="display:flex;flex-wrap:wrap;gap:4px">
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-purple);border-radius:4px;padding:2px 7px;color:var(--c-purple)">RippleNet</span>
-      <span style="font-family:var(--mono);font-size:0.30em;border:1px solid var(--c-purple);border-radius:4px;padding:2px 7px;color:var(--c-purple)">Quorum (JPMorgan)</span>
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-blue);border-radius:12px;padding:16px 12px;text-align:center">
+    <div style="font-size:1.5em;margin-bottom:8px">🖥️</div>
+    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-blue);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Nodes</div>
+    <p style="font-size:0.38em;color:var(--c-muted);line-height:1.5;margin:0">Validate and propagate transactions. No single owner.</p>
+  </div>
+
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-coral);border-radius:12px;padding:16px 12px;text-align:center">
+    <div style="font-size:1.5em;margin-bottom:8px">⛏️</div>
+    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-coral);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">Miners</div>
+    <p style="font-size:0.38em;color:var(--c-muted);line-height:1.5;margin:0">Bundle transactions into blocks. Compete to earn fees.</p>
+  </div>
+
+  <div style="background:var(--c-surface);border:1.5px solid var(--c-purple);border-radius:12px;padding:16px 12px;text-align:center">
+    <div style="font-size:1.5em;margin-bottom:8px">🌐</div>
+    <div style="font-family:var(--mono);font-size:0.30em;color:var(--c-purple);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">The Network</div>
+    <p style="font-size:0.38em;color:var(--c-muted);line-height:1.5;margin:0">Collective of all nodes. Nobody owns it. No off switch.</p>
+  </div>
+
+</div>
+<div style="background:var(--c-surface);border-left:3px solid var(--c-amber);border-radius:0 8px 8px 0;padding:8px 16px;width:96%;margin:12px auto 0">
+  <p style="font-size:0.38em;color:var(--c-muted)">Note: a wallet is not a node, and a miner is a specialised node. These roles are distinct — and understanding who does what is the foundation of everything that follows.</p>
+</div>
+</section>
+
+<!-- ══ LIFECYCLE: WALLET CREATION ════════════════════════════ -->
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  8 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Step 0 — Your wallet: a key, not an account</h3>
+<p class="small">Before you send anything, you need a wallet. It works nothing like a bank account.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;width:97%;margin:14px auto 0">
+  <div style="background:#141a22;border:2px solid #E24B4A;border-radius:12px;padding:18px 16px;text-align:center">
+    <div style="font-size:1.8em;margin-bottom:8px">🔑</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#E24B4A;font-weight:700;margin-bottom:8px;text-transform:uppercase">Private Key</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.5;margin-bottom:8px">Your secret. Never shared. Whoever holds this key controls the funds — no password reset, no bank to call.</div>
+    <div style="font-size:0.38em;color:#4a5568;font-style:italic">Lose it = lose everything permanently</div>
+  </div>
+  <div style="background:#141a22;border:2px solid #5DCAA5;border-radius:12px;padding:18px 16px;text-align:center">
+    <div style="font-size:1.8em;margin-bottom:8px">🏠</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#5DCAA5;font-weight:700;margin-bottom:8px;text-transform:uppercase">Public Key / Address</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.5;margin-bottom:8px">Your address on the network. Safe to share — like giving someone your bank account number so they can send you money.</div>
+    <div style="font-size:0.38em;color:#4a5568;font-style:italic">Anyone can send to it. Nobody can spend from it.</div>
+  </div>
+  <div style="background:#141a22;border:2px solid #EF9F27;border-radius:12px;padding:18px 16px;text-align:center">
+    <div style="font-size:1.8em;margin-bottom:8px">🏦</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#EF9F27;font-weight:700;margin-bottom:8px;text-transform:uppercase">vs. A Bank Account</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.5;margin-bottom:8px">A bank holds your money and lets you access it. A wallet holds your key — the network holds the record. No intermediary between you and your funds.</div>
+    <div style="font-size:0.38em;color:#4a5568;font-style:italic">Sovereignty — and full responsibility</div>
+  </div>
+</div>
+<div style="width:97%;margin:12px auto 0;background:#141a22;border:1px solid #2a3342;border-radius:8px;padding:8px 18px;text-align:center">
+  <span style="font-size:0.42em;color:#8b95a5">The bank does not go down. There is no bank. <span style="color:#EF9F27">You are the bank.</span></span>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  9 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Steps 1 &amp; 2 — Sign and broadcast</h3>
+<p class="small">Your wallet does two things when you hit Send: builds the transaction and broadcasts it</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:97%;margin:14px auto 0">
+  <div style="background:#141a22;border:1.5px solid #EF9F27;border-radius:12px;padding:16px">
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#EF9F27;text-transform:uppercase;font-weight:700;margin-bottom:10px">Step 1 — Build &amp; Sign</div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="background:#0f1923;border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.40em;color:#5DCAA5;font-weight:700;margin-bottom:3px">Recipient address</div>
+        <div style="font-size:0.38em;color:#8b95a5">Where the value goes — the receiver's public address</div>
+      </div>
+      <div style="background:#0f1923;border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.40em;color:#5DCAA5;font-weight:700;margin-bottom:3px">Amount</div>
+        <div style="font-size:0.38em;color:#8b95a5">Exact value to send, denominated in the network token</div>
+      </div>
+      <div style="background:#0f1923;border-radius:8px;padding:10px 12px">
+        <div style="font-size:0.40em;color:#5DCAA5;font-weight:700;margin-bottom:3px">Fee</div>
+        <div style="font-size:0.38em;color:#8b95a5">Your bid for miner attention. Higher fee = faster inclusion. You choose the trade-off.</div>
+      </div>
+      <div style="background:#0a1f14;border-radius:8px;padding:10px 12px;border:1px solid rgba(93,202,165,0.3)">
+        <div style="font-size:0.40em;color:#5DCAA5;font-weight:700;margin-bottom:3px">Digital signature</div>
+        <div style="font-size:0.38em;color:#8b95a5">Your private key signs the whole thing. Proves you authorised it — without revealing your key.</div>
+      </div>
     </div>
-    <div style="font-size:0.32em;color:var(--c-dim);margin-top:6px;font-style:italic">Use: cross-border payments, supply chain</div>
+  </div>
+  <div style="background:#141a22;border:1.5px solid #85B7EB;border-radius:12px;padding:16px">
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#85B7EB;text-transform:uppercase;font-weight:700;margin-bottom:10px">Step 2 — Broadcast</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.6;margin-bottom:12px">Your wallet sends the signed transaction to one connected node. That node gossips it to its neighbours. Within seconds it has spread across the entire network.</div>
+    <div style="background:#0f1923;border-radius:8px;padding:12px;text-align:center">
+      <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#4a5568;margin-bottom:6px">You → Node A → B, C → D, E, F → …</div>
+      <div style="font-size:0.38em;color:#8b95a5">No single path. No single point of failure. The gossip protocol ensures every node receives it.</div>
+    </div>
+    <div style="margin-top:10px;background:#0a1a2a;border-radius:8px;padding:10px 12px;border:1px solid rgba(133,183,235,0.3)">
+      <div style="font-size:0.38em;color:#85B7EB">At this point — <strong style="color:#e8eaed">no miner has touched it yet.</strong> It is just a signed message floating in the network.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  10 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Steps 3 &amp; 4 — Nodes validate, then it waits</h3>
+<p class="small">Every node checks independently. Then your transaction joins a queue.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:97%;margin:14px auto 0">
+  <div style="background:#141a22;border:1.5px solid #5DCAA5;border-radius:12px;padding:16px">
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#5DCAA5;text-transform:uppercase;font-weight:700;margin-bottom:12px">Step 3 — Validation (every node)</div>
+    <div style="display:flex;flex-direction:column;gap:7px">
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1.1em">✓</span>
+        <span style="font-size:0.40em;color:#e8eaed">Signature valid? Genuinely from the sender</span>
+      </div>
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1.1em">✓</span>
+        <span style="font-size:0.40em;color:#e8eaed">Enough balance? Funds actually exist</span>
+      </div>
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1.1em">✓</span>
+        <span style="font-size:0.40em;color:#e8eaed">No double-spend? Same funds not sent twice</span>
+      </div>
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1.1em">✓</span>
+        <span style="font-size:0.40em;color:#e8eaed">Fee sufficient? Worth a miner's attention</span>
+      </div>
+    </div>
+    <div style="margin-top:10px;font-size:0.38em;color:#4a5568;font-style:italic">No single authority decides. Every node runs these checks independently. Pass all four — or get rejected.</div>
+  </div>
+  <div style="background:#141a22;border:1.5px solid #AFA9EC;border-radius:12px;padding:16px">
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#AFA9EC;text-transform:uppercase;font-weight:700;margin-bottom:10px">Step 4 — The Mempool (waiting room)</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.5;margin-bottom:12px">Valid transactions enter the <strong>mempool</strong> — a pool of unconfirmed transactions waiting to be included in a block.</div>
+    <div style="background:#0b0f14;border-radius:8px;padding:10px 12px;margin-bottom:10px">
+      <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#AFA9EC;margin-bottom:4px">The queue</div>
+      <div style="font-size:0.38em;color:#8b95a5">Higher fee → miners pick you first → faster confirmation. Lower fee → you wait. During congestion, transactions can wait hours.</div>
+    </div>
+    <div style="background:#0a0d1f;border-radius:8px;padding:10px 12px;border:1px solid rgba(175,169,236,0.3)">
+      <div style="font-size:0.38em;color:#AFA9EC">Think of it as a taxi rank in peak hour. The cab (miner) picks the highest bidder.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  10 / 22" data-transition="fade">
+<h3 style="color:var(--c-amber)">Setting up the race — how miners build their candidate block</h3>
+<p class="small">Before the race starts, every miner independently assembles their entry. No coordination. No starting gun.</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;width:97%;margin:12px auto 0">
+
+  <!-- Left: The setup sequence -->
+  <div style="display:flex;flex-direction:column;gap:8px">
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:#141a22;border-radius:10px;padding:12px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.80em;color:#EF9F27;font-weight:700;min-width:28px;margin-top:2px">①</div>
+      <div>
+        <div style="font-size:0.44em;color:#e8eaed;font-weight:700;margin-bottom:4px">Previous block sealed</div>
+        <div style="font-size:0.36em;color:#8b95a5;line-height:1.5">The moment a miner wins the previous round, every other miner stops what they were doing. The old race is over. A new one begins immediately — no pause, no announcement.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:#141a22;border-radius:10px;padding:12px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.80em;color:#EF9F27;font-weight:700;min-width:28px;margin-top:2px">②</div>
+      <div>
+        <div style="font-size:0.44em;color:#e8eaed;font-weight:700;margin-bottom:4px">Each miner selects transactions from their mempool</div>
+        <div style="font-size:0.36em;color:#8b95a5;line-height:1.5">Independently and simultaneously. Each miner picks whichever transactions they want — typically highest fee first. Two miners might build slightly different candidate blocks from the same mempool.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:#141a22;border-radius:10px;padding:12px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.80em;color:#EF9F27;font-weight:700;min-width:28px;margin-top:2px">③</div>
+      <div>
+        <div style="font-size:0.44em;color:#e8eaed;font-weight:700;margin-bottom:4px">Miner adds their own reward transaction</div>
+        <div style="font-size:0.36em;color:#8b95a5;line-height:1.5">A special coinbase transaction: "if I win, pay me 3.125 BTC plus all the fees in this block." This is self-declared — only valid if the miner actually wins the puzzle.</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;align-items:flex-start;background:#141a22;border-radius:10px;padding:12px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.80em;color:#EF9F27;font-weight:700;min-width:28px;margin-top:2px">④</div>
+      <div>
+        <div style="font-size:0.44em;color:#e8eaed;font-weight:700;margin-bottom:4px">Race starts — simultaneously, globally</div>
+        <div style="font-size:0.36em;color:#8b95a5;line-height:1.5">With candidate block assembled, each miner starts hashing. Trillions of attempts per second. The puzzle: find a number (nonce) that makes the block's hash start with enough zeros. Pure random search.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right: Visual of candidate block being assembled -->
+  <div style="background:#141a22;border:1.5px solid #EF9F27;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px">
+
+    <div style="font-family:DM Mono,monospace;font-size:0.36em;color:#EF9F27;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">Candidate block (before sealing)</div>
+
+    <div style="background:#0b0f14;border-radius:8px;padding:10px 12px">
+      <div style="font-family:DM Mono,monospace;font-size:0.32em;color:#4a5568;margin-bottom:4px">HEADER</div>
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:3px;font-size:0.32em">
+        <span style="color:#4a5568">prev hash</span><span style="color:#5DCAA5;font-family:DM Mono,monospace">a91c4f7e…  ← links to last sealed block</span>
+        <span style="color:#4a5568">nonce</span><span style="color:#EF9F27;font-family:DM Mono,monospace">??? ← the miner is searching for this</span>
+        <span style="color:#4a5568">timestamp</span><span style="color:#8b95a5;font-family:DM Mono,monospace">14:23:07 UTC</span>
+      </div>
+    </div>
+
+    <div style="background:#0b0f14;border-radius:8px;padding:10px 12px">
+      <div style="font-family:DM Mono,monospace;font-size:0.32em;color:#4a5568;margin-bottom:6px">TRANSACTIONS (miner's selection)</div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div style="display:flex;justify-content:space-between;font-size:0.32em">
+          <span style="color:#8b95a5">Alice → Bob</span><span style="color:#e8eaed">0.5 BTC</span><span style="color:#5DCAA5">fee: 0.0005 ↑ high</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.32em">
+          <span style="color:#8b95a5">Carol → Dave</span><span style="color:#e8eaed">1.2 BTC</span><span style="color:#5DCAA5">fee: 0.0004 ↑ high</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.32em">
+          <span style="color:#8b95a5">Eve → Frank</span><span style="color:#e8eaed">0.1 BTC</span><span style="color:#EF9F27">fee: 0.0001 medium</span>
+        </div>
+        <div style="height:1px;background:#2a3342;margin:2px 0"></div>
+        <div style="display:flex;justify-content:space-between;font-size:0.32em">
+          <span style="color:#EF9F27">→ Miner A (coinbase)</span><span style="color:#EF9F27">3.125 BTC + fees</span><span style="color:#4a5568">if I win</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1a1200;border:1px solid rgba(239,159,39,0.3);border-radius:8px;padding:8px 12px;margin-top:2px">
+      <div style="font-size:0.34em;color:#EF9F27;line-height:1.5">The candidate block is complete. The miner now starts brute-forcing the nonce. Every attempt produces a different hash. They need one that starts with <span style="font-family:DM Mono,monospace">0000000…</span></div>
+    </div>
+
+    <div style="font-size:0.30em;color:#4a5568;font-style:italic;text-align:center">Meanwhile, 10,000+ other miners are doing exactly the same thing with their own candidate blocks</div>
+  </div>
+
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  11 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Step 5 — Mining: the race to seal the block</h3>
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+  <p class="small" style="margin:0">Thousands of miners compete simultaneously. First to solve the puzzle wins.</p>
+  <button id="mine-play" style="font-family:DM Mono,monospace;font-size:0.36em;padding:4px 14px;border-radius:16px;cursor:pointer;border:1.5px solid #EF9F27;background:#141a22;color:#EF9F27;flex-shrink:0">▶ Start race</button>
+  <button id="mine-reset" style="font-family:DM Mono,monospace;font-size:0.36em;padding:4px 10px;border-radius:16px;cursor:pointer;border:1.5px solid #2a3342;background:#141a22;color:#4a5568;flex-shrink:0">↺</button>
+</div>
+
+<canvas id="mine-canvas" width="1100" height="340" style="width:97%;display:block;background:#0b0f14;border-radius:10px;border:1px solid #2a3342;margin:0 auto"></canvas>
+<div id="mine-msg" style="font-family:DM Mono,monospace;font-size:0.42em;color:#EF9F27;text-align:center;margin-top:8px;min-height:1.4em"></div>
+
+<script>
+(function(){
+
+var MINERS = [
+  {name:"Miner A", location:"Texas, US",    col:"#5DCAA5", speed:0},
+  {name:"Miner B", location:"Sichuan, CN",  col:"#85B7EB", speed:0},
+  {name:"Miner C", location:"Iceland",      col:"#AFA9EC", speed:0},
+  {name:"Miner D", location:"Kazakhstan",   col:"#EF9F27", speed:0},
+  {name:"Miner E", location:"Quebec, CA",   col:"#F0997B", speed:0}
+];
+
+var FEES = "0.0023 BTC";
+var REWARD = "3.125 BTC";
+
+var progress = [0,0,0,0,0];
+var winner = -1;
+var playing = false;
+var rafId = null;
+var lastTime = 0;
+
+function randomSpeed(){
+  // Random between 0.3 and 1.4 per frame — simulates hash rate variation
+  return 0.3 + Math.random() * 1.1;
+}
+
+function resetState(){
+  progress = [0,0,0,0,0];
+  winner = -1;
+  MINERS.forEach(function(m){ m.speed = randomSpeed(); });
+}
+
+window.mineAnimInit = function(){
+  var canvas = document.getElementById("mine-canvas");
+  var msg    = document.getElementById("mine-msg");
+  var playBtn= document.getElementById("mine-play");
+  var resetBtn=document.getElementById("mine-reset");
+  if(!canvas || canvas.dataset.bound) return;
+  canvas.dataset.bound = "1";
+
+  var ctx = canvas.getContext("2d");
+  var W = canvas.width, H = canvas.height;
+
+  var BAR_H = 38, BAR_GAP = 12, BAR_X0 = 220, BAR_X1 = W - 80;
+  var BAR_W = BAR_X1 - BAR_X0;
+  var TOP_Y = 28;
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    MINERS.forEach(function(m, i){
+      var y = TOP_Y + i*(BAR_H + BAR_GAP);
+      var isWinner = (winner === i);
+      var isDone = (winner >= 0);
+
+      // Label
+      ctx.font = "bold 13px DM Mono,monospace";
+      ctx.fillStyle = isWinner ? m.col : (isDone ? "#2a3342" : m.col);
+      ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      ctx.fillText(m.name, 10, y + BAR_H/2 - 6);
+      ctx.font = "10px DM Mono,monospace";
+      ctx.fillStyle = isWinner ? m.col : "#4a5568";
+      ctx.fillText(m.location, 10, y + BAR_H/2 + 10);
+
+      // Track background
+      ctx.fillStyle = "#141a22";
+      ctx.beginPath();
+      if(ctx.roundRect) ctx.roundRect(BAR_X0, y, BAR_W, BAR_H, 6);
+      else ctx.rect(BAR_X0, y, BAR_W, BAR_H);
+      ctx.fill();
+      ctx.strokeStyle = isWinner ? m.col : (isDone ? "#1c2430" : "#2a3342");
+      ctx.lineWidth = isWinner ? 2 : 1;
+      ctx.stroke();
+
+      // Progress fill
+      var prog = Math.min(1, progress[i]/100);
+      var fillW = BAR_W * prog;
+      if(fillW > 0){
+        var alpha = isWinner ? 1 : (isDone ? 0.2 : 0.7);
+        ctx.globalAlpha = alpha;
+        ctx.fillStyle = m.col;
+        ctx.beginPath();
+        if(ctx.roundRect) ctx.roundRect(BAR_X0, y, fillW, BAR_H, 6);
+        else ctx.rect(BAR_X0, y, fillW, BAR_H);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+
+      // Hash counter (flickering numbers)
+      if(!isDone && playing){
+        ctx.font = "10px DM Mono,monospace";
+        ctx.fillStyle = "#4a5568";
+        ctx.textAlign = "right"; ctx.textBaseline = "middle";
+        var hashCount = Math.floor(progress[i] * 1e8 + Math.random()*1e6);
+        ctx.fillText(hashCount.toLocaleString() + " hashes", W-8, y+BAR_H/2);
+      }
+
+      // Winner label
+      if(isWinner){
+        ctx.font = "bold 13px DM Mono,monospace";
+        ctx.fillStyle = "#0b0f14";
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText("\u2605 BLOCK SEALED", BAR_X0 + BAR_W/2, y + BAR_H/2);
+      } else if(!isDone){
+        // Percentage
+        ctx.font = "11px DM Mono,monospace";
+        ctx.fillStyle = m.col;
+        ctx.textAlign = "right"; ctx.textBaseline = "middle";
+        if(progress[i] > 5) ctx.fillText(Math.floor(progress[i]) + "%", BAR_X0 + fillW - 8, y+BAR_H/2);
+      }
+    });
+
+    // Phase label
+    ctx.font = "11px DM Mono,monospace";
+    ctx.fillStyle = "#4a5568";
+    ctx.textAlign = "left"; ctx.textBaseline = "top";
+    ctx.fillText("0%  \u2192  finding valid hash (random search)  \u2192  100%  SEALED", BAR_X0, H-18);
+  }
+
+  function tick(ts){
+    if(!playing) return;
+    if(!lastTime) lastTime = ts;
+    var dt = ts - lastTime; lastTime = ts;
+
+    // Advance each miner — random jumps simulating hash trials
+    for(var i=0; i<MINERS.length; i++){
+      if(winner >= 0) break;
+      // Occasional speed burst (lucky hash streak)
+      if(Math.random() < 0.04) MINERS[i].speed = randomSpeed() * 2.5;
+      else if(Math.random() < 0.1) MINERS[i].speed = randomSpeed();
+      progress[i] += MINERS[i].speed * (dt/16);
+
+      if(progress[i] >= 100){
+        progress[i] = 100;
+        winner = i;
+        playing = false;
+        playBtn.textContent = "▶ Start race";
+        var msg = document.getElementById("mine-msg");
+        if(msg) msg.innerHTML =
+          "\u2605 " + MINERS[i].name + " (" + MINERS[i].location + ") wins &nbsp;&nbsp;|&nbsp;&nbsp;" +
+          "Block reward: <span style='color:#EF9F27'>" + REWARD + "</span> &nbsp;+&nbsp; " +
+          "Fees: <span style='color:#5DCAA5'>" + FEES + "</span> &nbsp;&nbsp;|&nbsp;&nbsp;" +
+          "<span style='color:#4a5568'>Other miners discard their work and start on Block N+1</span>";
+      }
+    }
+
+    draw();
+    if(playing) rafId = requestAnimationFrame(tick);
+  }
+
+  function reset(){
+    playing = false;
+    if(rafId) cancelAnimationFrame(rafId);
+    resetState();
+    var msg = document.getElementById("mine-msg");
+    if(msg) msg.textContent = "";
+    playBtn.textContent = "▶ Start race";
+    draw();
+  }
+
+  playBtn.addEventListener("click", function(){
+    if(playing){ playing=false; playBtn.textContent="▶ Start race"; return; }
+    if(winner >= 0) reset();
+    playing = true; lastTime = 0;
+    playBtn.textContent = "\u23f8 Pause";
+    rafId = requestAnimationFrame(tick);
+  });
+
+  resetBtn.addEventListener("click", reset);
+  reset();
+};
+})();
+</script>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  ☕" data-transition="fade">
+<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:620px;gap:20px">
+  <div style="font-size:3em">☕</div>
+  <h2 style="color:var(--c-teal);font-size:2.2em;margin:0">10 minute break</h2>
+  <div style="width:60px;height:3px;background:var(--c-teal);margin:4px 0"></div>
+  <p style="font-size:0.62em;color:#8b95a5;text-align:center;max-width:600px;line-height:1.6">You now know why the traditional system has structural problems — and how mining turns economic incentive into a trustless consensus mechanism.</p>
+  <p style="font-size:0.54em;color:#4a5568;text-align:center;margin-top:8px;font-style:italic">Back in 10 minutes: how the winning block spreads, how the network agrees, and what finality actually means.</p>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  12 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Steps 6 &amp; 7 — Broadcast the block, reach consensus</h3>
+<p class="small">The winning miner shares their block. Every other node checks it. The network agrees.</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:97%;margin:14px auto 0">
+  <div style="background:#141a22;border:1.5px solid #85B7EB;border-radius:12px;padding:16px">
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#85B7EB;text-transform:uppercase;font-weight:700;margin-bottom:10px">Step 6 — Block broadcast</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.5;margin-bottom:10px">The winning miner gossips the sealed block across the network — same mechanism as transaction broadcast. Within seconds every node has it.</div>
+    <div style="background:#0b0f14;border-radius:8px;padding:10px 12px">
+      <div style="font-size:0.38em;color:#8b95a5">Other miners immediately stop working on the old puzzle and start competing for the <em>next</em> block. The chain always moves forward.</div>
+    </div>
+  </div>
+  <div style="background:#141a22;border:1.5px solid #AFA9EC;border-radius:12px;padding:16px">
+    <div style="font-family:DM Mono,monospace;font-size:0.40em;color:#AFA9EC;text-transform:uppercase;font-weight:700;margin-bottom:10px">Step 7 — Consensus</div>
+    <div style="font-size:0.44em;color:#e8eaed;line-height:1.5;margin-bottom:10px">Every node independently validates the new block. If it is valid, they add it to their chain. If not, they reject it.</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1em">✓</span>
+        <span style="font-size:0.38em;color:#e8eaed">Valid transactions inside?</span>
+      </div>
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1em">✓</span>
+        <span style="font-size:0.38em;color:#e8eaed">Correct previous hash? Links to the chain?</span>
+      </div>
+      <div style="background:#0a1f14;border-radius:6px;padding:8px 12px;display:flex;gap:10px;align-items:center">
+        <span style="color:#5DCAA5;font-size:1em">✓</span>
+        <span style="font-size:0.38em;color:#e8eaed">Puzzle solved correctly? Work was done?</span>
+      </div>
+    </div>
+    <div style="margin-top:8px;font-size:0.36em;color:#4a5568;font-style:italic">No voting. No committee. Pure rule-following by every node independently.</div>
+  </div>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  13 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Steps 8–11 — Settlement and finality</h3>
+<p class="small">Once consensus is reached, four things happen simultaneously across every node on earth</p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;width:97%;margin:12px auto 0">
+  <div style="background:#141a22;border:1.5px solid #5DCAA5;border-radius:12px;padding:14px">
+    <div style="font-size:1.4em;margin-bottom:6px">📤</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#5DCAA5;font-weight:700;margin-bottom:6px">Sender balance decreases</div>
+    <div style="font-size:0.40em;color:#8b95a5;line-height:1.4">Amount sent plus the fee, deducted from the sender's address. Instantly reflected in every node's copy of the ledger.</div>
+  </div>
+  <div style="background:#141a22;border:1.5px solid #5DCAA5;border-radius:12px;padding:14px">
+    <div style="font-size:1.4em;margin-bottom:6px">📥</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#5DCAA5;font-weight:700;margin-bottom:6px">Receiver balance increases</div>
+    <div style="font-size:0.40em;color:#8b95a5;line-height:1.4">Exact amount received. No clearing delay. No correspondent bank. No T+2. The ledger updates the moment consensus is reached.</div>
+  </div>
+  <div style="background:#141a22;border:1.5px solid #EF9F27;border-radius:12px;padding:14px">
+    <div style="font-size:1.4em;margin-bottom:6px">⛏️</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#EF9F27;font-weight:700;margin-bottom:6px">Miner collects the fee</div>
+    <div style="font-size:0.40em;color:#8b95a5;line-height:1.4">All transaction fees in the block go to the winning miner, plus the block reward. The economic engine that sustains the network.</div>
+  </div>
+  <div style="background:#141a22;border:1.5px solid #AFA9EC;border-radius:12px;padding:14px">
+    <div style="font-size:1.4em;margin-bottom:6px">🔒</div>
+    <div style="font-family:DM Mono,monospace;font-size:0.38em;color:#AFA9EC;font-weight:700;margin-bottom:6px">Finality — it is permanent</div>
+    <div style="font-size:0.40em;color:#8b95a5;line-height:1.4">Each new block added on top makes reversal exponentially harder. After 6 blocks (~60 min for Bitcoin) — it is considered final. No chargeback. No reversal. No dispute.</div>
+  </div>
+</div>
+<div style="width:97%;margin:10px auto 0;background:#0a1f14;border:1px solid rgba(93,202,165,0.3);border-radius:8px;padding:8px 18px;text-align:center">
+  <span style="font-size:0.42em;color:#e8eaed">Compare to T+2: funds confirmed in <span style="color:#5DCAA5">minutes</span>, not days. No intermediary. No counterparty risk.</span>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  13 / 16" data-transition="fade">
+<h3 style="color:var(--c-amber)">Lifecycle at a glance</h3>
+<p class="small">Every blockchain transaction follows the same path — across every public network, worldwide.</p>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;width:96%;margin:16px auto 0;position:relative">
+
+  <!-- Row 1 -->
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px 0 0 8px;padding:10px 12px;border-right:none">
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">00</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-teal);margin-bottom:3px">Wallet Created</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Keys generated, no ID required</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);padding:10px 12px;border-right:none;position:relative">
+    <div style="position:absolute;left:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">01</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-teal);margin-bottom:3px">Signed Tx Built</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Wallet assembles &amp; stamps</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);padding:10px 12px;border-right:none;position:relative">
+    <div style="position:absolute;left:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">02</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-teal);margin-bottom:3px">Broadcast</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Gossips across network in seconds</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);padding:10px 12px;border-right:none;position:relative">
+    <div style="position:absolute;left:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">03</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-amber);margin-bottom:3px">Node Validation</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Every node checks independently</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:0 8px 8px 0;padding:10px 12px;position:relative">
+    <div style="position:absolute;left:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">04</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-amber);margin-bottom:3px">Mempool</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Waits in queue; fees decide order</div>
   </div>
 
 </div>
 
-<!-- DAG / Alternative DLTs -->
-<div style="background:var(--c-surface);border:1.5px solid #85B7EB;border-radius:12px;padding:13px 16px;width:96%;margin:8px auto 0">
-  <div style="font-family:var(--mono);font-size:0.34em;color:#85B7EB;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px">🆕 Beyond blockchain — DAG-based DLTs</div>
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
-    <div>
-      <div style="font-size:0.40em;font-weight:700;color:#e8eaed;margin-bottom:3px">Hedera Hashgraph</div>
-      <div style="font-size:0.34em;color:var(--c-muted);line-height:1.5">Directed Acyclic Graph, not a chain. Uses virtual voting consensus. 10,000+ tx/sec. Governed by a council of global enterprises (Google, IBM, Boeing). Used by payment networks and tokenisation platforms.</div>
+<!-- Row 2 — continuation arrow down + row -->
+<div style="width:96%;margin:0 auto;display:flex;justify-content:flex-end;padding-right:0">
+  <div style="font-size:0.5em;color:var(--c-dim);padding:2px 20px">↓</div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0;width:96%;margin:0 auto;position:relative;direction:rtl">
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:8px 0 0 8px;padding:10px 12px;border-right:none;direction:ltr">
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">09</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-purple);margin-bottom:3px">Finality</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">~6 blocks deep = permanent</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);padding:10px 12px;border-right:none;position:relative;direction:ltr">
+    <div style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">08</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-purple);margin-bottom:3px">Wallet Updated</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Reads new state from chain</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);padding:10px 12px;border-right:none;position:relative;direction:ltr">
+    <div style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">07</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-coral);margin-bottom:3px">State Updated</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Ledger updated globally</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);padding:10px 12px;border-right:none;position:relative;direction:ltr">
+    <div style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">06</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-coral);margin-bottom:3px">Consensus</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">Network agrees, orphans dropped</div>
+  </div>
+  <div style="background:var(--c-surface);border:1px solid var(--c-border);border-radius:0 8px 8px 0;padding:10px 12px;position:relative;direction:ltr">
+    <div style="position:absolute;right:-8px;top:50%;transform:translateY(-50%);color:var(--c-dim);font-size:0.6em">→</div>
+    <div style="font-family:var(--mono);font-size:0.26em;color:var(--c-dim);margin-bottom:4px">05</div>
+    <div style="font-size:0.36em;font-weight:700;color:var(--c-coral);margin-bottom:3px">Mining + Block</div>
+    <div style="font-size:0.28em;color:var(--c-muted)">PoW race → broadcast → validate</div>
+  </div>
+</div>
+
+</section>
+
+<!-- ══ TYPES ══════════════════════════════════════════════════ -->
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  8 / 14" data-transition="fade">
+<h3 style="color:var(--c-amber)">Start here: what is a transaction?</h3>
+<p class="small">The atomic unit of blockchain. Everything else is built on top of this.</p>
+
+<svg viewBox="0 0 1060 390" style="width:97%;display:block;margin:10px auto 0" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Transaction card -->
+  <rect x="180" y="20" width="700" height="340" rx="14" fill="#141a22" stroke="#EF9F27" stroke-width="2.5"/>
+  <rect x="180" y="20" width="700" height="46" rx="14" fill="#2a1a00"/>
+  <rect x="180" y="48" width="700" height="18" rx="0" fill="#2a1a00"/>
+  <text x="530" y="50" text-anchor="middle" font-family="DM Mono,monospace" font-size="14" fill="#EF9F27" font-weight="700">TRANSACTION</text>
+
+  <!-- Field rows -->
+  <!-- Sender -->
+  <rect x="200" y="82" width="660" height="48" rx="8" fill="#0f1923"/>
+  <text x="220" y="101" font-family="DM Mono,monospace" font-size="11" fill="#4a5568" font-weight="700">SENDER</text>
+  <text x="220" y="118" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">who is sending?</text>
+  <rect x="340" y="86" width="220" height="36" rx="6" fill="#141a22"/>
+  <text x="450" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#85B7EB" font-weight="700">Alice</text>
+  <text x="450" y="116" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">wallet: 1A1zP…bc3GRo</text>
+  <text x="600" y="108" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5" font-style="italic">public address on the network — like an account number</text>
+
+  <!-- Receiver -->
+  <rect x="200" y="138" width="660" height="48" rx="8" fill="#0b0f14"/>
+  <text x="220" y="157" font-family="DM Mono,monospace" font-size="11" fill="#4a5568" font-weight="700">RECEIVER</text>
+  <text x="220" y="174" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">who receives?</text>
+  <rect x="340" y="142" width="220" height="36" rx="6" fill="#141a22"/>
+  <text x="450" y="156" text-anchor="middle" font-family="DM Mono,monospace" font-size="11" fill="#5DCAA5" font-weight="700">Bob</text>
+  <text x="450" y="172" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">wallet: 3J98t…vMF5h</text>
+  <text x="600" y="165" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5" font-style="italic">Bob's public address — anyone can send to it</text>
+
+  <!-- Amount -->
+  <rect x="200" y="194" width="660" height="48" rx="8" fill="#0f1923"/>
+  <text x="220" y="213" font-family="DM Mono,monospace" font-size="11" fill="#4a5568" font-weight="700">AMOUNT</text>
+  <text x="220" y="230" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">how much?</text>
+  <rect x="340" y="198" width="220" height="36" rx="6" fill="#141a22"/>
+  <text x="450" y="221" text-anchor="middle" font-family="DM Mono,monospace" font-size="14" fill="#e8eaed" font-weight="700">0.5 BTC</text>
+  <text x="600" y="221" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5" font-style="italic">exact amount — no rounding, no intermediary</text>
+
+  <!-- Digital signature -->
+  <rect x="200" y="250" width="660" height="48" rx="8" fill="#0b0f14"/>
+  <text x="220" y="269" font-family="DM Mono,monospace" font-size="11" fill="#AFA9EC" font-weight="700">DIGITAL SIGNATURE</text>
+  <text x="220" y="285" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">proof of authorisation</text>
+  <rect x="340" y="254" width="220" height="36" rx="6" fill="#141a22"/>
+  <text x="450" y="277" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#AFA9EC">3045…a7f2</text>
+  <text x="600" y="263" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5" font-style="italic">only Alice's private key can produce this</text>
+  <text x="600" y="279" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5" font-style="italic">anyone can verify it — nobody can fake it</text>
+
+  <!-- Timestamp -->
+  <rect x="200" y="306" width="660" height="40" rx="8" fill="#0f1923"/>
+  <text x="220" y="331" font-family="DM Mono,monospace" font-size="11" fill="#4a5568" font-weight="700">TIMESTAMP</text>
+  <rect x="340" y="310" width="220" height="30" rx="6" fill="#141a22"/>
+  <text x="450" y="329" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5">2024-11-14  14:22:51 UTC</text>
+  <text x="600" y="329" font-family="DM Mono,monospace" font-size="10" fill="#8b95a5" font-style="italic">when Alice broadcast this to the network</text>
+
+</svg>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  9 / 14" data-transition="fade">
+<h3 style="color:var(--c-amber)">Next: transactions are bundled into a block</h3>
+<p class="small">New vocabulary introduced one term at a time</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;width:97%;margin:10px auto 0">
+
+  <!-- Left: block anatomy -->
+  <svg viewBox="0 0 480 370" style="width:100%;display:block" xmlns="http://www.w3.org/2000/svg">
+    <!-- Block outer -->
+    <rect x="20" y="10" width="440" height="350" rx="12" fill="#141a22" stroke="#EF9F27" stroke-width="2.5"/>
+
+    <!-- Header section -->
+    <rect x="20" y="10" width="440" height="36" rx="12" fill="#2a1a00"/>
+    <rect x="20" y="34" width="440" height="12" rx="0" fill="#2a1a00"/>
+    <text x="240" y="33" text-anchor="middle" font-family="DM Mono,monospace" font-size="13" fill="#EF9F27" font-weight="700">BLOCK HEADER</text>
+
+    <!-- Hash field -->
+    <rect x="36" y="56" width="408" height="38" rx="6" fill="#0b0f14"/>
+    <text x="52" y="72" font-family="DM Mono,monospace" font-size="10" fill="#EF9F27" font-weight="700">HASH</text>
+    <text x="52" y="86" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">block fingerprint</text>
+    <rect x="160" y="60" width="140" height="26" rx="4" fill="#141a22"/>
+    <text x="230" y="77" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#EF9F27">a91c4f7e…</text>
+    <text x="316" y="72" font-family="DM Mono,monospace" font-size="9" fill="#5DCAA5">← unique ID for this block</text>
+
+    <!-- Nonce field -->
+    <rect x="36" y="100" width="408" height="38" rx="6" fill="#0f1923"/>
+    <text x="52" y="116" font-family="DM Mono,monospace" font-size="10" fill="#AFA9EC" font-weight="700">NONCE</text>
+    <text x="52" y="130" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">proof-of-work puzzle</text>
+    <rect x="160" y="104" width="80" height="26" rx="4" fill="#141a22"/>
+    <text x="200" y="121" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#AFA9EC">91042</text>
+    <text x="256" y="116" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">a number the miner</text>
+    <text x="256" y="130" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">adjusts until hash starts with 0000…</text>
+
+    <!-- Miner + reward -->
+    <rect x="36" y="144" width="408" height="50" rx="6" fill="#0b0f14"/>
+    <text x="52" y="162" font-family="DM Mono,monospace" font-size="10" fill="#EF9F27" font-weight="700">MINER</text>
+    <text x="52" y="178" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">who sealed this block?</text>
+    <text x="156" y="162" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">a node that solved the nonce puzzle first</text>
+    <text x="156" y="178" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">wins the right to add this block</text>
+    <rect x="316" y="150" width="116" height="30" rx="6" fill="#1f1200" stroke="#EF9F27" stroke-width="1.5"/>
+    <text x="374" y="162" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27">BLOCK REWARD</text>
+    <text x="374" y="175" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#EF9F27" font-weight="700">6.25 BTC</text>
+
+    <!-- Divider -->
+    <line x1="36" y1="202" x2="444" y2="202" stroke="#2a3342" stroke-width="1.5"/>
+    <text x="240" y="220" text-anchor="middle" font-family="DM Mono,monospace" font-size="12" fill="#EF9F27" font-weight="700">TRANSACTIONS (bundled)</text>
+
+    <!-- TX rows compact -->
+    <rect x="36" y="228" width="408" height="28" rx="5" fill="#0f1923"/>
+    <text x="52" y="246" font-family="DM Mono,monospace" font-size="10" fill="#85B7EB">Alice</text>
+    <text x="104" y="246" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">→</text>
+    <text x="120" y="246" font-family="DM Mono,monospace" font-size="10" fill="#5DCAA5">Bob</text>
+    <text x="180" y="246" font-family="DM Mono,monospace" font-size="11" fill="#e8eaed" font-weight="700">0.5 BTC</text>
+    <rect x="352" y="232" width="82" height="18" rx="4" fill="#0d3d2a"/>
+    <text x="393" y="244" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#5DCAA5">✓ valid</text>
+
+    <rect x="36" y="262" width="408" height="28" rx="5" fill="#0b0f14"/>
+    <text x="52" y="280" font-family="DM Mono,monospace" font-size="10" fill="#85B7EB">Carol</text>
+    <text x="110" y="280" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">→</text>
+    <text x="126" y="280" font-family="DM Mono,monospace" font-size="10" fill="#5DCAA5">Dave</text>
+    <text x="180" y="280" font-family="DM Mono,monospace" font-size="11" fill="#e8eaed" font-weight="700">1.2 BTC</text>
+    <rect x="352" y="266" width="82" height="18" rx="4" fill="#0d3d2a"/>
+    <text x="393" y="278" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#5DCAA5">✓ valid</text>
+
+    <rect x="36" y="296" width="408" height="28" rx="5" fill="#0f1923"/>
+    <text x="52" y="314" font-family="DM Mono,monospace" font-size="10" fill="#85B7EB">Eve</text>
+    <text x="96" y="314" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">→</text>
+    <text x="112" y="314" font-family="DM Mono,monospace" font-size="10" fill="#5DCAA5">Frank</text>
+    <text x="180" y="314" font-family="DM Mono,monospace" font-size="11" fill="#e8eaed" font-weight="700">0.1 BTC</text>
+    <rect x="352" y="300" width="82" height="18" rx="4" fill="#0d3d2a"/>
+    <text x="393" y="312" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#5DCAA5">✓ valid</text>
+
+    <rect x="36" y="330" width="408" height="22" rx="5" fill="#1f1200"/>
+    <text x="52" y="344" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">network</text>
+    <text x="110" y="344" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">→</text>
+    <text x="126" y="344" font-family="DM Mono,monospace" font-size="9" fill="#EF9F27">Miner (reward tx)</text>
+    <text x="300" y="344" font-family="DM Mono,monospace" font-size="10" fill="#EF9F27" font-weight="700">6.25 BTC</text>
+    <text x="380" y="344" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27">auto-generated</text>
+  </svg>
+
+  <!-- Right: vocabulary definitions -->
+  <div style="display:flex;flex-direction:column;gap:10px;justify-content:center">
+
+    <div style="background:#141a22;border-left:4px solid #EF9F27;border-radius:0 10px 10px 0;padding:10px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.44em;color:#EF9F27;font-weight:700;margin-bottom:3px">HASH</div>
+      <div style="font-size:0.42em;color:#e8eaed;line-height:1.4">A mathematical fingerprint of the block's entire contents. Change any single byte and the hash completely changes. Impossible to reverse-engineer.</div>
     </div>
-    <div>
-      <div style="font-size:0.40em;font-weight:700;color:#e8eaed;margin-bottom:3px">IOTA</div>
-      <div style="font-size:0.34em;color:var(--c-muted);line-height:1.5">Designed for machine-to-machine micropayments and IoT. Feeless transactions. Being adopted for supply chain traceability and smart cities. No miners — every participant validates.</div>
+
+    <div style="background:#141a22;border-left:4px solid #AFA9EC;border-radius:0 10px 10px 0;padding:10px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.44em;color:#AFA9EC;font-weight:700;margin-bottom:3px">NONCE</div>
+      <div style="font-size:0.42em;color:#e8eaed;line-height:1.4">A number the miner adjusts trillions of times until the block's hash starts with enough zeros. This is the work in proof-of-work — computationally expensive, trivial to verify.</div>
     </div>
-    <div>
-      <div style="font-size:0.40em;font-weight:700;color:#e8eaed;margin-bottom:3px">The common thread</div>
-      <div style="font-size:0.34em;color:var(--c-muted);line-height:1.5">All solve the same problem: trustless distributed ledger without a central authority. The underlying mechanism differs — chain vs DAG vs tangle. For finance, the governance structure (who runs it?) often matters more than the technology.</div>
+
+    <div style="background:#141a22;border-left:4px solid #EF9F27;border-radius:0 10px 10px 0;padding:10px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.44em;color:#EF9F27;font-weight:700;margin-bottom:3px">MINER</div>
+      <div style="font-size:0.42em;color:#e8eaed;line-height:1.4">A node that competes to seal blocks. Whoever solves the nonce puzzle first adds the block and earns the reward. Anyone can be a miner — this is the decentralisation mechanism.</div>
     </div>
+
+    <div style="background:#141a22;border-left:4px solid #EF9F27;border-radius:0 10px 10px 0;padding:10px 14px">
+      <div style="font-family:DM Mono,monospace;font-size:0.44em;color:#EF9F27;font-weight:700;margin-bottom:3px">BLOCK REWARD</div>
+      <div style="font-size:0.42em;color:#e8eaed;line-height:1.4">New Bitcoin created and awarded to the winning miner. This is how Bitcoin enters circulation — and why miners participate. No central bank. No treasurer. Code issues the reward automatically.</div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  10 / 14" data-transition="fade">
+<h3 style="color:var(--c-amber)">Finally: blocks are chained together</h3>
+<p class="small">One new term — prev hash — makes the whole structure immutable</p>
+
+<svg viewBox="0 0 1060 380" style="width:97%;display:block;margin:8px auto 0" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ── Three chained blocks ───────────────────────────── -->
+
+  <!-- Block N-1 -->
+  <rect x="30" y="60" width="270" height="280" rx="12" fill="#141a22" stroke="#5DCAA5" stroke-width="2"/>
+  <rect x="30" y="60" width="270" height="36" rx="12" fill="#0a2a1a"/>
+  <rect x="30" y="84" width="270" height="12" rx="0" fill="#0a2a1a"/>
+  <text x="165" y="83" text-anchor="middle" font-family="DM Mono,monospace" font-size="13" fill="#5DCAA5" font-weight="700">Block N−1</text>
+  <text x="50" y="118" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">prev hash</text>
+  <rect x="120" y="106" width="164" height="20" rx="4" fill="#0b0f14"/>
+  <text x="202" y="120" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">0000…(genesis)</text>
+  <text x="50" y="148" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">nonce</text>
+  <text x="120" y="148" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">48291</text>
+  <line x1="42" y1="158" x2="288" y2="158" stroke="#1c2430" stroke-width="1"/>
+  <text x="165" y="176" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">transactions (3)</text>
+  <rect x="42" y="182" width="246" height="20" rx="4" fill="#0f1923"/>
+  <text x="165" y="195" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Alice → Bob  0.5 BTC</text>
+  <rect x="42" y="206" width="246" height="20" rx="4" fill="#0b0f14"/>
+  <text x="165" y="219" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Carol → Dave  1.2 BTC</text>
+  <rect x="42" y="230" width="246" height="20" rx="4" fill="#0f1923"/>
+  <text x="165" y="243" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Eve → Frank  0.1 BTC</text>
+  <line x1="42" y1="258" x2="288" y2="258" stroke="#1c2430" stroke-width="1"/>
+  <text x="50" y="276" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">hash</text>
+  <rect x="90" y="264" width="180" height="24" rx="5" fill="#0b0f14" stroke="#5DCAA5" stroke-width="1.5"/>
+  <text x="180" y="280" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5DCAA5" font-weight="700">3f7a8c2d…</text>
+  <text x="165" y="320" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">sealed by miner A</text>
+
+  <!-- Chain link arrow N-1 → N -->
+  <line x1="300" y1="200" x2="348" y2="200" stroke="#EF9F27" stroke-width="2.5"/>
+  <polygon points="348,194 362,200 348,206" fill="#EF9F27"/>
+  <text x="331" y="192" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27">prev</text>
+  <text x="331" y="214" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27">hash</text>
+
+  <!-- Block N (highlighted) -->
+  <rect x="362" y="40" width="270" height="310" rx="12" fill="#141a22" stroke="#EF9F27" stroke-width="3"/>
+  <rect x="362" y="40" width="270" height="36" rx="12" fill="#2a1a00"/>
+  <rect x="362" y="64" width="270" height="12" rx="0" fill="#2a1a00"/>
+  <text x="497" y="63" text-anchor="middle" font-family="DM Mono,monospace" font-size="13" fill="#EF9F27" font-weight="700">Block N</text>
+  <text x="378" y="98" font-family="DM Mono,monospace" font-size="9" fill="#EF9F27" font-weight="700">prev hash</text>
+  <rect x="456" y="86" width="160" height="20" rx="4" fill="#0b0f14" stroke="#EF9F27" stroke-width="1.5"/>
+  <text x="536" y="100" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#EF9F27" font-weight="700">3f7a8c2d…</text>
+  <text x="378" y="128" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">nonce</text>
+  <text x="430" y="128" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">91042</text>
+  <line x1="374" y1="138" x2="620" y2="138" stroke="#1c2430" stroke-width="1"/>
+  <text x="497" y="156" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">transactions (3)</text>
+  <rect x="374" y="162" width="246" height="20" rx="4" fill="#0f1923"/>
+  <text x="497" y="175" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Grace → Henry  2.0 BTC</text>
+  <rect x="374" y="186" width="246" height="20" rx="4" fill="#0b0f14"/>
+  <text x="497" y="199" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Ivan → Judy  0.3 BTC</text>
+  <rect x="374" y="210" width="246" height="20" rx="4" fill="#0f1923"/>
+  <text x="497" y="223" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Karl → Lena  0.8 BTC</text>
+  <line x1="374" y1="238" x2="620" y2="238" stroke="#1c2430" stroke-width="1"/>
+  <text x="378" y="256" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">hash</text>
+  <rect x="418" y="244" width="180" height="24" rx="5" fill="#0b0f14" stroke="#EF9F27" stroke-width="2"/>
+  <text x="508" y="260" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#EF9F27" font-weight="700">a91c4f7e…</text>
+  <text x="497" y="318" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">sealed by miner B</text>
+
+  <!-- Chain link arrow N → N+1 -->
+  <line x1="632" y1="200" x2="680" y2="200" stroke="#EF9F27" stroke-width="2.5"/>
+  <polygon points="680,194 694,200 680,206" fill="#EF9F27"/>
+  <text x="663" y="192" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27">prev</text>
+  <text x="663" y="214" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="#EF9F27">hash</text>
+
+  <!-- Block N+1 -->
+  <rect x="694" y="60" width="270" height="280" rx="12" fill="#141a22" stroke="#5DCAA5" stroke-width="2"/>
+  <rect x="694" y="60" width="270" height="36" rx="12" fill="#0a2a1a"/>
+  <rect x="694" y="84" width="270" height="12" rx="0" fill="#0a2a1a"/>
+  <text x="829" y="83" text-anchor="middle" font-family="DM Mono,monospace" font-size="13" fill="#5DCAA5" font-weight="700">Block N+1</text>
+  <text x="710" y="118" font-family="DM Mono,monospace" font-size="9" fill="#5DCAA5" font-weight="700">prev hash</text>
+  <rect x="790" y="106" width="160" height="20" rx="4" fill="#0b0f14" stroke="#5DCAA5" stroke-width="1.5"/>
+  <text x="870" y="120" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5DCAA5" font-weight="700">a91c4f7e…</text>
+  <text x="710" y="148" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">nonce</text>
+  <text x="760" y="148" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">20183</text>
+  <line x1="706" y1="158" x2="952" y2="158" stroke="#1c2430" stroke-width="1"/>
+  <text x="829" y="176" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#4a5568">transactions (3)</text>
+  <rect x="706" y="182" width="246" height="20" rx="4" fill="#0f1923"/>
+  <text x="829" y="195" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Mia → Noah  1.5 BTC</text>
+  <rect x="706" y="206" width="246" height="20" rx="4" fill="#0b0f14"/>
+  <text x="829" y="219" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Omar → Pia  0.2 BTC</text>
+  <rect x="706" y="230" width="246" height="20" rx="4" fill="#0f1923"/>
+  <text x="829" y="243" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#8b95a5">Quinn → Rose  0.6 BTC</text>
+  <line x1="706" y1="258" x2="952" y2="258" stroke="#1c2430" stroke-width="1"/>
+  <text x="710" y="276" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">hash</text>
+  <rect x="750" y="264" width="180" height="24" rx="5" fill="#0b0f14" stroke="#5DCAA5" stroke-width="1.5"/>
+  <text x="840" y="280" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#5DCAA5" font-weight="700">c84f2a1b…</text>
+  <text x="829" y="320" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#4a5568">sealed by miner C</text>
+
+  <!-- Key insight callout -->
+  <rect x="30" y="350" width="1000" height="26" rx="6" fill="#141a22" stroke="#EF9F27" stroke-width="1"/>
+  <text x="530" y="367" text-anchor="middle" font-family="DM Mono,monospace" font-size="10" fill="#EF9F27">PREV HASH — each block locks in the hash of the one before it. Change any past transaction and the hash changes, breaking every block that follows.</text>
+
+</svg>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  17 / 19" data-transition="fade">
+<h3 style="color:var(--c-amber)">Types of blockchain</h3>
+<p class="small">Not all blockchains are Bitcoin. The relevant question for finance: who can participate?</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;width:97%;margin:8px auto 0">
+
+  <!-- Public -->
+  <div style="background:#141a22;border:1.5px solid #5DCAA5;border-radius:12px;padding:12px 14px">
+    <div style="font-family:DM Mono,monospace;font-size:0.34em;color:#5DCAA5;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Public / Permissionless</div>
+    <div style="font-size:0.44em;font-weight:700;color:#e8eaed;margin-bottom:6px">Anyone can join, read, write, validate</div>
+    <div style="font-size:0.34em;color:#8b95a5;line-height:1.4;margin-bottom:8px">No central authority. Maximum decentralisation. All transactions visible. Slow (~7 tx/sec Bitcoin vs ~1,700 Visa).</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#5DCAA5;font-weight:700">Bitcoin</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">est. 2009</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">Digital gold, store of value, peer-to-peer payments. $1T+ market cap. Used by MicroStrategy, El Salvador as legal tender.</div>
+      </div>
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#5DCAA5;font-weight:700">Ethereum</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">est. 2015</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">Smart contracts, DeFi, NFTs, tokenised assets. BlackRock BUIDL fund runs on Ethereum. ~$500B market cap.</div>
+      </div>
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#5DCAA5;font-weight:700">Solana</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">est. 2020</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">High-speed public chain (~65,000 tx/sec). Used by Visa for USDC settlement pilots. Payments and consumer apps.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Private -->
+  <div style="background:#141a22;border:1.5px solid #EF9F27;border-radius:12px;padding:12px 14px">
+    <div style="font-family:DM Mono,monospace;font-size:0.34em;color:#EF9F27;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Private / Permissioned</div>
+    <div style="font-size:0.44em;font-weight:700;color:#e8eaed;margin-bottom:6px">Known participants — invitation required</div>
+    <div style="font-size:0.34em;color:#8b95a5;line-height:1.4;margin-bottom:8px">Faster (1,000s tx/sec). Privacy controls. Regulators know who participates. Most financial deployments use this model.</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#EF9F27;font-weight:700">Hyperledger Fabric</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">Linux Foundation</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">Enterprise supply chain and trade finance. Used by Maersk (TradeLens), HSBC for FX settlement, Walmart food tracing.</div>
+      </div>
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#EF9F27;font-weight:700">R3 Corda</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">est. 2016</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">Purpose-built for financial services. Used by DTCC, Goldman Sachs, HSBC for bond issuance and repo settlement.</div>
+      </div>
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#EF9F27;font-weight:700">Quorum (JPMorgan)</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">est. 2016</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">JPMorgan's private Ethereum fork. Powers JPM Coin for intraday dollar transfers between institutional clients.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Consortium + DAG -->
+  <div style="background:#141a22;border:1.5px solid #AFA9EC;border-radius:12px;padding:12px 14px">
+    <div style="font-family:DM Mono,monospace;font-size:0.34em;color:#AFA9EC;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px">Consortium &amp; DAG</div>
+    <div style="font-size:0.44em;font-weight:700;color:#e8eaed;margin-bottom:6px">Shared governance across competitors</div>
+    <div style="font-size:0.34em;color:#8b95a5;line-height:1.4;margin-bottom:8px">Consortium: group of industry peers run the nodes jointly. DAG: no blocks — transactions validate each other directly.</div>
+    <div style="display:flex;flex-direction:column;gap:5px">
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#AFA9EC;font-weight:700">SWIFT GPI / ISO 20022</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">consortium</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">11,000+ banks share a messaging layer. Not a blockchain but the consortium model — shared governance, competitive participants.</div>
+      </div>
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#AFA9EC;font-weight:700">Hedera Hashgraph</span>
+          <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">DAG · est. 2019</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">Governed by Google, IBM, Boeing, Deutsche Telekom. Used by Standard Bank for cross-border payments in Africa.</div>
+      </div>
+      <div style="background:#0b0f14;border-radius:6px;padding:6px 8px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px">
+          <span style="font-family:DM Mono,monospace;font-size:0.34em;color:#AFA9EC;font-weight:700">Canton Network</span>
+          <span style="font-family(DM Mono,monospace;font-size:0.28em;color:#4a5568">est. 2023</span>
+        </div>
+        <div style="font-size:0.32em;color:#8b95a5">Goldman Sachs, BNP Paribas, Deloitte. Privacy-preserving interoperability for tokenised assets across institutions.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<section data-background-color="#0b0f14" data-bc="Day 3  ·  S5  ·  18 / 21" data-transition="fade">
+<h3 style="color:var(--c-amber)">How traditional banks are adapting — and what has failed</h3>
+<p class="small">Banks take the efficiency gains, strip out the parts that don't work for them</p>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:97%;margin:8px auto 0">
+
+  <!-- Left: Three strategies -->
+  <div style="display:flex;flex-direction:column;gap:7px">
+
+    <div style="background:#141a22;border-left:3px solid #5DCAA5;border-radius:0 8px 8px 0;padding:8px 12px">
+      <div style="font-family:DM Mono,monospace;font-size:0.34em;color:#5DCAA5;font-weight:700;margin-bottom:3px">① Build their own chain</div>
+      <div style="font-size:0.36em;color:#e8eaed;margin-bottom:3px">Take the technology, keep full control</div>
+      <div style="font-size:0.32em;color:#8b95a5;line-height:1.4">JPMorgan Onyx / JPM Coin — intraday institutional transfers. Goldman GS DAP — tokenised asset platform. HSBC FX Everywhere — internal FX netting across 27 currencies.</div>
+    </div>
+
+    <div style="background:#141a22;border-left:3px solid #EF9F27;border-radius:0 8px 8px 0;padding:8px 12px">
+      <div style="font-family:DM Mono,monospace;font-size:0.34em;color:#EF9F27;font-weight:700;margin-bottom:3px">② Join industry consortia</div>
+      <div style="font-size:0.36em;color:#e8eaed;margin-bottom:3px">Shared infrastructure, shared governance</div>
+      <div style="font-size:0.32em;color:#8b95a5;line-height:1.4">Canton Network (Goldman, BNP, Deloitte). R3 Corda network (HSBC, DTCC, Barclays). SWIFT blockchain interoperability pilots. Logic: no bank builds alone, no bank lets a competitor go first.</div>
+    </div>
+
+    <div style="background:#141a22;border-left:3px solid #AFA9EC;border-radius:0 8px 8px 0;padding:8px 12px">
+      <div style="font-family:DM Mono,monospace;font-size:0.34em;color:#AFA9EC;font-weight:700;margin-bottom:3px">③ Tokenise on existing chains</div>
+      <div style="font-size:0.36em;color:#e8eaed;margin-bottom:3px">Use public infrastructure for regulated products</div>
+      <div style="font-size:0.32em;color:#8b95a5;line-height:1.4">BlackRock BUIDL on Ethereum ($500M+). Franklin Templeton money market fund on Polygon. Société Générale covered bond on Ethereum. They don't build — they deploy.</div>
+    </div>
+
+  </div>
+
+  <!-- Right: Failed vs succeeded -->
+  <div style="display:flex;flex-direction:column;gap:7px">
+
+    <div style="font-family:DM Mono,monospace;font-size:0.32em;color:#E24B4A;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:2px">What has failed</div>
+
+    <div style="background:#1a0a0a;border:1px solid rgba(226,75,74,0.3);border-radius:8px;padding:8px 12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+        <span style="font-size:0.38em;color:#E24B4A;font-weight:700">TradeLens (Maersk + IBM)</span>
+        <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">shut down 2022</span>
+      </div>
+      <div style="font-size:0.31em;color:#8b95a5;line-height:1.4">Global trade documentation on Hyperledger. Shut after 4 years — competitors refused to join a platform controlled by a rival (Maersk). Governance, not technology, killed it.</div>
+    </div>
+
+    <div style="background:#1a0a0a;border:1px solid rgba(226,75,74,0.3);border-radius:8px;padding:8px 12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+        <span style="font-size:0.38em;color:#E24B4A;font-weight:700">ASX CHESS Replacement</span>
+        <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">cancelled 2023</span>
+      </div>
+      <div style="font-size:0.31em;color:#8b95a5;line-height:1.4">7-year project to replace Australia's equity settlement system with blockchain. Cancelled after $170M spent. Complexity and scope far exceeded blockchain's readiness for the task.</div>
+    </div>
+
+    <div style="background:#1a0a0a;border:1px solid rgba(226,75,74,0.3);border-radius:8px;padding:8px 12px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:3px">
+        <span style="font-size:0.38em;color:#E24B4A;font-weight:700">We.Trade (European banks)</span>
+        <span style="font-family:DM Mono,monospace;font-size:0.28em;color:#4a5568">collapsed 2023</span>
+      </div>
+      <div style="font-size:0.31em;color:#8b95a5;line-height:1.4">12-bank consortium for trade finance on Hyperledger. Collapsed after banks lost interest — insufficient transaction volumes, high operating costs, no network effects.</div>
+    </div>
+
+    <div style="font-family:DM Mono,monospace;font-size:0.32em;color:#5DCAA5;text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;margin-bottom:2px">What has worked</div>
+
+    <div style="background:#0a1f14;border:1px solid rgba(93,202,165,0.3);border-radius:8px;padding:8px 12px">
+      <div style="font-size:0.31em;color:#8b95a5;line-height:1.5">
+        <span style="color:#5DCAA5;font-weight:700">JPM Coin</span> — $1B+ daily volume in institutional transfers ·
+        <span style="color:#5DCAA5;font-weight:700">HSBC FX Everywhere</span> — $2.5T in FX netting since 2018 ·
+        <span style="color:#5DCAA5;font-weight:700">BlackRock BUIDL</span> — $500M+ tokenised treasury fund ·
+        <span style="color:#5DCAA5;font-weight:700">Contour</span> — live trade finance letters of credit in 100+ countries
+      </div>
+    </div>
+
+    <div style="background:#141a22;border-radius:8px;padding:7px 12px;margin-top:2px">
+      <div style="font-size:0.31em;color:#4a5568;font-style:italic;line-height:1.4">Pattern: narrow scope, clear efficiency gain, controlled participant set. Broad consortia with competitive participants and unclear governance models consistently fail.</div>
+    </div>
+
   </div>
 </div>
 </section>
@@ -706,23 +1811,23 @@ Reveal.initialize({
   slideNumber:false
 })
 
-// ── CENTRALISED SLIDE INIT DISPATCHER ──────────────────
 function dispatchSlideInit(slide){
   if(!slide) return;
-  if(slide.querySelector('#bc-trad-svg') && typeof bcAnimInit==='function') bcAnimInit();
+  if(slide.querySelector('#bc-trad-svg') && typeof bcTradAnimInit==='function') bcTradAnimInit();
+  if(slide.querySelector('#bc-canvas') && typeof bcCanvasAnimInit==='function') bcCanvasAnimInit();
+  if(slide.querySelector('#mine-canvas') && typeof mineAnimInit==='function') mineAnimInit();
 }
-Reveal.on('ready',function(e){ dispatchSlideInit(e.currentSlide); });
-Reveal.on('slidechanged',function(e){ dispatchSlideInit(e.currentSlide); });
-;
-Reveal.addEventListener('slidechanged',function(e){
+
+Reveal.on('ready',function(e){
   var bc=e.currentSlide.getAttribute('data-bc')||'';
   document.getElementById('bc-footer').textContent=bc;
-  if(e.currentSlide.querySelector('#bc-trad-svg')) bcAnimInit();
+  dispatchSlideInit(e.currentSlide);
 });
-Reveal.addEventListener('ready',function(e){
+
+Reveal.on('slidechanged',function(e){
   var bc=e.currentSlide.getAttribute('data-bc')||'';
   document.getElementById('bc-footer').textContent=bc;
-  if(e.currentSlide.querySelector && e.currentSlide.querySelector('#bc-trad-svg')) bcAnimInit();
+  dispatchSlideInit(e.currentSlide);
 });
 </script>
 </body>

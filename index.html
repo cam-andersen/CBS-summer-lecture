@@ -34,7 +34,7 @@
     .session-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:32px}
     .session-card{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:16px;padding:28px 32px;text-decoration:none;color:var(--c-white);transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden;display:flex;flex-direction:column}
     .session-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
-    .session-card.s1::before{background:var(--c-teal)}.session-card.s3::before{background:var(--c-amber)}.session-card.s4::before{background:var(--c-coral)}
+    .session-card.s1::before{background:var(--c-teal)}.session-card.s3::before{background:var(--c-amber)}.session-card.s4::before{background:var(--c-coral)}.session-card.s5::before{background:var(--c-coral)}.session-card.s6::before{background:var(--c-purple)}
     .session-card:not(.placeholder):hover{border-color:var(--c-teal);transform:translateY(-8px);box-shadow:0 20px 40px rgba(93,202,165,0.15)}
     .session-card:not(.placeholder):hover::before{transform:scaleX(1)}
     .session-label{font-family:var(--mono);font-size:0.65em;color:var(--c-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
@@ -101,19 +101,21 @@
         <div class="session-meta"><span>40 slides</span><span class="session-arrow">&rarr;</span></div>
       </a>
 
-      <div class="session-card placeholder">
+      <a href="CBS_W1_S5_Blockchain.html" class="session-card s5">
         <div class="session-label">Session 5 &middot; Day 3</div>
         <h3 class="session-title">Blockchain &amp; Distributed Ledgers</h3>
-        <p class="session-description">Trust without intermediaries, settlement flows, types of blockchain, Hedera and DAG variants, finance applications.</p>
-        <span class="placeholder-badge">Available Day 3</span>
-      </div>
+        <p class="session-description">Trust without intermediaries, settlement flows, types of blockchain, mining, consensus, finality, and where it has and hasn't delivered.</p>
+        <div class="tag-row"><span class="tag tag-coral">Blockchain</span><span class="tag tag-coral">Settlement</span><span class="tag tag-coral">DLT</span></div>
+        <div class="session-meta"><span>23 slides</span><span class="session-arrow">&rarr;</span></div>
+      </a>
 
-      <div class="session-card placeholder">
+      <a href="CBS_W1_S6_Synthesis.html" class="session-card s6">
         <div class="session-label">Session 6 &middot; Day 3</div>
         <h3 class="session-title">Synthesis &amp; Integration</h3>
         <p class="session-description">Connecting all four domains into one integrated architecture. Dependency chains, cross-domain scenarios, and what it all means together.</p>
-        <span class="placeholder-badge">Available Day 3</span>
-      </div>
+        <div class="tag-row"><span class="tag tag-purple">Synthesis</span><span class="tag tag-purple">D3 Architecture</span></div>
+        <div class="session-meta"><span>22 slides</span><span class="session-arrow">&rarr;</span></div>
+      </a>
 
     </div>
   </section>
