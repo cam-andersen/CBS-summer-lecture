@@ -34,7 +34,7 @@
     .session-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:32px}
     .session-card{background:var(--c-surface);border:1.5px solid var(--c-border);border-radius:16px;padding:28px 32px;text-decoration:none;color:var(--c-white);transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);position:relative;overflow:hidden;display:flex;flex-direction:column}
     .session-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
-    .session-card.s1::before{background:var(--c-teal)}.session-card.s3::before{background:var(--c-amber)}.session-card.s4::before{background:var(--c-coral)}.session-card.s5::before{background:var(--c-coral)}.session-card.s6::before{background:var(--c-purple)}
+    .session-card.s1::before{background:var(--c-teal)}.session-card.s3::before{background:var(--c-amber)}.session-card.s4::before{background:var(--c-coral)}.session-card.s5::before{background:var(--c-coral)}.session-card.s6::before{background:var(--c-purple)}.session-card.w2::before{background:var(--c-amber)}.session-card.w3::before{background:var(--c-purple)}
     .session-card:not(.placeholder):hover{border-color:var(--c-teal);transform:translateY(-8px);box-shadow:0 20px 40px rgba(93,202,165,0.15)}
     .session-card:not(.placeholder):hover::before{transform:scaleX(1)}
     .session-label{font-family:var(--mono);font-size:0.65em;color:var(--c-muted);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px}
@@ -124,12 +124,13 @@
     <div class="week-header"><span class="week-badge w2">Week 2</span><h2 class="week-title">Cases, Reasoning &amp; Outcomes</h2></div>
     <p class="week-subtitle">15 real-world cases across 4 teaching days &mdash; what was attempted, what went wrong, how to rescue it</p>
     <div class="session-grid">
-      <div class="session-card placeholder">
-        <div class="session-label">Days 4&ndash;7</div>
-        <h3 class="session-title">Real-World Case Studies</h3>
-        <p class="session-description">Pipeline failures, data and bias, institutional failure, systemic governance. Knight Capital, Amazon Hiring, Dutch Benefits, Cambridge Analytica, and more.</p>
-        <span class="placeholder-badge">Available Week 2</span>
-      </div>
+      <a href="CBS_W2_Cases.html" class="session-card w2">
+        <div class="session-label">Days 4&ndash;7 &middot; Week 2</div>
+        <h3 class="session-title">When Good Metrics Go Bad</h3>
+        <p class="session-description">10 laws of system failure, then 19 real-world cases: pipeline failures, data bias, institutional blindness, systemic governance.</p>
+        <div class="tag-row"><span class="tag tag-amber">19 Cases</span><span class="tag tag-amber">Goodhart to Amara</span></div>
+        <div class="session-meta"><span>127 slides</span><span class="session-arrow">&rarr;</span></div>
+      </a>
     </div>
   </section>
 
@@ -138,9 +139,9 @@
     <p class="week-subtitle">13 near-future hypothetical cases &mdash; no outcomes, only tensions &mdash; your job is to design the governance response</p>
     <div class="session-grid">
       <div class="session-card placeholder">
-        <div class="session-label">Days 8&ndash;10</div>
+        <div class="session-label">Days 8&ndash;10 &middot; Week 3</div>
         <h3 class="session-title">Hypothetical Scenarios</h3>
-        <p class="session-description">Central bank AI, hospital triage, pension fund quantum risk, sovereign AI, and more. Complexity 2&ndash;5. No right answers.</p>
+        <p class="session-description">Central bank AI, hospital triage, pension fund quantum risk, sovereign AI, post-quantum cryptography decisions, and more. No right answers.</p>
         <span class="placeholder-badge">Available Week 3</span>
       </div>
     </div>
