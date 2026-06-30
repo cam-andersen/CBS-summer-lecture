@@ -443,8 +443,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F2 NomadGo" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 2px">F2 · Starbucks / NomadGo — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="nomadgo-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="nomadgo-svg" width="100%" height="610" style="display:block"></svg>
   <div id="nomadgo-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:'DM Sans',sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -463,17 +463,17 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Starbucks / NomadGo", grp:"core", col:"#F0997B", r:34, desc:"11,000 North American stores. LiDAR + computer vision to automate inventory counting. Rolled out Sept 2025, retired May 2026."},
-      {id:"No quality gate", grp:"pattern", col:"#E24B4A", r:22, desc:"The core failure \u2014 confusing visually similar products \u2014 was visible in the FSTEC 2025 launch video itself. Deployed nationally anyway."},
-      {id:"Scale before validation", grp:"pattern", col:"#E24B4A", r:22, desc:"No staged pilot against documented accuracy benchmarks before scaling to 11,000 locations. Pilot \u2192 measure \u2192 scale was skipped entirely."},
-      {id:"Silent failure mode", grp:"pattern", col:"#EF9F27", r:22, desc:"No monitoring framework existed to aggregate thousands of small distributed errors into a single visible signal. Each error was small. The accumulation over 9 months was not."},
-      {id:"Proxy Creep", grp:"pattern", col:"#AFA9EC", r:22, desc:"Improved inventory management was used as a proxy for system works. The proxy was declared satisfied without verifying the underlying goal."},
-      {id:"Undisclosed impact", grp:"pattern", col:"#5DCAA5", r:22, desc:"February 2026: called a success. May 2026: retired. The cumulative impact across 9 months and 11,000 stores was never publicly disclosed."}
+      {id:"Starbucks / NomadGo", grp:"core", col:"#F0997B", r:46, desc:"11,000 North American stores. LiDAR + computer vision to automate inventory counting. Rolled out Sept 2025, retired May 2026."},
+      {id:"No quality gate", grp:"pattern", col:"#E24B4A", r:32, desc:"The core failure \u2014 confusing visually similar products \u2014 was visible in the FSTEC 2025 launch video itself. Deployed nationally anyway."},
+      {id:"Scale before validation", grp:"pattern", col:"#E24B4A", r:32, desc:"No staged pilot against documented accuracy benchmarks before scaling to 11,000 locations. Pilot \u2192 measure \u2192 scale was skipped entirely."},
+      {id:"Silent failure mode", grp:"pattern", col:"#EF9F27", r:32, desc:"No monitoring framework existed to aggregate thousands of small distributed errors into a single visible signal. Each error was small. The accumulation over 9 months was not."},
+      {id:"Proxy Creep", grp:"pattern", col:"#AFA9EC", r:32, desc:"Improved inventory management was used as a proxy for system works. The proxy was declared satisfied without verifying the underlying goal."},
+      {id:"Undisclosed impact", grp:"pattern", col:"#5DCAA5", r:32, desc:"February 2026: called a success. May 2026: retired. The cumulative impact across 9 months and 11,000 stores was never publicly disclosed."}
     ];
 
     var links=[
@@ -486,10 +486,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -512,7 +512,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -524,9 +524,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -548,8 +548,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -568,8 +568,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
   <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · NM2 Alexa" data-transition="fade">
 <h3 style="color:var(--c-blue);margin:0 0 2px">NM2 · Amazon Alexa — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="nm2-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="nm2-svg" width="100%" height="610" style="display:block"></svg>
   <div id="nm2-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:\'DM Sans\',sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -586,16 +586,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Amazon Alexa", grp:"core", col:"#85B7EB", r:34, desc:"Portland, Oregon family, May 2018. Echo devices wired throughout the home. A four-step chain of individually correct interpretations resulted in a private conversation being sent to a stranger."},
-      {id:"Step composition", grp:"pattern", col:"#E24B4A", r:22, desc:"Each of the four steps \u2014 wake word, message request, recipient name, confirmation \u2014 was individually below the threshold for suspicion. No design principle governed the combination."},
-      {id:"Lucky save", grp:"pattern", col:"#EF9F27", r:22, desc:"The save depended entirely on who was in the contacts list. The employee who received the message happened to call immediately. An unknown or malicious recipient changes this from near-miss to violation."},
-      {id:"Scale invisibility", grp:"pattern", col:"#AFA9EC", r:22, desc:"Amazon called it \u201cextremely rare\u201d but never addressed how many partial chains complete silently across millions of devices. Rarity per-device does not mean rarity in aggregate."},
-      {id:"No remediation", grp:"pattern", col:"#5DCAA5", r:22, desc:"\u201cEvaluating options to make this case even less likely\u201d is not a fix. No specific change to the wake-word or confirmation flow was disclosed."}
+      {id:"Amazon Alexa", grp:"core", col:"#85B7EB", r:46, desc:"Portland, Oregon family, May 2018. Echo devices wired throughout the home. A four-step chain of individually correct interpretations resulted in a private conversation being sent to a stranger."},
+      {id:"Step composition", grp:"pattern", col:"#E24B4A", r:32, desc:"Each of the four steps \u2014 wake word, message request, recipient name, confirmation \u2014 was individually below the threshold for suspicion. No design principle governed the combination."},
+      {id:"Lucky save", grp:"pattern", col:"#EF9F27", r:32, desc:"The save depended entirely on who was in the contacts list. The employee who received the message happened to call immediately. An unknown or malicious recipient changes this from near-miss to violation."},
+      {id:"Scale invisibility", grp:"pattern", col:"#AFA9EC", r:32, desc:"Amazon called it \u201cextremely rare\u201d but never addressed how many partial chains complete silently across millions of devices. Rarity per-device does not mean rarity in aggregate."},
+      {id:"No remediation", grp:"pattern", col:"#5DCAA5", r:32, desc:"\u201cEvaluating options to make this case even less likely\u201d is not a fix. No specific change to the wake-word or confirmation flow was disclosed."}
     ];
 
     var links=[
@@ -607,10 +607,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -633,7 +633,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -645,9 +645,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -669,8 +669,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -688,8 +688,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F3 Amazon Hiring" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 2px">F3 · Amazon AI Hiring Tool — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f3-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f3-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f3-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -706,17 +706,17 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Amazon AI Hiring Tool", grp:"core", col:"#F0997B", r:34, desc:"2014\u20132017. Automated CV screening trained on ten years of historical hiring decisions. Scrapped after the team could not verify gender-neutrality."},
-      {id:"Biased labels as ground truth", grp:"pattern", col:"#E24B4A", r:22, desc:"\u201cHired / not hired\u201d encoded a decade of the company\u2019s own historical bias. Nobody asked whether past hiring decisions were a valid measure of future talent."},
-      {id:"No quality gate at ingestion", grp:"pattern", col:"#E24B4A", r:22, desc:"No audit of whether the labels themselves were unbiased before training began."},
-      {id:"Proxy Creep", grp:"pattern", col:"#AFA9EC", r:22, desc:"\u201cPast successful hire\u201d used as proxy for \u201cgood future employee.\u201d The proxy was biased; the bias was amplified by the model."},
-      {id:"Campbell\u2019s Law", grp:"pattern", col:"#5DCAA5", r:22, desc:"The hiring metric became the target. The model optimised for the metric \u2014 predicting who gets hired \u2014 not for talent."},
-      {id:"Working as designed", grp:"pattern", col:"#EF9F27", r:22, desc:"\u201cThe AI was working exactly as designed \u2014 learning from the data it was given. That is exactly the problem.\u201d"}
+      {id:"Amazon AI Hiring Tool", grp:"core", col:"#F0997B", r:46, desc:"2014\u20132017. Automated CV screening trained on ten years of historical hiring decisions. Scrapped after the team could not verify gender-neutrality."},
+      {id:"Biased labels as ground truth", grp:"pattern", col:"#E24B4A", r:32, desc:"\u201cHired / not hired\u201d encoded a decade of the company\u2019s own historical bias. Nobody asked whether past hiring decisions were a valid measure of future talent."},
+      {id:"No quality gate at ingestion", grp:"pattern", col:"#E24B4A", r:32, desc:"No audit of whether the labels themselves were unbiased before training began."},
+      {id:"Proxy Creep", grp:"pattern", col:"#AFA9EC", r:32, desc:"\u201cPast successful hire\u201d used as proxy for \u201cgood future employee.\u201d The proxy was biased; the bias was amplified by the model."},
+      {id:"Campbell\u2019s Law", grp:"pattern", col:"#5DCAA5", r:32, desc:"The hiring metric became the target. The model optimised for the metric \u2014 predicting who gets hired \u2014 not for talent."},
+      {id:"Working as designed", grp:"pattern", col:"#EF9F27", r:32, desc:"\u201cThe AI was working exactly as designed \u2014 learning from the data it was given. That is exactly the problem.\u201d"}
     ];
 
     var links=[
@@ -729,10 +729,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -755,7 +755,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -767,9 +767,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -791,8 +791,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -810,8 +810,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · NM3 Google Photos" data-transition="fade">
 <h3 style="color:var(--c-blue);margin:0 0 2px">NM3 · Google Photos Gorillas — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="nm3-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="nm3-svg" width="100%" height="610" style="display:block"></svg>
   <div id="nm3-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -828,17 +828,17 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Google Photos", grp:"core", col:"#85B7EB", r:34, desc:"May 2015 launch. AI-powered automatic image tagging deployed to millions of users worldwide. Training data underrepresented darker skin tones."},
-      {id:"Training data representation bias", grp:"pattern", col:"#E24B4A", r:22, desc:"The model learned from data that underrepresented darker skin tones. The failure was baked in before a line of production code was written."},
-      {id:"Lucky save", grp:"pattern", col:"#EF9F27", r:22, desc:"One vocal user, Jacky Alcin\u00e9, on the right platform. If he had contacted Google privately, or not at all, the bias would have continued undetected."},
-      {id:"Suppression vs remediation", grp:"pattern", col:"#AFA9EC", r:22, desc:"Google\u2019s fix removed the label \u201cgorilla\u201d entirely \u2014 including for actual gorillas. Ten years later, the label is still absent. The bias was hidden, not fixed."},
-      {id:"Industry norm formation", grp:"pattern", col:"#5DCAA5", r:22, desc:"Apple Photos and Microsoft OneDrive adopted the same workaround \u2014 suppression rather than remediation became an industry-wide default."},
-      {id:"No diverse QA", grp:"pattern", col:"#F0997B", r:22, desc:"Google\u2019s workforce was approximately 2% Black at the time of launch. No representative testing caught the bias before deployment."}
+      {id:"Google Photos", grp:"core", col:"#85B7EB", r:46, desc:"May 2015 launch. AI-powered automatic image tagging deployed to millions of users worldwide. Training data underrepresented darker skin tones."},
+      {id:"Training data representation bias", grp:"pattern", col:"#E24B4A", r:32, desc:"The model learned from data that underrepresented darker skin tones. The failure was baked in before a line of production code was written."},
+      {id:"Lucky save", grp:"pattern", col:"#EF9F27", r:32, desc:"One vocal user, Jacky Alcin\u00e9, on the right platform. If he had contacted Google privately, or not at all, the bias would have continued undetected."},
+      {id:"Suppression vs remediation", grp:"pattern", col:"#AFA9EC", r:32, desc:"Google\u2019s fix removed the label \u201cgorilla\u201d entirely \u2014 including for actual gorillas. Ten years later, the label is still absent. The bias was hidden, not fixed."},
+      {id:"Industry norm formation", grp:"pattern", col:"#5DCAA5", r:32, desc:"Apple Photos and Microsoft OneDrive adopted the same workaround \u2014 suppression rather than remediation became an industry-wide default."},
+      {id:"No diverse QA", grp:"pattern", col:"#F0997B", r:32, desc:"Google\u2019s workforce was approximately 2% Black at the time of launch. No representative testing caught the bias before deployment."}
     ];
 
     var links=[
@@ -850,10 +850,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -876,7 +876,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -888,9 +888,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -912,8 +912,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -931,8 +931,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · NM1 Uber Sydney" data-transition="fade">
 <h3 style="color:var(--c-blue);margin:0 0 4px">NM1 · Uber Sydney — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="nm1-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="nm1-svg" width="100%" height="610" style="display:block"></svg>
   <div id="nm1-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -949,16 +949,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Uber Sydney", grp:"core", col:"#85B7EB", r:34, desc:"December 2014. Lindt Caf\u00e9 siege. Surge pricing algorithm raised fares 4\u00d7 during a hostage crisis as thousands tried to flee the area."},
-      {id:"Algorithm context-blindness", grp:"pattern", col:"#E24B4A", r:22, desc:"No mechanism to detect when a demand spike has a humanitarian cause rather than a commercial one. A crisis zone looks identical to New Year\u2019s Eve to the algorithm."},
-      {id:"Governance policy gap across markets", grp:"pattern", col:"#EF9F27", r:22, desc:"The fix already existed \u2014 Uber capped surge pricing during US disasters after Hurricane Sandy, five months earlier. That policy was never applied globally."},
-      {id:"Reactive governance", grp:"pattern", col:"#AFA9EC", r:22, desc:"The override was discretionary, not structural. A human noticed and acted after roughly 40 minutes. That is not a repeatable governance model."},
-      {id:"Goodhart\u2019s Law", grp:"pattern", col:"#5DCAA5", r:22, desc:"The surge metric \u2014 designed to measure driver supply gap \u2014 became the response itself. Context was never measured, so context could not inform the response."}
+      {id:"Uber Sydney", grp:"core", col:"#85B7EB", r:46, desc:"December 2014. Lindt Caf\u00e9 siege. Surge pricing algorithm raised fares 4\u00d7 during a hostage crisis as thousands tried to flee the area."},
+      {id:"Algorithm context-blindness", grp:"pattern", col:"#E24B4A", r:32, desc:"No mechanism to detect when a demand spike has a humanitarian cause rather than a commercial one. A crisis zone looks identical to New Year\u2019s Eve to the algorithm."},
+      {id:"Governance policy gap across markets", grp:"pattern", col:"#EF9F27", r:32, desc:"The fix already existed \u2014 Uber capped surge pricing during US disasters after Hurricane Sandy, five months earlier. That policy was never applied globally."},
+      {id:"Reactive governance", grp:"pattern", col:"#AFA9EC", r:32, desc:"The override was discretionary, not structural. A human noticed and acted after roughly 40 minutes. That is not a repeatable governance model."},
+      {id:"Goodhart\u2019s Law", grp:"pattern", col:"#5DCAA5", r:32, desc:"The surge metric \u2014 designed to measure driver supply gap \u2014 became the response itself. Context was never measured, so context could not inform the response."}
     ];
 
     var links=[
@@ -969,10 +969,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -995,7 +995,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1007,9 +1007,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1031,8 +1031,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1050,8 +1050,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F7 Air Canada" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F7 · Air Canada — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f7-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f7-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f7-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1068,17 +1068,17 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Air Canada", grp:"core", col:"#F0997B", r:34, desc:"2022\u20132024. AI chatbot hallucinated a bereavement-fare policy. The BC Civil Resolution Tribunal ruled Air Canada liable \u2014 the first chatbot liability ruling."},
-      {id:"Next-token prediction as truth", grp:"pattern", col:"#E24B4A", r:22, desc:"The chatbot generated the most plausible-sounding policy, not the actual one. Probability and accuracy are different things."},
-      {id:"No retrieval layer", grp:"pattern", col:"#EF9F27", r:22, desc:"The chatbot was not grounded in the actual bereavement policy document. It generated from training patterns, not from a source of record."},
-      {id:"No validation gate", grp:"pattern", col:"#AFA9EC", r:22, desc:"No mechanism checked chatbot output against real policy before presenting it to the customer."},
-      {id:"Proxy Creep", grp:"pattern", col:"#5DCAA5", r:22, desc:"\u201cChatbot answered the question\u201d was used as proxy for \u201cchatbot gave correct answer.\u201d"},
-      {id:"Liability precedent set", grp:"pattern", col:"#E24B4A", r:22, desc:"Air Canada argued the chatbot was \u201ca separate legal entity.\u201d The tribunal rejected this. Every customer-facing GenAI deployment now carries this precedent."}
+      {id:"Air Canada", grp:"core", col:"#F0997B", r:46, desc:"2022\u20132024. AI chatbot hallucinated a bereavement-fare policy. The BC Civil Resolution Tribunal ruled Air Canada liable \u2014 the first chatbot liability ruling."},
+      {id:"Next-token prediction as truth", grp:"pattern", col:"#E24B4A", r:32, desc:"The chatbot generated the most plausible-sounding policy, not the actual one. Probability and accuracy are different things."},
+      {id:"No retrieval layer", grp:"pattern", col:"#EF9F27", r:32, desc:"The chatbot was not grounded in the actual bereavement policy document. It generated from training patterns, not from a source of record."},
+      {id:"No validation gate", grp:"pattern", col:"#AFA9EC", r:32, desc:"No mechanism checked chatbot output against real policy before presenting it to the customer."},
+      {id:"Proxy Creep", grp:"pattern", col:"#5DCAA5", r:32, desc:"\u201cChatbot answered the question\u201d was used as proxy for \u201cchatbot gave correct answer.\u201d"},
+      {id:"Liability precedent set", grp:"pattern", col:"#E24B4A", r:32, desc:"Air Canada argued the chatbot was \u201ca separate legal entity.\u201d The tribunal rejected this. Every customer-facing GenAI deployment now carries this precedent."}
     ];
 
     var links=[
@@ -1090,10 +1090,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1116,7 +1116,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1128,9 +1128,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1152,8 +1152,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1171,8 +1171,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F4 Dutch Benefits" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F4 · Dutch Childcare Benefits — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f4-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f4-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f4-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1189,16 +1189,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Dutch Childcare Benefits", grp:"core", col:"#F0997B", r:34, desc:"2013\u20132021. Algorithmic risk-scoring wrongly accused 26,000 families of fraud, nearly 70% migrants. The entire Dutch cabinet resigned in January 2021."},
-      {id:"Illegal feature variable", grp:"pattern", col:"#E24B4A", r:22, desc:"Nationality was used as a risk signal. The Dutch DPA confirmed this was illegal. The model amplified enforcement bias that already existed against immigrant communities."},
-      {id:"Perverse institutional incentive", grp:"pattern", col:"#EF9F27", r:22, desc:"Budget was conditional on demonstrating fraud reduction \u2014 Goodhart\u2019s Law in direct action. The metric became the target."},
-      {id:"Automation bias", grp:"pattern", col:"#AFA9EC", r:22, desc:"Caseworkers rubber-stamped the algorithm\u2019s output. Human oversight was performative, not genuine."},
-      {id:"No explainability", grp:"pattern", col:"#5DCAA5", r:22, desc:"Families received no explanation and no route to contest the algorithm\u2019s decision. Children were taken into state custody; families lost homes and jobs."}
+      {id:"Dutch Childcare Benefits", grp:"core", col:"#F0997B", r:46, desc:"2013\u20132021. Algorithmic risk-scoring wrongly accused 26,000 families of fraud, nearly 70% migrants. The entire Dutch cabinet resigned in January 2021."},
+      {id:"Illegal feature variable", grp:"pattern", col:"#E24B4A", r:32, desc:"Nationality was used as a risk signal. The Dutch DPA confirmed this was illegal. The model amplified enforcement bias that already existed against immigrant communities."},
+      {id:"Perverse institutional incentive", grp:"pattern", col:"#EF9F27", r:32, desc:"Budget was conditional on demonstrating fraud reduction \u2014 Goodhart\u2019s Law in direct action. The metric became the target."},
+      {id:"Automation bias", grp:"pattern", col:"#AFA9EC", r:32, desc:"Caseworkers rubber-stamped the algorithm\u2019s output. Human oversight was performative, not genuine."},
+      {id:"No explainability", grp:"pattern", col:"#5DCAA5", r:32, desc:"Families received no explanation and no route to contest the algorithm\u2019s decision. Children were taken into state custody; families lost homes and jobs."}
     ];
 
     var links=[
@@ -1210,10 +1210,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1236,7 +1236,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1248,9 +1248,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1272,8 +1272,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1291,8 +1291,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F5 IBM Watson" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F5 · IBM Watson for Oncology — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f5-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f5-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f5-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1309,16 +1309,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"IBM Watson for Oncology", grp:"core", col:"#F0997B", r:34, desc:"2012\u20132017. $62M spent over 5 years, contract extended twelve times. Zero patients ever treated. IBM sold Watson Health in 2022."},
-      {id:"Ideation mismatch", grp:"pattern", col:"#E24B4A", r:22, desc:"Watson\u2019s capability was text retrieval \u2014 it beat humans at Jeopardy!. Clinical oncology requires reasoning under uncertainty. The conceptual gap was never validated before public announcement."},
-      {id:"Synthetic training data", grp:"pattern", col:"#EF9F27", r:22, desc:"Trained on hypothetical scenarios written by a small group of Memorial Sloan Kettering oncologists, then encountered the full diversity of real patients."},
-      {id:"No deployment target", grp:"pattern", col:"#AFA9EC", r:22, desc:"Designed for community hospitals \u2014 but no agreements with any community hospital were signed before spending began."},
-      {id:"Parkinson\u2019s Law", grp:"pattern", col:"#5DCAA5", r:22, desc:"$62M and five years expanded to fill whatever budget and time were allocated, with no working clinical system to show for it."}
+      {id:"IBM Watson for Oncology", grp:"core", col:"#F0997B", r:46, desc:"2012\u20132017. $62M spent over 5 years, contract extended twelve times. Zero patients ever treated. IBM sold Watson Health in 2022."},
+      {id:"Ideation mismatch", grp:"pattern", col:"#E24B4A", r:32, desc:"Watson\u2019s capability was text retrieval \u2014 it beat humans at Jeopardy!. Clinical oncology requires reasoning under uncertainty. The conceptual gap was never validated before public announcement."},
+      {id:"Synthetic training data", grp:"pattern", col:"#EF9F27", r:32, desc:"Trained on hypothetical scenarios written by a small group of Memorial Sloan Kettering oncologists, then encountered the full diversity of real patients."},
+      {id:"No deployment target", grp:"pattern", col:"#AFA9EC", r:32, desc:"Designed for community hospitals \u2014 but no agreements with any community hospital were signed before spending began."},
+      {id:"Parkinson\u2019s Law", grp:"pattern", col:"#5DCAA5", r:32, desc:"$62M and five years expanded to fill whatever budget and time were allocated, with no working clinical system to show for it."}
     ];
 
     var links=[
@@ -1330,10 +1330,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1356,7 +1356,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1368,9 +1368,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1392,8 +1392,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1411,8 +1411,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F11 Post Office Horizon" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F11 · UK Post Office / Horizon — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f11-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f11-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f11-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1429,16 +1429,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"UK Post Office / Horizon", grp:"core", col:"#F0997B", r:34, desc:"1999\u20132025. Approximately 900 subpostmasters prosecuted using flawed accounting software data. At least 13 suicides linked to the scandal. 20+ years to justice."},
-      {id:"Automation bias at industrial scale", grp:"pattern", col:"#E24B4A", r:22, desc:"The institution trusted the system over hundreds of individual human accounts, for over twenty years. Every subpostmaster said the same thing. The institution chose the machine."},
-      {id:"Suppression of known defects", grp:"pattern", col:"#E24B4A", r:22, desc:"Both the Post Office and Fujitsu knew Horizon had bugs. Neither disclosed this to subpostmasters or to courts. This is not governance failure \u2014 it is fraud."},
-      {id:"Peter Principle", grp:"pattern", col:"#AFA9EC", r:22, desc:"Post Office leadership was promoted to oversight of a system they did not understand and could not meaningfully question."},
-      {id:"No accountability", grp:"pattern", col:"#5DCAA5", r:22, desc:"As of 2025, Fujitsu still operates Horizon and has been awarded \u00a3362M in new government contracts. No Post Office or Fujitsu employees have been held criminally accountable."}
+      {id:"UK Post Office / Horizon", grp:"core", col:"#F0997B", r:46, desc:"1999\u20132025. Approximately 900 subpostmasters prosecuted using flawed accounting software data. At least 13 suicides linked to the scandal. 20+ years to justice."},
+      {id:"Automation bias at industrial scale", grp:"pattern", col:"#E24B4A", r:32, desc:"The institution trusted the system over hundreds of individual human accounts, for over twenty years. Every subpostmaster said the same thing. The institution chose the machine."},
+      {id:"Suppression of known defects", grp:"pattern", col:"#E24B4A", r:32, desc:"Both the Post Office and Fujitsu knew Horizon had bugs. Neither disclosed this to subpostmasters or to courts. This is not governance failure \u2014 it is fraud."},
+      {id:"Peter Principle", grp:"pattern", col:"#AFA9EC", r:32, desc:"Post Office leadership was promoted to oversight of a system they did not understand and could not meaningfully question."},
+      {id:"No accountability", grp:"pattern", col:"#5DCAA5", r:32, desc:"As of 2025, Fujitsu still operates Horizon and has been awarded \u00a3362M in new government contracts. No Post Office or Fujitsu employees have been held criminally accountable."}
     ];
 
     var links=[
@@ -1450,10 +1450,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1476,7 +1476,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1488,9 +1488,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1512,8 +1512,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1531,8 +1531,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F9 Arup Deepfake" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F9 · Arup Deepfake — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f9-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f9-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f9-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1549,16 +1549,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Arup Deepfake", grp:"core", col:"#F0997B", r:34, desc:"January 2024. A finance employee was deceived by a deepfake video call impersonating the CFO and colleagues. $25.6M transferred across 15 wire transfers in a single day."},
-      {id:"Video verification is broken", grp:"pattern", col:"#E24B4A", r:22, desc:"\u201cI saw them on video\u201d is no longer verification. GenAI has made real-time visual impersonation trivially possible."},
-      {id:"Public presence as attack surface", grp:"pattern", col:"#EF9F27", r:22, desc:"Conference talks, earnings calls, LinkedIn profiles \u2014 all training data for impersonation at scale. Every Arup executive with a public profile was training data for their own impersonation."},
-      {id:"No out-of-band verification", grp:"pattern", col:"#AFA9EC", r:22, desc:"No requirement to confirm high-value financial instructions through a separate, pre-agreed channel before acting on a video call."},
-      {id:"Conway\u2019s Law", grp:"pattern", col:"#5DCAA5", r:22, desc:"Siloed verification across offices \u2014 the Hong Kong employee acted alone, with no cross-office check before the transfers were made."}
+      {id:"Arup Deepfake", grp:"core", col:"#F0997B", r:46, desc:"January 2024. A finance employee was deceived by a deepfake video call impersonating the CFO and colleagues. $25.6M transferred across 15 wire transfers in a single day."},
+      {id:"Video verification is broken", grp:"pattern", col:"#E24B4A", r:32, desc:"\u201cI saw them on video\u201d is no longer verification. GenAI has made real-time visual impersonation trivially possible."},
+      {id:"Public presence as attack surface", grp:"pattern", col:"#EF9F27", r:32, desc:"Conference talks, earnings calls, LinkedIn profiles \u2014 all training data for impersonation at scale. Every Arup executive with a public profile was training data for their own impersonation."},
+      {id:"No out-of-band verification", grp:"pattern", col:"#AFA9EC", r:32, desc:"No requirement to confirm high-value financial instructions through a separate, pre-agreed channel before acting on a video call."},
+      {id:"Conway\u2019s Law", grp:"pattern", col:"#5DCAA5", r:32, desc:"Siloed verification across offices \u2014 the Hong Kong employee acted alone, with no cross-office check before the transfers were made."}
     ];
 
     var links=[
@@ -1569,10 +1569,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1595,7 +1595,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1607,9 +1607,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1631,8 +1631,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1650,8 +1650,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F10 Cruise Robotaxi" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F10 · Cruise Robotaxi — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f10-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f10-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f10-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1668,16 +1668,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Cruise Robotaxi", grp:"core", col:"#F0997B", r:34, desc:"October 2023, San Francisco. After a hit-and-run threw a pedestrian into its path, the vehicle dragged her 20 feet during its pullover protocol. Cruise then concealed footage from regulators."},
-      {id:"Agentic protocol without re-evaluation", grp:"pattern", col:"#E24B4A", r:22, desc:"The vehicle followed its pullover protocol after the collision without re-evaluating whether the situation had changed. The plan-act-observe loop failed at the observe step."},
-      {id:"Scale before data", grp:"pattern", col:"#EF9F27", r:22, desc:"Cruise expanded faster than Waymo with far less accumulated driving data. Speed-to-market incentive overrode safety-through-patience."},
-      {id:"Deliberate cover-up", grp:"pattern", col:"#AFA9EC", r:22, desc:"Cruise showed regulators an edited video that ended before the dragging, and filed an incomplete NHTSA report. These are human decisions, not algorithmic failures."},
-      {id:"Two separate failures", grp:"pattern", col:"#5DCAA5", r:22, desc:"The technical failure (no re-evaluation) and the institutional failure (the cover-up) are distinct. $2M in fines, zero permits remaining, nationwide operations halted."}
+      {id:"Cruise Robotaxi", grp:"core", col:"#F0997B", r:46, desc:"October 2023, San Francisco. After a hit-and-run threw a pedestrian into its path, the vehicle dragged her 20 feet during its pullover protocol. Cruise then concealed footage from regulators."},
+      {id:"Agentic protocol without re-evaluation", grp:"pattern", col:"#E24B4A", r:32, desc:"The vehicle followed its pullover protocol after the collision without re-evaluating whether the situation had changed. The plan-act-observe loop failed at the observe step."},
+      {id:"Scale before data", grp:"pattern", col:"#EF9F27", r:32, desc:"Cruise expanded faster than Waymo with far less accumulated driving data. Speed-to-market incentive overrode safety-through-patience."},
+      {id:"Deliberate cover-up", grp:"pattern", col:"#AFA9EC", r:32, desc:"Cruise showed regulators an edited video that ended before the dragging, and filed an incomplete NHTSA report. These are human decisions, not algorithmic failures."},
+      {id:"Two separate failures", grp:"pattern", col:"#5DCAA5", r:32, desc:"The technical failure (no re-evaluation) and the institutional failure (the cover-up) are distinct. $2M in fines, zero permits remaining, nationwide operations halted."}
     ];
 
     var links=[
@@ -1689,10 +1689,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1715,7 +1715,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1727,9 +1727,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1751,8 +1751,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1770,8 +1770,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F6 Cambridge Analytica" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F6 · Facebook / Cambridge Analytica — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f6-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f6-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f6-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1788,16 +1788,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Cambridge Analytica", grp:"core", col:"#F0997B", r:34, desc:"2013\u20132018. 87 million profiles harvested via a friends-of-friends API. Facebook knew in 2015, said nothing for three years. $5B FTC fine \u2014 the largest privacy fine in history at the time."},
-      {id:"Platform design as deliberate feature", grp:"pattern", col:"#E24B4A", r:22, desc:"Friends-of-friends harvesting was a deliberate design choice, not a bug. The governance question \u2014 what happens when this data is used for purposes users never imagined \u2014 was never asked."},
-      {id:"Discovery without disclosure", grp:"pattern", col:"#E24B4A", r:22, desc:"Facebook learned of the misuse in 2015, asked for deletion, accepted an unverified assurance, and did not audit or notify the 87 million affected users."},
-      {id:"Purpose limitation violation", grp:"pattern", col:"#EF9F27", r:22, desc:"Data collected for academic personality research was used for commercial political micro-targeting in the 2016 US election."},
-      {id:"Governance counterfactual", grp:"pattern", col:"#5DCAA5", r:22, desc:"The actual UK fine was \u00a3500,000 \u2014 the pre-GDPR maximum. Had GDPR applied, the fine could have been roughly $2.3 billion. GDPR was drafted partly in direct response to cases like this."}
+      {id:"Cambridge Analytica", grp:"core", col:"#F0997B", r:46, desc:"2013\u20132018. 87 million profiles harvested via a friends-of-friends API. Facebook knew in 2015, said nothing for three years. $5B FTC fine \u2014 the largest privacy fine in history at the time."},
+      {id:"Platform design as deliberate feature", grp:"pattern", col:"#E24B4A", r:32, desc:"Friends-of-friends harvesting was a deliberate design choice, not a bug. The governance question \u2014 what happens when this data is used for purposes users never imagined \u2014 was never asked."},
+      {id:"Discovery without disclosure", grp:"pattern", col:"#E24B4A", r:32, desc:"Facebook learned of the misuse in 2015, asked for deletion, accepted an unverified assurance, and did not audit or notify the 87 million affected users."},
+      {id:"Purpose limitation violation", grp:"pattern", col:"#EF9F27", r:32, desc:"Data collected for academic personality research was used for commercial political micro-targeting in the 2016 US election."},
+      {id:"Governance counterfactual", grp:"pattern", col:"#5DCAA5", r:32, desc:"The actual UK fine was \u00a3500,000 \u2014 the pre-GDPR maximum. Had GDPR applied, the fine could have been roughly $2.3 billion. GDPR was drafted partly in direct response to cases like this."}
     ];
 
     var links=[
@@ -1809,10 +1809,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1835,7 +1835,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1847,9 +1847,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1871,8 +1871,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -1890,8 +1890,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F13 YouTube Watch-Time" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F13 · YouTube Recommendations — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f13-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f13-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f13-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -1908,16 +1908,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"YouTube Recommendations", grp:"core", col:"#F0997B", r:34, desc:"Algorithm optimised for watch time across 2+ billion users. The algorithm worked perfectly \u2014 it systematically promoted conspiracy, outrage, and radicalisation pathways because those kept people watching."},
-      {id:"Metric Corruption", grp:"pattern", col:"#E24B4A", r:22, desc:"Watch time is not user welfare. The optimisation target and the actual goal diverged completely while the metric kept climbing."},
-      {id:"Measurability Bias", grp:"pattern", col:"#EF9F27", r:22, desc:"Engineers can optimise what they measure \u2014 watch time. They cannot optimise \u201ctruth\u201d or \u201cuser benefit,\u201d because those are not quantifiable in the same way."},
-      {id:"Feedback Loop Amplification", grp:"pattern", col:"#AFA9EC", r:22, desc:"Higher engagement led to more recommendations, which led to higher engagement. The system locked onto conspiracy pathways because they were effective, not because they were chosen."},
-      {id:"Tail Risk Blindness", grp:"pattern", col:"#5DCAA5", r:22, desc:"The algorithm was well-calibrated on average but systematically promoted tail content. YouTube claimed a 50\u201370% reduction in conspiracy recommendations; researchers found the real figure was closer to 40%."}
+      {id:"YouTube Recommendations", grp:"core", col:"#F0997B", r:46, desc:"Algorithm optimised for watch time across 2+ billion users. The algorithm worked perfectly \u2014 it systematically promoted conspiracy, outrage, and radicalisation pathways because those kept people watching."},
+      {id:"Metric Corruption", grp:"pattern", col:"#E24B4A", r:32, desc:"Watch time is not user welfare. The optimisation target and the actual goal diverged completely while the metric kept climbing."},
+      {id:"Measurability Bias", grp:"pattern", col:"#EF9F27", r:32, desc:"Engineers can optimise what they measure \u2014 watch time. They cannot optimise \u201ctruth\u201d or \u201cuser benefit,\u201d because those are not quantifiable in the same way."},
+      {id:"Feedback Loop Amplification", grp:"pattern", col:"#AFA9EC", r:32, desc:"Higher engagement led to more recommendations, which led to higher engagement. The system locked onto conspiracy pathways because they were effective, not because they were chosen."},
+      {id:"Tail Risk Blindness", grp:"pattern", col:"#5DCAA5", r:32, desc:"The algorithm was well-calibrated on average but systematically promoted tail content. YouTube claimed a 50\u201370% reduction in conspiracy recommendations; researchers found the real figure was closer to 40%."}
     ];
 
     var links=[
@@ -1928,10 +1928,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -1954,7 +1954,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -1966,9 +1966,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -1990,8 +1990,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -2009,8 +2009,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F14 Clearview AI" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F14 · Clearview AI — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f14-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f14-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f14-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -2027,16 +2027,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Clearview AI", grp:"core", col:"#F0997B", r:34, desc:"Scraped 3B+ photos without consent into a 20B+ facial index, sold to 600+ police departments and ICE. Defence: \u201cit\u2019s all public data.\u201d $51.75M settlement in 2022."},
-      {id:"Governance Blindness", grp:"pattern", col:"#E24B4A", r:22, desc:"No function inside the company asked \u201cshould we do this?\u201d or \u201cwho should we ask permission from?\u201d before building the database."},
-      {id:"Public Data \u2260 Public Use", grp:"pattern", col:"#EF9F27", r:22, desc:"Data publicly visible for one purpose does not mean any use is acceptable. Family photos posted for social sharing became inputs to a mass surveillance system."},
-      {id:"Scope Creep", grp:"pattern", col:"#AFA9EC", r:22, desc:"From \u201cidentify suspects\u201d to \u201ctrack anyone\u201d \u2014 a capability that can enable stalking and domestic violence as easily as law enforcement."},
-      {id:"Regulatory Lag", grp:"pattern", col:"#5DCAA5", r:22, desc:"The company operated openly for years, scraping billions of photos, before regulatory or legal consequences caught up with what it was doing."}
+      {id:"Clearview AI", grp:"core", col:"#F0997B", r:46, desc:"Scraped 3B+ photos without consent into a 20B+ facial index, sold to 600+ police departments and ICE. Defence: \u201cit\u2019s all public data.\u201d $51.75M settlement in 2022."},
+      {id:"Governance Blindness", grp:"pattern", col:"#E24B4A", r:32, desc:"No function inside the company asked \u201cshould we do this?\u201d or \u201cwho should we ask permission from?\u201d before building the database."},
+      {id:"Public Data \u2260 Public Use", grp:"pattern", col:"#EF9F27", r:32, desc:"Data publicly visible for one purpose does not mean any use is acceptable. Family photos posted for social sharing became inputs to a mass surveillance system."},
+      {id:"Scope Creep", grp:"pattern", col:"#AFA9EC", r:32, desc:"From \u201cidentify suspects\u201d to \u201ctrack anyone\u201d \u2014 a capability that can enable stalking and domestic violence as easily as law enforcement."},
+      {id:"Regulatory Lag", grp:"pattern", col:"#5DCAA5", r:32, desc:"The company operated openly for years, scraping billions of photos, before regulatory or legal consequences caught up with what it was doing."}
     ];
 
     var links=[
@@ -2047,10 +2047,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -2073,7 +2073,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -2085,9 +2085,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -2109,8 +2109,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -2128,8 +2128,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · F15 Theranos" data-transition="fade">
 <h3 style="color:var(--c-coral);margin:0 0 4px">F15 · Theranos — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="f15-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="f15-svg" width="100%" height="610" style="display:block"></svg>
   <div id="f15-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -2146,16 +2146,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"Theranos", grp:"core", col:"#F0997B", r:34, desc:"Claimed revolutionary blood-testing from a single finger prick. The technology never worked. $9B claimed valuation, zero working tests, 11-year prison sentence for the founder."},
-      {id:"Information Asymmetry", grp:"pattern", col:"#E24B4A", r:22, desc:"Claim revolutionary technology, hide the details as \u201ctrade secret,\u201d and nobody outside the company can verify the claims."},
-      {id:"Board as Decoration", grp:"pattern", col:"#EF9F27", r:22, desc:"Henry Kissinger and James Mattis lent credibility to the board but had no domain expertise to verify any of the technical claims being made."},
-      {id:"Whistle-Blower Failure", grp:"pattern", col:"#AFA9EC", r:22, desc:"Employee Erika Cheung raised safety concerns internally. They were ignored, and she faced retaliation for raising them."},
-      {id:"Culture of Deception", grp:"pattern", col:"#5DCAA5", r:22, desc:"Systemic fraud: falsified quality control reports, faked customer results using competitor machines, and lied to investors about revenue and deployments."}
+      {id:"Theranos", grp:"core", col:"#F0997B", r:46, desc:"Claimed revolutionary blood-testing from a single finger prick. The technology never worked. $9B claimed valuation, zero working tests, 11-year prison sentence for the founder."},
+      {id:"Information Asymmetry", grp:"pattern", col:"#E24B4A", r:32, desc:"Claim revolutionary technology, hide the details as \u201ctrade secret,\u201d and nobody outside the company can verify the claims."},
+      {id:"Board as Decoration", grp:"pattern", col:"#EF9F27", r:32, desc:"Henry Kissinger and James Mattis lent credibility to the board but had no domain expertise to verify any of the technical claims being made."},
+      {id:"Whistle-Blower Failure", grp:"pattern", col:"#AFA9EC", r:32, desc:"Employee Erika Cheung raised safety concerns internally. They were ignored, and she faced retaliation for raising them."},
+      {id:"Culture of Deception", grp:"pattern", col:"#5DCAA5", r:32, desc:"Systemic fraud: falsified quality control reports, faked customer results using competitor machines, and lied to investors about revenue and deployments."}
     ];
 
     var links=[
@@ -2167,10 +2167,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -2193,7 +2193,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -2205,9 +2205,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -2229,8 +2229,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
@@ -2248,8 +2248,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
 <section data-background-color="#0b0f14" data-bc="W2 · Case Visuals · NM4 JPMorgan Quantum" data-transition="fade">
 <h3 style="color:var(--c-blue);margin:0 0 4px">NM4 · JPMorgan Quantum Initiative — concept map</h3>
-<div style="position:relative;width:97%;margin:0 auto;height:565px">
-  <svg id="nm4-svg" width="100%" height="565" style="display:block"></svg>
+<div style="position:relative;width:97%;margin:0 auto;height:610px">
+  <svg id="nm4-svg" width="100%" height="610" style="display:block"></svg>
   <div id="nm4-tip" style="position:absolute;padding:10px 14px;background:#141a22;border:1px solid #2a3342;border-radius:10px;color:#e8eaed;font-size:12px;line-height:1.5;pointer-events:none;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.8);opacity:0;z-index:50;font-family:"DM Sans",sans-serif;transition:opacity 0.15s"></div>
 </div>
 
@@ -2266,16 +2266,16 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     fired=true;
 
     var W=el.getBoundingClientRect().width||1100;
-    var H=el.getBoundingClientRect().height||565;
+    var H=el.getBoundingClientRect().height||610;
     var svg=d3.select(el).attr("viewBox","0 0 "+W+" "+H);
     var g=svg.append("g");
 
     var nodes=[
-      {id:"JPMorgan Quantum Initiative", grp:"core", col:"#85B7EB", r:34, desc:"2019: announced quantum advantage in finance, invested $100M+. 2024: quietly recalibrated to \u201cmonitoring the landscape.\u201d A near-miss, not a failure \u2014 the investment was real."},
-      {id:"Measurement Problem", grp:"pattern", col:"#EF9F27", r:22, desc:"JPMorgan measured \u201cpapers published\u201d and \u201cpartnerships formed,\u201d not \u201cactual competitive advantage.\u201d Measurable was substituted for meaningful."},
-      {id:"Hardware Assumption", grp:"pattern", col:"#AFA9EC", r:22, desc:"The plan assumed quantum hardware would improve faster than it did. The wrong assumption produced an overstated timeline \u2014 not a wrong strategy."},
-      {id:"No Feedback Loop", grp:"pattern", col:"#E24B4A", r:22, desc:"No mechanism existed to kill the public narrative when reality diverged from the 2019 claims. The story persisted well after the evidence stopped supporting it."},
-      {id:"Quiet course-correction", grp:"pattern", col:"#5DCAA5", r:22, desc:"Unlike Theranos, JPMorgan did not hide results or fabricate data. They changed the narrative quietly \u2014 weak communication governance, but honest underlying behaviour."}
+      {id:"JPMorgan Quantum Initiative", grp:"core", col:"#85B7EB", r:46, desc:"2019: announced quantum advantage in finance, invested $100M+. 2024: quietly recalibrated to \u201cmonitoring the landscape.\u201d A near-miss, not a failure \u2014 the investment was real."},
+      {id:"Measurement Problem", grp:"pattern", col:"#EF9F27", r:32, desc:"JPMorgan measured \u201cpapers published\u201d and \u201cpartnerships formed,\u201d not \u201cactual competitive advantage.\u201d Measurable was substituted for meaningful."},
+      {id:"Hardware Assumption", grp:"pattern", col:"#AFA9EC", r:32, desc:"The plan assumed quantum hardware would improve faster than it did. The wrong assumption produced an overstated timeline \u2014 not a wrong strategy."},
+      {id:"No Feedback Loop", grp:"pattern", col:"#E24B4A", r:32, desc:"No mechanism existed to kill the public narrative when reality diverged from the 2019 claims. The story persisted well after the evidence stopped supporting it."},
+      {id:"Quiet course-correction", grp:"pattern", col:"#5DCAA5", r:32, desc:"Unlike Theranos, JPMorgan did not hide results or fabricate data. They changed the narrative quietly \u2014 weak communication governance, but honest underlying behaviour."}
     ];
 
     var links=[
@@ -2287,10 +2287,10 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     ];
 
     var sim=d3.forceSimulation(nodes)
-      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(140))
-      .force("charge", d3.forceManyBody().strength(-420))
+      .force("link", d3.forceLink(links).id(function(d){return d.id;}).distance(165))
+      .force("charge", d3.forceManyBody().strength(-520))
       .force("center", d3.forceCenter(W/2, H/2))
-      .force("collide", d3.forceCollide().radius(function(d){return d.r+18;}));
+      .force("collide", d3.forceCollide().radius(function(d){return d.r+22;}));
 
     var link=g.append("g").selectAll("line")
       .data(links).enter().append("line")
@@ -2313,7 +2313,7 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
     nodeG.each(function(d){
       var words=d.id.split(" ");
       var lines=[]; var cur="";
-      var maxLen = d.grp==="core" ? 14 : 16;
+      var maxLen = d.grp==="core" ? 16 : 18;
       words.forEach(function(w){
         var test = cur ? cur+" "+w : w;
         if(test.length>maxLen && cur){ lines.push(cur); cur=w; }
@@ -2325,9 +2325,9 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
       lines.forEach(function(l,i){
         t.append("text")
           .attr("text-anchor","middle")
-          .attr("y",(i-(lines.length-1)/2)*12)
+          .attr("y",(i-(lines.length-1)/2)*15)
           .attr("font-family","DM Mono, monospace")
-          .attr("font-size", d.grp==="core"?11:9)
+          .attr("font-size", d.grp==="core"?14:11)
           .attr("font-weight", d.grp==="core"?700:600)
           .attr("fill", d.col)
           .text(l);
@@ -2349,8 +2349,8 @@ code { background: #141a22; border: 1px solid #2a3342; border-radius: 4px; paddi
 
     sim.on("tick", function(){
       nodes.forEach(function(d){
-        d.x = Math.max(d.r+8, Math.min(W-d.r-8, d.x));
-        d.y = Math.max(d.r+8, Math.min(H-d.r-8, d.y));
+        d.x = Math.max(d.r+10, Math.min(W-d.r-10, d.x));
+        d.y = Math.max(d.r+10, Math.min(H-d.r-10, d.y));
       });
       link.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;})
           .attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
